@@ -2,19 +2,41 @@
 
 from tkinter import*
 
+import math
 import os
 import random
 import tkinter
 
-player_1_move_boolean = False
-chunk_count = 0
+chunk_x = 0
+chunk_y = 0
 
 main = tkinter.Tk()
 
-def down(event): 
+grass_block_entity = []
+grass_block_x = []
+grass_block_y = []
+
+player_1_image = "images/player 1.png"
+player_1_image = PhotoImage(file = player_1_image)
+
+grass_image = "images/grass.png"
+grass_image = PhotoImage(file = grass_image)
+
+width = main.winfo_screenwidth() 
+height = main.winfo_screenheight()
+
+player_1_x = width / 2
+player_1_y = height / 2
+
+def down(event):
     global player_1_y
+
+    chunk_y = player_1_y / height
+    chunk = math.ceil(chunk_y)
+    print("Chunk y:", + chunk)
+    
     player_1_y += 50
-    #canvas.move(player_1, 0, 50)
+    
     print(player_1_x, player_1_y)
 
     for i in range (0, len(grass_block_entity)):
@@ -25,8 +47,13 @@ def escape(event):
     
 def left(event):
     global player_1_x
+
+    chunk_x = player_1_x / width
+    chunk = math.ceil(chunk_x)
+    print("Chunk x:", + chunk)
+    
     player_1_x -= 50
-    #canvas.move(player_1, -50, 0)
+    
     print(player_1_x, player_1_y)
 
     for i in range (0, len(grass_block_entity)):
@@ -34,8 +61,13 @@ def left(event):
 
 def right(event):
     global player_1_x
+
+    chunk_x = player_1_x / width
+    chunk = math.ceil(chunk_x)
+    print("Chunk x:", + chunk)
+    
     player_1_x += 50
-    #canvas.move(player_1, 50, 0)
+
     print(player_1_x, player_1_y)
 
     for i in range (0, len(grass_block_entity)):
@@ -43,54 +75,26 @@ def right(event):
     
 def up(event):
     global player_1_y
+
+    chunk_y = player_1_y / height
+    chunk = math.ceil(chunk_y)
+    print("Chunk y:", + chunk)
+    
     player_1_y -= 50
-    #canvas.move(player_1, 0, -50)
+
     print(player_1_x, player_1_y)
 
     for i in range (0, len(grass_block_entity)):
         canvas.move(grass_block_entity[i], 0, 50)
-
-print("player 1 move:", player_1_move_boolean)
-player_1_move_boolean = False
-
-grass_block_entity = []
-grass_block_x = []
-grass_block_y = []
-
-#player_1_image = r"/home/linux/Downloads/test.png"
-player_1_image = "images/player 1.png"
-player_1_image = PhotoImage(file = player_1_image)
-
-#grass_image = r"/home/linux/Downloads/grass.png"
-grass_image = "images/grass.png"
-grass_image = PhotoImage(file = grass_image)
+        
+canvas = tkinter.Canvas(main, bg = "green", height = height, width = width)
 
 seed_logic = random.seed("hello")
 seed_logic = random.randint(1,1000)
 print(seed_logic)
 
-#x = 850
-#y = 600
-
-width = main.winfo_screenwidth() 
-height = main.winfo_screenheight()
-#print("w=",width,"h=",height)
-
-player_1_x = width / 2
-player_1_y = height / 2
-
-canvas = tkinter.Canvas(main, bg = "green", height = height, width = width)
-
-'''class chunk_logic:
-    def chunk_logic():
-        chunk_count = 0
-        
-        print("Chunk:", + chunk_count)
-'''
-'''if player_1_move_boolean
-chunk_count
-'''
 def grass_logic():
+    print("ok")
     logic = seed_logic + 400
     grass_block_x.append(logic)
     
@@ -124,7 +128,6 @@ def grass_logic():
     grass_block_entity.append("grass")
     
     for i in range(0, len(grass_block_entity)):
-        #grass_entity = canvas.create_image(grass_block_x[i], grass_block_y[i], image = grass_image)
         grass_block_entity[i] = canvas.create_image(grass_block_x[i], grass_block_y[i], image = grass_image)
         
 main.bind("<a>", left)
