@@ -90,45 +90,47 @@ def up(event):
 canvas = tkinter.Canvas(main, bg = "green", height = height, width = width)
 
 seed_logic = random.seed("hello")
-seed_logic = random.randint(1,4096)
+seed_logic = random.randint(1,1000000000)
 print("Seed:", seed_logic)
 
 def grass_logic():
     print("ok")
-    logic = seed_logic + 400
+    logic = (seed_logic % 4096) + 400
     grass_block_x.append(logic)
     
-    logic = seed_logic + 400
+    logic = (seed_logic % 4096) + 400
     grass_block_y.append(logic)
 
     grass_block_entity.append("grass")
 
-    logic = seed_logic + 500
+    logic = (seed_logic % 4096) + 500
     grass_block_x.append(logic)
 
-    logic = seed_logic + 500
+    logic = (seed_logic % 4096) + 500
     grass_block_y.append(logic)
 
     grass_block_entity.append("grass")
     
-    logic = seed_logic + 300
+    logic = (seed_logic % 4096) + 300
     grass_block_x.append(logic)
 
-    logic = seed_logic + 600
+    logic = (seed_logic % 4096) + 600
     grass_block_y.append(logic)
 
     grass_block_entity.append("grass")
     
-    logic = seed_logic + 600
+    logic = (seed_logic % 4096) + 600
     grass_block_x.append(logic)
 
-    logic = seed_logic + 300
+    logic = (seed_logic % 4096) + 300
     grass_block_y.append(logic)
 
     grass_block_entity.append("grass")
     
     for i in range(0, len(grass_block_entity)):
         grass_block_entity[i] = canvas.create_image(grass_block_x[i], grass_block_y[i], image = grass_image)
+
+    print("logic:", logic)
         
 main.bind("<a>", left)
 main.bind("<d>", right)
