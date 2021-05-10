@@ -95,7 +95,7 @@ print("Seed:", seed_logic)
 
 def grass_logic():
     print("ok")
-    logic = (seed_logic % 4096) + 400
+    logic = (seed_logic % 4096) + 500
     grass_block_x.append(logic)
     
     logic = (seed_logic % 4096) + 400
@@ -103,15 +103,23 @@ def grass_logic():
 
     grass_block_entity.append("grass")
 
-    logic = (seed_logic % 4096) + 500
+    logic = (seed_logic % 4096) + 700
     grass_block_x.append(logic)
 
-    logic = (seed_logic % 4096) + 500
+    logic = (seed_logic % 4096) + 400
+    grass_block_y.append(logic)
+
+    grass_block_entity.append("grass")
+
+    logic = (seed_logic % 4096) + 900
+    grass_block_x.append(logic)
+
+    logic = (seed_logic % 4096) + 400
     grass_block_y.append(logic)
 
     grass_block_entity.append("grass")
     
-    logic = (seed_logic % 4096) + 300
+    logic = (seed_logic % 4096) + 400
     grass_block_x.append(logic)
 
     logic = (seed_logic % 4096) + 600
@@ -122,7 +130,15 @@ def grass_logic():
     logic = (seed_logic % 4096) + 600
     grass_block_x.append(logic)
 
-    logic = (seed_logic % 4096) + 300
+    logic = (seed_logic % 4096) + 600
+    grass_block_y.append(logic)
+
+    grass_block_entity.append("grass")
+
+    logic = (seed_logic % 4096) + 800
+    grass_block_x.append(logic)
+
+    logic = (seed_logic % 4096) + 600
     grass_block_y.append(logic)
 
     grass_block_entity.append("grass")
