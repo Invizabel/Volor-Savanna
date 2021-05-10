@@ -90,8 +90,8 @@ def up(event):
 canvas = tkinter.Canvas(main, bg = "green", height = height, width = width)
 
 seed_logic = random.seed("hello")
-seed_logic = random.randint(1,1000)
-print(seed_logic)
+seed_logic = random.randint(1,4096)
+print("Seed:", seed_logic)
 
 def grass_logic():
     print("ok")
