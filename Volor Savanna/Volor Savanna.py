@@ -95,53 +95,56 @@ print("Seed:", seed_logic)
 
 def grass_logic():
     print("ok")
-    logic = (seed_logic % 4096) + 500
-    grass_block_x.append(logic)
-    
-    logic = (seed_logic % 4096) + 400
-    grass_block_y.append(logic)
 
-    grass_block_entity.append("grass")
+    for i in range(1,10):
+        print("i:", i)
+        logic = i * ((seed_logic % 4096) + 500)
+        grass_block_x.append(logic)
+        
+        logic = i * ((seed_logic % 4096) + 400)
+        grass_block_y.append(logic)
 
-    logic = (seed_logic % 4096) + 700
-    grass_block_x.append(logic)
+        grass_block_entity.append("grass")
 
-    logic = (seed_logic % 4096) + 400
-    grass_block_y.append(logic)
+        logic = i * ((seed_logic % 4096) + 700)
+        grass_block_x.append(logic)
 
-    grass_block_entity.append("grass")
+        logic = i * ((seed_logic % 4096) + 400)
+        grass_block_y.append(logic)
 
-    logic = (seed_logic % 4096) + 900
-    grass_block_x.append(logic)
+        grass_block_entity.append("grass")
 
-    logic = (seed_logic % 4096) + 400
-    grass_block_y.append(logic)
+        logic = i * ((seed_logic % 4096) + 900)
+        grass_block_x.append(logic)
 
-    grass_block_entity.append("grass")
-    
-    logic = (seed_logic % 4096) + 400
-    grass_block_x.append(logic)
+        logic = i * ((seed_logic % 4096) + 400)
+        grass_block_y.append(logic)
 
-    logic = (seed_logic % 4096) + 600
-    grass_block_y.append(logic)
+        grass_block_entity.append("grass")
+        
+        logic = i * ((seed_logic % 4096) + 400)
+        grass_block_x.append(logic)
 
-    grass_block_entity.append("grass")
-    
-    logic = (seed_logic % 4096) + 600
-    grass_block_x.append(logic)
+        logic = i * ((seed_logic % 4096) + 600)
+        grass_block_y.append(logic)
 
-    logic = (seed_logic % 4096) + 600
-    grass_block_y.append(logic)
+        grass_block_entity.append("grass")
+        
+        logic = i * ((seed_logic % 4096) + 600)
+        grass_block_x.append(logic)
 
-    grass_block_entity.append("grass")
+        logic = i * ((seed_logic % 4096) + 600)
+        grass_block_y.append(logic)
 
-    logic = (seed_logic % 4096) + 800
-    grass_block_x.append(logic)
+        grass_block_entity.append("grass")
 
-    logic = (seed_logic % 4096) + 600
-    grass_block_y.append(logic)
+        logic = i * ((seed_logic % 4096) + 800)
+        grass_block_x.append(logic)
 
-    grass_block_entity.append("grass")
+        logic = i * ((seed_logic % 4096) + 600)
+        grass_block_y.append(logic)
+
+        grass_block_entity.append("grass")
     
     for i in range(0, len(grass_block_entity)):
         grass_block_entity[i] = canvas.create_image(grass_block_x[i], grass_block_y[i], image = grass_image)
