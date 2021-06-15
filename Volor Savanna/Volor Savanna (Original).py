@@ -71,5 +71,19 @@ def hunter():
         os.system("clear")
 
         hunter_list[4] = input("\nYou have chosen to eat.\nYou are fully fueled with energy.\nDo you want to go hunting or play a game with the rest of your tribe?\n1- Hunt; 2- Play a game with the rest of my tribe\nMake Your Choice " + name + ":\n")
-    
+
+    if hunter_list[3] == "1":
+        os.system("clear")
+
+        hunter_list[5] = input("\nYou have chosen to wait for her.\nBecause You have chosen to wait for her patiently, she attends to you in a matter of a couple days.\nYou are better in a week.\nSome white men have come to your tribe.\nThey're asking to trade you guns for some of your tribe's animal pelts.\nDo you trade them pelts for guns?\n9- Trade; 10- Not trade\nMake Your Choice " + name + ":\n")
+
+    if hunter_list[3] == "2":
+        os.system("clear")
+
+        print("\nYou have chosen to tough it out.\nUnfortunately, because of this, you die from malnutrition.\n" + death_level)
+
+        pause = input()
+
+        volor_savanna_original()
+
 user_name()
