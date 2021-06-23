@@ -44,7 +44,7 @@ def volor_savanna_original():
 def hunter():
     os.system("clear")
 
-    hunter_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    hunter_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
     hunter_list[1] = input("\nYou have chosen to be a hunter!\nDo you want to go hunt or stay put?\n\n1- Hunt; 2- Stay put\nMake Your Choice " + name + ":\n")
 
@@ -115,5 +115,23 @@ def hunter():
         pause = input("\nYou have chosen to decline the trade.\nUnfortunately, these people have smallpox.\nThey transmit it to your tribe.\nBecause you tribe doesn't have any immunity against smallpox your whole tribe dies!\n" + death_level)
 
         volor_savanna_original()
-        
+
+    if hunter_list[6] == "3":
+        os.system("clear")
+
+        hunter_list[10] = input("\nYou have chosen to report them to the authorities.\nThese guys turn out to be the wanted criminals after all.\nYour tribe gains importance in the African community because you turned these criminals into the authorities.\nDo you want to go hunt The Mighty Lion?\n19- Yes; 20- No\nMake Your Choice " + name + ":\n")
+
+    if hunter_list[7] == "1":
+        the_mighty_lion()
+
+    if hunter_list[7] == "2":
+        os.system("clear")
+
+        pause = input("\nYou have chosen not to hunt The Mighty Lion.\nUnfortunately, you die from malaria.\n" + death_level)
+
+        volor_savanna_original()
+
+def the_mighty_lion():
+    os.system("clear")
+
 user_name()
