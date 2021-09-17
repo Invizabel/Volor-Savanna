@@ -55,7 +55,7 @@ def hunter():
     #keeps track of the players progress through the level. Used to prevent cheating.
     hunter_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
-    hunter_list[1] = input("You have chosen to be a hunter!\nDo you want to go hunt or stay put?\n\n1- Hunt; 2- Stay put\nMake Your Choice " + name + ":\n")
+    hunter_list[1] = input("You have chosen to be a hunter!\nDo you want to go hunt or stay put?\n\n1- Hunt; 2- Stay put\nMake your choice " + name + ":\n")
 
     if hunter_list[1] == "1":
         os.system("clear")
@@ -175,6 +175,38 @@ def hunter():
         volor_savanna_original()
         
 def the_mighty_lion():
+    global rand
+    rand = random.randint(1,2)
+    
     os.system("clear")
+
+    #keeps track of the players progress through the level. Used to prevent cheating.
+    the_mighty_lion_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+    the_mighty_lion_list[1] = input("You have chosen to hunt The Mighty Lion.\nYou have been on your journey for about a week now.\nThe trail splits off into three sections.\nDo you choose to go through the canyon?\nHow about the prairie?\nOr what about keep continuing through the forest?\n1- Canyon; 2- Prairie; 3- Forest\nMake your choice " + name + ":\n")
+
+    if the_mighty_lion_list[1] == "1":
+        os.system("clear")
+        
+        pause = input("You have chosen to go through the canyon!\nThe canyon is the quickest route to The Mighty Lion.\nUnfortunately, you're almost out of the canyon when a flash flood occurs.\nYou get wiped away instantly and you drown to death.\n" + death_level)
+
+        volor_savanna_original()
+
+    if the_mighty_lion_list[1] == "2":
+        os.system(clear)
+
+        the_mighty_lion_list[2] = input("You have chosen to go through the prairie!\nWhich way do you travel?\n4- Left; 5- Right\nMake your choice " + name + ":\n")
+
+    if the_mighty_lion_list[1] == "3":
+        os.system("clear")
+
+        the_mighty_lion_list[3] = input("You have chosen to go through the forest!\nYou see a river.\nDo you drink from it?\n6- Yes; 7- No\nMake your choice " + name + ":\n")
+
+    if the_mighty_lion_list[2] == "1":
+        os.system("clear")
+
+        pause = input("You have chosen to go left.\nUnfortunately, there are hyenas in front of you after only about an hour of walking.\nThey see you and kill you.\n" + death_level)
+
+        volor_savanna_original()
 
 user_name()
