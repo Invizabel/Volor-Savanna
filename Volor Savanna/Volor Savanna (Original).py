@@ -195,12 +195,12 @@ def the_mighty_lion():
     if the_mighty_lion_list[1] == "2":
         os.system(clear)
 
-        the_mighty_lion_list[2] = input("You have chosen to go through the prairie!\nWhich way do you travel?\n4- Left; 5- Right\nMake your choice " + name + ":\n")
+        the_mighty_lion_list[2] = input("You have chosen to go through the prairie!\nWhich way do you travel?\n1- Left; 2- Right\nMake your choice " + name + ":\n")
 
     if the_mighty_lion_list[1] == "3":
         os.system("clear")
 
-        the_mighty_lion_list[3] = input("You have chosen to go through the forest!\nYou see a river.\nDo you drink from it?\n6- Yes; 7- No\nMake your choice " + name + ":\n")
+        the_mighty_lion_list[3] = input("You have chosen to go through the forest!\nYou see a river.\nDo you drink from it?\n1- Yes; 2- No\nMake your choice " + name + ":\n")
 
     if the_mighty_lion_list[2] == "1":
         os.system("clear")
@@ -208,5 +208,22 @@ def the_mighty_lion():
         pause = input("You have chosen to go left.\nUnfortunately, there are hyenas in front of you after only about an hour of walking.\nThey see you and kill you.\n" + death_level)
 
         volor_savanna_original()
+
+    if the_mighty_lion_list[2] == "2":
+        os.system("clear")
+
+        the_mighty_lion_list[4] = input("You have chosen to go right.\nThere are zebras in front of you after only about an hour of walking.\nDo you kill them for food?\n1- Yes; 2- No\nMake your choice " + name + ":\n")
+
+def the_mighty_lion_terrain():
+    global rand
+    rand = random.randint(1,2)
+    
+    os.system("clear")
+
+    #keeps track of the players progress through the level. Used to prevent cheating.
+    the_mighty_lion_terrain_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+    the_mighty_lion_terrain_list[1] = input("You have chosen to drink from the river.\nLuckily, the water doesn't have any diseases or viruses.\nYou are full.\nYou need to cross the river.\nHowever, the river is very deep.\nYou could make a temporary bridge but that would kill vital time to hunt The Mighty Lion.\nThe fastest way to cross the river is to make a raft.\nWhat do you do?\n1- Make a bridge; 2- Build a raft\nMake your choice " + name + ":\n")
+
 
 user_name()
