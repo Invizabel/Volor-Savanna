@@ -214,6 +214,21 @@ def the_mighty_lion():
 
         the_mighty_lion_list[4] = input("You have chosen to go right.\nThere are zebras in front of you after only about an hour of walking.\nDo you kill them for food?\n1- Yes; 2- No\nMake your choice " + name + ":\n")
 
+    if the_mighty_lion_list[3] == "1":
+        the_mighty_lion_terrain()
+
+    if the_mighty_lion_list[3] == "2":
+        os.system("clear")
+
+        pause = input("You have chosen not to drink from the river.\nYour fellow warriors have.\nThe river doesn't make them sick because the river comes from a far off glacier.\nUnfortunately, you cross the river and find no more water sources.\nYou die from dehydration.\n" + death_level)
+
+        volor_savanna_original()
+
+    if the_mighty_lion_list[4] == "1":
+        os.system("clear")
+
+        the_mighty_lion_list[5] = input("You have chosen to kill the zebras.\nBecause you have chosen to do this you don't go hungry.\nNight falls.\nDo you sleep on the ground or in a tree?\n1- Ground; 2- Tree\nMake your choice " + name + ":\n")
+        
 def the_mighty_lion_terrain():
     global rand
     rand = random.randint(1,2)
