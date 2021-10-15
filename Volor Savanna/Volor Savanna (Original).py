@@ -183,7 +183,7 @@ def the_mighty_lion():
     #keeps track of the players progress through the level. Used to prevent cheating.
     the_mighty_lion_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
-    the_mighty_lion_list[1] = input("You have chosen to hunt The Mighty Lion.\nYou have been on your journey for about a week now.\nThe trail splits off into three sections.\nDo you choose to go through the canyon?\nHow about the prairie?\nOr what about keep continuing through the forest?\n1- Canyon; 2- Prairie; 3- Forest\nMake your choice " + name + ":\n")
+    the_mighty_lion_list[1] = input("You have chosen to hunt The Mighty Lion.\nYou have been on your journey for about a week now.\nThe trail splits off into three sections.\nDo you choose to go through the canyon?\nHow about the prairie?\nOr what about keep continuing through the forest?\n\n1- Canyon; 2- Prairie; 3- Forest\nMake your choice " + name + ":\n")
 
     if the_mighty_lion_list[1] == "1":
         os.system("clear")
@@ -195,12 +195,12 @@ def the_mighty_lion():
     if the_mighty_lion_list[1] == "2":
         os.system(clear)
 
-        the_mighty_lion_list[2] = input("You have chosen to go through the prairie!\nWhich way do you travel?\n1- Left; 2- Right\nMake your choice " + name + ":\n")
+        the_mighty_lion_list[2] = input("You have chosen to go through the prairie!\nWhich way do you travel?\n\n1- Left; 2- Right\nMake your choice " + name + ":\n")
 
     if the_mighty_lion_list[1] == "3":
         os.system("clear")
 
-        the_mighty_lion_list[3] = input("You have chosen to go through the forest!\nYou see a river.\nDo you drink from it?\n1- Yes; 2- No\nMake your choice " + name + ":\n")
+        the_mighty_lion_list[3] = input("You have chosen to go through the forest!\nYou see a river.\nDo you drink from it?\n\n1- Yes; 2- No\nMake your choice " + name + ":\n")
 
     if the_mighty_lion_list[2] == "1":
         os.system("clear")
@@ -212,7 +212,7 @@ def the_mighty_lion():
     if the_mighty_lion_list[2] == "2":
         os.system("clear")
 
-        the_mighty_lion_list[4] = input("You have chosen to go right.\nThere are zebras in front of you after only about an hour of walking.\nDo you kill them for food?\n1- Yes; 2- No\nMake your choice " + name + ":\n")
+        the_mighty_lion_list[4] = input("You have chosen to go right.\nThere are zebras in front of you after only about an hour of walking.\nDo you kill them for food?\n\n1- Yes; 2- No\nMake your choice " + name + ":\n")
 
     if the_mighty_lion_list[3] == "1":
         the_mighty_lion_terrain()
@@ -227,7 +227,7 @@ def the_mighty_lion():
     if the_mighty_lion_list[4] == "1":
         os.system("clear")
 
-        the_mighty_lion_list[5] = input("You have chosen to kill the zebras.\nBecause you have chosen to do this you don't go hungry.\nNight falls.\nDo you sleep on the ground or in a tree?\n1- Ground; 2- Tree\nMake your choice " + name + ":\n")
+        the_mighty_lion_list[5] = input("You have chosen to kill the zebras.\nBecause you have chosen to do this you don't go hungry.\nNight falls.\nDo you sleep on the ground or in a tree?\n\n1- Ground; 2- Tree\nMake your choice " + name + ":\n")
 
     if the_mighty_lion_list[4] == "2":
         os.system("clear")
@@ -246,7 +246,7 @@ def the_mighty_lion():
     if the_mighty_lion_list[5] == "2":
         os.system("clear")
 
-        the_mighty_lion_list[6] = input("You have chosen to sleep in a tree.\nNo animals eat you.\nYou see a river.\nDo you drink from it?\n12- Yes; 13- No\nMake your choice " + name + ":\n")
+        the_mighty_lion_list[6] = input("You have chosen to sleep in a tree.\nNo animals eat you.\nYou see a river.\nDo you drink from it?\n\n12- Yes; 13- No\nMake your choice " + name + ":\n")
 
     if the_mighty_lion_list[6] == "1":
         the_mighty_lion_terrain()
@@ -267,7 +267,16 @@ def the_mighty_lion_terrain():
     #keeps track of the players progress through the level. Used to prevent cheating.
     the_mighty_lion_terrain_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
-    the_mighty_lion_terrain_list[1] = input("You have chosen to drink from the river.\nLuckily, the water doesn't have any diseases or viruses.\nYou are full.\nYou need to cross the river.\nHowever, the river is very deep.\nYou could make a temporary bridge but that would kill vital time to hunt The Mighty Lion.\nThe fastest way to cross the river is to make a raft.\nWhat do you do?\n1- Make a bridge; 2- Build a raft\nMake your choice " + name + ":\n")
+    the_mighty_lion_terrain_list[1] = input("You have chosen to drink from the river.\nLuckily, the water doesn't have any diseases or viruses.\nYou are full.\nYou need to cross the river.\nHowever, the river is very deep.\nYou could make a temporary bridge but that would kill vital time to hunt The Mighty Lion.\nThe fastest way to cross the river is to make a raft.\nWhat do you do?\n\n1- Make a bridge; 2- Build a raft\nMake your choice " + name + ":\n")
 
+    if the_mighty_lion_terrain[1] == "1":
+        os.system("clear")
+
+        the_mighty_lion_terrain[2] = input("You have chosen to make a bridge.\nYour patience pays off and you get across the river in no time!\nThe path splits in two.\nDo you travel through the hills or the extreme hills?\n\n1- Hills; 2- Extreme hills\nMake your choice " + name + ":\n")
+
+    if the_mighty_lion_terrain[1] == "2":
+        os.system("clear")
+
+        pause = input("You have chosen to build a raft.\nUnfortunately, the river brings you to the rapids before you are able to reach the other side.\nThe rapids are heading towards a waterfall, so you panic.\nYou throw your paddle into the river.\nYou fall down the waterfall and hit the rocks at the bottom.\nYour head splits open and you die!\n" + death_level)
 
 user_name()
