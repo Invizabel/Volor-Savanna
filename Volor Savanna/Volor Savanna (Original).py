@@ -228,6 +228,35 @@ def the_mighty_lion():
         os.system("clear")
 
         the_mighty_lion_list[5] = input("You have chosen to kill the zebras.\nBecause you have chosen to do this you don't go hungry.\nNight falls.\nDo you sleep on the ground or in a tree?\n1- Ground; 2- Tree\nMake your choice " + name + ":\n")
+
+    if the_mighty_lion_list[4] == "2":
+        os.system("clear")
+
+        pause = input("You have chosen not to kill the zebras.\nUnfortunately, because of this, you starve.\n" + death_level)
+
+        volor_savanna_original()
+
+    if the_mighty_lion_list[5] == "1":
+        os.system("clear")
+
+        pause = input("You have chosen to sleep on the ground.\nUnfortunately, a dingo comes up and gobbles you up.\n" + death_level)
+
+        volor_savanna_original()
+
+    if the_mighty_lion_list[5] == "2":
+        os.system("clear")
+
+        the_mighty_lion_list[6] = input("You have chosen to sleep in a tree.\nNo animals eat you.\nYou see a river.\nDo you drink from it?\n12- Yes; 13- No\nMake your choice " + name + ":\n")
+
+    if the_mighty_lion_list[6] == "1":
+        the_mighty_lion_terrain()
+
+    if the_mighty_lion_list[7] == "2":
+        os.system("clear")
+
+        pause = input("You have chosen not to drink from the river.\nYour fellow warriors have.\nThe river doesn't make them sick because the river comes from a far off glacier.\nUnfortunately, you cross the river and find no more water sources.\nYou die from dehydration.\n" + death_level)
+
+        volor_savanna_original()
         
 def the_mighty_lion_terrain():
     global rand
