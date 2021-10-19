@@ -284,6 +284,29 @@ def the_mighty_lion_terrain():
     if the_mighty_lion_terrain_list[2] == "1":
         os.system("clear")
 
-        the_mighty_lion_terrain_list[3] = input("You have chosen to go through the hills.\nYou travel through the hills and see The Mighty Lion!\nWhat weapon do you want to use?\n\n5- Knife; 6- Bow and arrows; 7- Spear; 8- Gun\nMake your choice " + name + ":\n")
+        the_mighty_lion_terrain_list[3] = input("You have chosen to go through the hills.\nYou travel through the hills and see The Mighty Lion!\nWhat weapon do you want to use?\n\n1- Knife; 2- Bow and arrows; 3- Spear; 4- Gun\nMake your choice " + name + ":\n")
 
+    if the_mighty_lion_terrain_list[3] == "1":
+        os.system("clear")
+
+        the_mighty_lion_terrain_list[4] = input("You have chosen to use your trusty knife to kill The Mighty Lion!\nSo, " + name + " do you kill The Mighty Lion?\n\n1- Find out!")
+
+    if the_mighty_lion_terrain_list[3] == "2":
+        os.system("clear")
+
+        the_mighty_lion_terrain_list[4] = input("You have chosen to use your mighty bow and arrows to kill The Mighty Lion!\nSo, " + name + " do you kill The Mighty Lion?\n\n1- Find out!")
+
+
+    if the_mighty_lion_terrain_list[3] == "3":
+        os.system("clear")
+
+        the_mighty_lion_terrain_list[4] = input("You have chosen to use your powerful spear to kill The Mighty Lion.\nSo, " + name + " do you kill The Mighty Lion?\n\n1- Find out!")
+
+    if the_mighty_lion_terrain_list[3] == "4":
+        os.system("clear")
+
+        pause = input("You have chosen to use your overpowered gun to kill The Mighty Lion.\nUnfortunately, your gun explodes in face.\nYou die.\n" + death_level)
+
+        volor_savanna_original()
+        
 user_name()

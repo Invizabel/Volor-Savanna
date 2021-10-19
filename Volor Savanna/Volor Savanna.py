@@ -4,8 +4,12 @@ from tkinter import*
 
 import math
 import os
+import pygame
 import random
 import tkinter
+
+
+pygame.init()
 
 chunk_x = 0
 chunk_y = 0
