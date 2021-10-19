@@ -181,7 +181,7 @@ def the_mighty_lion():
     os.system("clear")
 
     #keeps track of the players progress through the level. Used to prevent cheating.
-    the_mighty_lion_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    the_mighty_lion_list = ["0", "1", "2", "3", "4", "5", "6", "7"]
 
     the_mighty_lion_list[1] = input("You have chosen to hunt The Mighty Lion.\nYou have been on your journey for about a week now.\nThe trail splits off into three sections.\nDo you choose to go through the canyon?\nHow about the prairie?\nOr what about keep continuing through the forest?\n\n1- Canyon; 2- Prairie; 3- Forest\nMake your choice " + name + ":\n")
 
@@ -265,7 +265,7 @@ def the_mighty_lion_terrain():
     os.system("clear")
 
     #keeps track of the players progress through the level. Used to prevent cheating.
-    the_mighty_lion_terrain_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    the_mighty_lion_terrain_list = ["0", "1", "2", "3", "4"]
 
     the_mighty_lion_terrain_list[1] = input("You have chosen to drink from the river.\nLuckily, the water doesn't have any diseases or viruses.\nYou are full.\nYou need to cross the river.\nHowever, the river is very deep.\nYou could make a temporary bridge but that would kill vital time to hunt The Mighty Lion.\nThe fastest way to cross the river is to make a raft.\nWhat do you do?\n\n1- Make a bridge; 2- Build a raft\nMake your choice " + name + ":\n")
 
@@ -306,6 +306,20 @@ def the_mighty_lion_terrain():
         os.system("clear")
 
         pause = input("You have chosen to use your overpowered gun to kill The Mighty Lion.\nUnfortunately, your gun explodes in face.\nYou die.\n" + death_level)
+
+        volor_savanna_original()
+
+    if the_mighty_lion_terrain_list[4] == "1" and rand == 1:
+        os.system("clear")
+
+        pause = input("You do not kill The Mighty Lion.\nUnfortunately, The Mighty Lion eats you!\n" + death_level)
+
+        volor_savanna_original()
+
+    if the_mighty_lion_terrain_list[4] == "1" and rand == 2:
+        os.system("clear")
+
+        pause = input("You kill The Mighty Lion!\nYour tribe celebrates!\n" + death_level)
 
         volor_savanna_original()
         
