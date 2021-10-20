@@ -289,18 +289,18 @@ def the_mighty_lion_terrain():
     if the_mighty_lion_terrain_list[3] == "1":
         os.system("clear")
 
-        the_mighty_lion_terrain_list[4] = input("You have chosen to use your trusty knife to kill The Mighty Lion!\nSo, " + name + " do you kill The Mighty Lion?\n\n1- Find out!")
+        the_mighty_lion_terrain_list[4] = input("You have chosen to use your trusty knife to kill The Mighty Lion!\nSo, " + name + " do you kill The Mighty Lion?\n\n1- Find out!\n")
 
     if the_mighty_lion_terrain_list[3] == "2":
         os.system("clear")
 
-        the_mighty_lion_terrain_list[4] = input("You have chosen to use your mighty bow and arrows to kill The Mighty Lion!\nSo, " + name + " do you kill The Mighty Lion?\n\n1- Find out!")
+        the_mighty_lion_terrain_list[4] = input("You have chosen to use your mighty bow and arrows to kill The Mighty Lion!\nSo, " + name + " do you kill The Mighty Lion?\n\n1- Find out!\n")
 
 
     if the_mighty_lion_terrain_list[3] == "3":
         os.system("clear")
 
-        the_mighty_lion_terrain_list[4] = input("You have chosen to use your powerful spear to kill The Mighty Lion.\nSo, " + name + " do you kill The Mighty Lion?\n\n1- Find out!")
+        the_mighty_lion_terrain_list[4] = input("You have chosen to use your powerful spear to kill The Mighty Lion.\nSo, " + name + " do you kill The Mighty Lion?\n\n1- Find out!\n")
 
     if the_mighty_lion_terrain_list[3] == "4":
         os.system("clear")
@@ -322,5 +322,16 @@ def the_mighty_lion_terrain():
         pause = input("You kill The Mighty Lion!\nYour tribe celebrates!\n" + death_level)
 
         volor_savanna_original()
-        
+
+def warrior():
+    global rand
+    rand = random.randint(1,2)
+    
+    os.system("clear")
+
+    #keeps track of the players progress through the level. Used to prevent cheating.
+    warrior_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+    warrior_list[1] = input("You have chosen to be a warrior!\nDo you want to go hunt The Mighty Lion or stay put?\n1- Hunt The Mighty Lion; 2- Stay put\nMake your choice " + name + ":\n")
+    
 user_name()
