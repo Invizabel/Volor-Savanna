@@ -1,14 +1,13 @@
 #Started: 21 April 2021
 
 from tkinter import*
-from tkinter.ttk import*
 
 import math
 import os
-#import pygame
 import random
 import tkinter
 import time
+import threading
 
 chunk_x = 0
 chunk_y = 0
@@ -24,8 +23,6 @@ canvas.pack()
 grass_block_entity = []
 grass_block_x = []
 grass_block_y = []
-
-#index = 0
 
 player_1_image = PhotoImage(file = "images/standing.png")
 image_1 = PhotoImage(file = "images/L1.png")
@@ -59,15 +56,9 @@ def escape(event):
     
 def left(event):
     global image_1
-    global image_2
     global player_1_x
     
     canvas.itemconfig(player_1, image = image_1)
-    canvas.update()
-    
-    time.sleep(0.5)
-
-    canvas.itemconfig(player_1, image = image_2)
     canvas.update()
     
     global player_1_x
@@ -84,7 +75,11 @@ def left(event):
         canvas.move(grass_block_entity[i], 50, 0)
 
 def right(event):
+    global image_2
     global player_1_x
+
+    canvas.itemconfig(player_1, image = image_2)
+    canvas.update()
 
     chunk_x = player_1_x / width
     chunk = math.ceil(chunk_x)
@@ -172,15 +167,18 @@ def grass_logic():
         grass_block_entity[i] = canvas.create_image(grass_block_x[i], grass_block_y[i], image = grass_image)
 
     print("logic:", logic)
-        
-main.bind("<a>", left)
-main.bind("<d>", right)
-main.bind("<Escape>", escape)
-main.bind("<s>", down)
-main.bind("<w>", up)
+
+def controls_1():       
+    main.bind("<a>", left)
+    main.bind("<d>", right)
+    main.bind("<Escape>", escape)
+    main.bind("<s>", down)
+    main.bind("<w>", up)
 
 grass_logic()
 
-#canvas.pack()
+t1 = threading.Thread(target = controls_1)
+t1.setDaemon(True)
+t1.start()
 
 main.mainloop()
