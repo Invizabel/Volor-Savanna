@@ -5,7 +5,7 @@ from tkinter.ttk import*
 
 import math
 import os
-import pygame
+#import pygame
 import random
 import tkinter
 import time
@@ -19,25 +19,26 @@ label = Label(main)
 width = main.winfo_screenwidth() 
 height = main.winfo_screenheight()
 canvas = tkinter.Canvas(main, bg = "green", height = height, width = width)
+canvas.pack()
 
 grass_block_entity = []
 grass_block_x = []
 grass_block_y = []
 
-index = 0
+#index = 0
 
 player_1_image = PhotoImage(file = "images/standing.png")
 image_1 = PhotoImage(file = "images/L1.png")
 image_2 = PhotoImage(file = "images/R1.png")
 
-player_1_button = Button(main)
-player_1_button.grid(row = 1)
+player_1_x = width / 2
+player_1_y = height / 2
+
+player_1 = canvas.create_image(player_1_x, player_1_y, image = player_1_image)
+canvas.itemconfig(player_1, image = player_1_image)
 
 grass_image = "images/grass.png"
 grass_image = PhotoImage(file = grass_image)
-
-player_1_x = width / 2
-player_1_y = height / 2
 
 def down(event):
     global player_1_y
@@ -59,12 +60,15 @@ def escape(event):
 def left(event):
     global image_1
     global image_2
-    player_1_button.config(image = image_1)
-    player_1_button.update()
+    global player_1_x
     
-    time.sleep(1)
-    player_1_button.config(image = image_2)
-    player_1_button.update()
+    canvas.itemconfig(player_1, image = image_1)
+    canvas.update()
+    
+    time.sleep(0.5)
+
+    canvas.itemconfig(player_1, image = image_2)
+    canvas.update()
     
     global player_1_x
 
@@ -177,6 +181,6 @@ main.bind("<w>", up)
 
 grass_logic()
 
-canvas.grid()
+#canvas.pack()
 
 main.mainloop()
