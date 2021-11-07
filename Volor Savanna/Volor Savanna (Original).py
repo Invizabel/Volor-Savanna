@@ -29,7 +29,7 @@ def user_name():
 def volor_savanna_original():
     os.system("clear")
 
-    character = input("Welcome to Volor Savanna!\nYou are a member of an African Tribe!\nWho do you want to be?\n\n1- Hunter\n2- Warrior\n3- Crafter\n4- Farmer\n5- Medicine Person\n")
+    character = input("Welcome to Volor Savanna!\nYou are a member of an African Tribe!\nWho do you want to be?\n\n1- Hunter\n2- Warrior\n3- Crafter\n4- Farmer\n5- Medicine Person\ne- exit\n")
 
     if character == "1":
         hunter()
@@ -45,6 +45,9 @@ def volor_savanna_original():
 
     if character == "5":
         medicine_person()
+
+    if character == "e":
+        exit()
 
 def hunter():
     global rand
