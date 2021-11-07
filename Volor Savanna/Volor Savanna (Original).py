@@ -128,7 +128,7 @@ def hunter():
     if hunter_list[6] == "3":
         os.system("clear")
 
-        hunter_list[10] = input("You have chosen to report them to the authorities.\nThese guys turn out to be the wanted criminals after all.\nYour tribe gains importance in the African community because you turned these criminals into the authorities.\nDo you want to go hunt The Mighty Lion?\n\n19- Yes; 20- No\nMake your choice " + name + ":\n")
+        hunter_list[10] = input("You have chosen to report them to the authorities.\nThese guys turn out to be the wanted criminals after all.\nYour tribe gains importance in the African community because you turned these criminals into the authorities.\nDo you want to go hunt The Mighty Lion?\n\n1- Yes; 2- No\nMake your choice " + name + ":\n")
 
     if hunter_list[7] == "1":
         the_mighty_lion()
@@ -332,7 +332,7 @@ def warrior():
     #keeps track of the players progress through the level. Used to prevent cheating.
     warrior_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
-    warrior_list[1] = input("You have chosen to be a warrior!\nDo you want to go hunt The Mighty Lion or stay put?\n1- Hunt The Mighty Lion; 2- Stay put\nMake your choice " + name + ":\n")
+    warrior_list[1] = input("You have chosen to be a warrior!\nDo you want to go hunt The Mighty Lion or stay put?\n\n1- Hunt The Mighty Lion; 2- Stay put\nMake your choice " + name + ":\n")
 
     if warrior_list[1] == "1":
         the_mighty_lion()
@@ -340,6 +340,6 @@ def warrior():
     if warrior_list[1] == "2":
         os.system("clear")
 
-        warrior_list[2] = input("You have chosen to stay put.\nWithout warning a neighboring tribe attacks.\nDo you choose to get your bow and arrows in your hut, or do you choose to fight them off with your knife on hand?\n1- Go get my bow and arrows; 2- Use my knife\nMake your choice " + name + ":\n")
+        warrior_list[2] = input("You have chosen to stay put.\nWithout warning a neighboring tribe attacks.\nDo you choose to get your bow and arrows in your hut, or do you choose to fight them off with your knife on hand?\n\n1- Go get my bow and arrows; 2- Use my knife\nMake your choice " + name + ":\n")
 
 user_name()
