@@ -333,5 +333,13 @@ def warrior():
     warrior_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
     warrior_list[1] = input("You have chosen to be a warrior!\nDo you want to go hunt The Mighty Lion or stay put?\n1- Hunt The Mighty Lion; 2- Stay put\nMake your choice " + name + ":\n")
-    
+
+    if warrior_list[1] == "1":
+        the_mighty_lion()
+
+    if warrior_list[1] == "2":
+        os.system("clear")
+
+        warrior_list[2] = input("You have chosen to stay put.\nWithout warning a neighboring tribe attacks.\nDo you choose to get your bow and arrows in your hut, or do you choose to fight them off with your knife on hand?\n1- Go get my bow and arrows; 2- Use my knife\nMake your choice " + name + ":\n")
+
 user_name()
