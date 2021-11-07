@@ -165,7 +165,7 @@ def hunter():
         volor_savanna_original()
 
     if hunter_list[10] == "1":
-        volor_savanna_original()
+        the_mighty_lion()
 
     if hunter_list[10] == "2":
         os.system("clear")
