@@ -24,15 +24,17 @@ grass_block_entity = []
 grass_block_x = []
 grass_block_y = []
 
-player_1_image = PhotoImage(file = "images/standing.png")
-image_1 = PhotoImage(file = "images/L1.png")
-image_2 = PhotoImage(file = "images/R1.png")
+lion_static = PhotoImage(file = "images/standing.png")
+lion_left = PhotoImage(file = "images/L1.png")
+lion_right = PhotoImage(file = "images/R1.png")
 
 player_1_x = width / 2
 player_1_y = height / 2
 
-player_1 = canvas.create_image(player_1_x, player_1_y, image = player_1_image)
-canvas.itemconfig(player_1, image = player_1_image)
+player_1 = canvas.create_image(player_1_x, player_1_y, image = lion_static)
+
+#canvas.itemconfig(player_1, image = lion_static)
+#canvas.update()
 
 grass_image = "images/grass.png"
 grass_image = PhotoImage(file = grass_image)
@@ -58,8 +60,7 @@ def left(event):
     global image_1
     global player_1_x
     
-    canvas.itemconfig(player_1, image = image_1)
-    canvas.update()
+    
     
     global player_1_x
 
@@ -74,13 +75,13 @@ def left(event):
     for i in range (0, len(grass_block_entity)):
         canvas.move(grass_block_entity[i], 50, 0)
 
+    canvas.itemconfig(player_1, image = lion_left)
+    canvas.update()
+    
 def right(event):
     global image_2
     global player_1_x
-
-    canvas.itemconfig(player_1, image = image_2)
-    canvas.update()
-
+    
     chunk_x = player_1_x / width
     chunk = math.ceil(chunk_x)
     print("Chunk x:", + chunk)
@@ -91,6 +92,10 @@ def right(event):
 
     for i in range (0, len(grass_block_entity)):
         canvas.move(grass_block_entity[i], -50, 0)
+
+    canvas.itemconfig(player_1, image = lion_right)
+    canvas.update()
+
     
 def up(event):
     global player_1_y
@@ -178,7 +183,6 @@ def controls_1():
 grass_logic()
 
 t1 = threading.Thread(target = controls_1)
-t1.setDaemon(True)
 t1.start()
 
 main.mainloop()
