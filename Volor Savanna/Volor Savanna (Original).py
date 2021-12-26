@@ -305,10 +305,10 @@ def warrior():
 
     if warrior_list[4] == "1":
         os.system("clear")
-        pause = input("You have chosen to take your son with you.\nYour hunting party would have died if you didn't have your son.\nSince your son is a great warrior the enemy tribe which you now know as Yosemite plans on never attacking your tribe again!\nYou return home and find out your son has a brand-new kid.\nBobert, your son, names him Mighty " + name + " Jr.\nYou finally have a grandson.\nYou die at a good old age.\nYou pass away happily in your sleep.\n" + victory_level")
+        pause = input("You have chosen to take your son with you.\nYour hunting party would have died if you didn't have your son.\nSince your son is a great warrior the enemy tribe which you now know as Yosemite plans on never attacking your tribe again!\nYou return home and find out your son has a brand-new kid.\nBobert, your son, names him Mighty " + name + " Jr.\nYou finally have a grandson.\nYou die at a good old age.\nYou pass away happily in your sleep.\n" + victory_level)
 
     if warrior_list[5] == "2":
         os.system("clear")
-        pause = input("You have chosen not to take your son with you.\nBecause you didn't take your son, the enemy tribe, Yosemite, kills your whole hunting party.\nYou guys are no match for them!\nUnfortunately, while running away from Yosemite you trip over a rock and die!\n" + death_level")
+        pause = input("You have chosen not to take your son with you.\nBecause you didn't take your son, the enemy tribe, Yosemite, kills your whole hunting party.\nYou guys are no match for them!\nUnfortunately, while running away from Yosemite you trip over a rock and die!\n" + death_level)
 
 user_name()
