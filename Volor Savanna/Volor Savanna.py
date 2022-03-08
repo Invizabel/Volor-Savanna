@@ -275,7 +275,7 @@ def warrior():
     os.system("clear")
 
     #keeps track of the players progress through the level. Used to prevent cheating.
-    warrior_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    warrior_list = ["0", "1", "2", "3", "4", "5"]
 
     warrior_list[1] = input("You have chosen to be a warrior!\nDo you want to go hunt The Mighty Lion or stay put?\n\n1- Hunt The Mighty Lion; 2- Stay put\nMake your choice " + name + ":\n")
 
@@ -301,14 +301,92 @@ def warrior():
 
     if warrior_list[3]  == "2":
         os.system("clear")
-        warrior_list[5] = input("You have chosen to just ignore him.\nDo you choose to go after the enemy tribe with the few warriors you have left?\n\n9- Yes; 10- No\nMake your choice " + name + ":\n")
+        warrior_list[5] = input("You have chosen to just ignore him.\nDo you choose to go after the enemy tribe with the few warriors you have left?\n\n1- Yes; 2- No\nMake your choice " + name + ":\n")
 
     if warrior_list[4] == "1":
         os.system("clear")
         pause = input("You have chosen to take your son with you.\nYour hunting party would have died if you didn't have your son.\nSince your son is a great warrior the enemy tribe which you now know as Yosemite plans on never attacking your tribe again!\nYou return home and find out your son has a brand-new kid.\nBobert, your son, names him Mighty " + name + " Jr.\nYou finally have a grandson.\nYou die at a good old age.\nYou pass away happily in your sleep.\n" + victory_level)
+        volor_savanna_original()
+
+    if warrior_list[4] == "2":
+        os.system("clear")
+        pause = input("You have chosen not to take your son with you.\nBecause you didn't take your son, the enemy tribe, Yosemite, kills your whole hunting party.\nYou guys are no match for them!\nUnfortunately, while running away from Yosemite you trip over a rock and die!\n" + death_level)
+        volor_savanna_original()
+
+    if warrior_list[5] == "1":
+        os.system("clear")
+        pause = input("You go after the enemy tribe with the few warriors you have left.\nUnfortunately, while on your way The Mighty Pac-Man gobbles you up.\nYou guys are no match for the The Mighty Pac-Man!\n" + death_level)
+        volor_savanna_original()
 
     if warrior_list[5] == "2":
         os.system("clear")
-        pause = input("You have chosen not to take your son with you.\nBecause you didn't take your son, the enemy tribe, Yosemite, kills your whole hunting party.\nYou guys are no match for them!\nUnfortunately, while running away from Yosemite you trip over a rock and die!\n" + death_level)
+        pause = input("You have chosen not to go after the enemy tribe.\nUnfortunately, your village gets swept away by a flash flood!\n" + death_level)
+        volor_savanna_original()
 
+def crafter():
+    global rand
+    rand = random.randint(1,2)
+    
+    os.system("clear")
+
+    #keeps track of the players progress through the level. Used to prevent cheating.
+    crafter_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+    crafter[1] = input("You have chosen to be a crafter!\nYou need to craft some arrows.\nHow do you want to craft them?\n1- Put red dye on the feathers; 2- Just make them\nMake your choice " + name + ":\n")
+
+    if crafter[1] = "1":
+        os.system("clear")
+        crafter[2] = input("You have chosen to put red dye on the feathers!\nBecause you put red dye on the feathers none were lost so the hunters were able to bring home more food!\nBecause of this you have one months worth of food for the winter!\nYou have been asked to craft some spearheads.\nHow do you want to craft them?\n1- Put poison on the spearheads; 2- Just make them\nMake your choice " + name + ":\n")
+
+    if crafter[1] == "2":
+        os.system("clear")
+        pause = input("You have chosen to just make the arrows.\nUnfortunately, because of this the hunters lost some arrows and didn't bring home much food.\nEven worse than that, Master Chief comes into your tribe and pwns all of you!\n" + death_level)
+        volor_savanna_original()
+
+    if crafter[2] == "1":
+        os.system("clear")
+        crafter[3] = input("You have chosen to put poison on the spear heads.\nThe animals die easier and your tribe gets more food for the winter.\nTo be exact one more month of food.\nSome white men come to your tribe.\nThey're paying a fortune for you to craft them some of your best acacia furniture.\nDo you want to craft some expensive acacia furniture for them, or do you not want to craft them the furniture their asking for?\n1- Craft them furniture; 2- Not craft them furniture\nMake your choice " + name + ":\n")
+
+    if crafter[2] == "2":
+        os.system("clear")
+        pause = input("You have chosen to just make the spear heads.\nBecause you didn't put poison on the spear heads the hunters only brought back three gazelles.\nUnfortunately, the gazelles get mold on them.\nEven worse, you eat the moldy gazelles and die from food poisoning.\n" + death_level)
+        volor_savanna_original()
+
+    if crafter[3] == "1":
+        os.system("clear")
+        crafter[4] = input("You have chosen to craft them furniture.\nThe people you give the furniture to like your work.\nThey pay you in gold.\nYou can use this to buy a milling machine from a city nearby.\nDo you buy a milling machine?\n1- Yes; 2- No\nMake your choice " + name + ":\n")
+
+    if crafter[3] == "2":
+        os.system("clear")
+        crafter[5] = input("You have chosen not to craft them furniture.\nBecause of this they want to kill you.\nDo you escape?\n1- Find out!\nMake your choice " + name + ":\n")
+
+    if crafter[4] == "1":
+        os.system("clear")
+        crafter[6] == input("You have chosen to buy a milling machine.\nSome business men have come to your tribe and are asking you to build them some wooden toys with your milling machine.\nDo you want to build them wooden toys with your milling machine?\n1- Yes; 2- No\nMake your choice " + name + ":\n")
+
+    if crafter[4] == "2":
+        os.system("clear")
+        pause = input("You have chosen not to buy a milling machine.\nUnfortunately, you tribe dies from a famine.\n" + death_level)
+        volor_savanna_original()
+
+    if crafter[5] == "1" and rand == 1:
+        os.system("clear")
+        pause = input("You escape.\nUnfortunately, an asteroid hits the earth and destroys the whole planet.\n" + death_level)
+        volor_savanna_original()
+
+    if crafter[5] == "1" and rand == 2:
+        os.system("clear")
+        pause = input("You don't escape.\nThey kill you on the spot.\n" + death_level)
+        volor_savanna_original()
+
+    if crafter[6] == "1":
+        os.system("clear")
+        pause = input("You have chosen to use your milling machine to make them wooden toys.\nYou have had a successful life!\n" + victory_level)
+        volor_savanna_original()
+
+    if crafter[6] == "2":
+        os.system("clear")
+        pause = input("You have chosen not to make them wooden toys with your milling machine.\nUnfortunately, your milling machine catches on fire and burns down your whole house.\nWhat's even more unfortunate is that you get caught on fire and burn to death.\n" + death_level)
+        volor_savanna_original()
+        
 user_name()
