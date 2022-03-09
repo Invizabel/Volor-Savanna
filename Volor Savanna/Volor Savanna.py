@@ -454,4 +454,24 @@ def farmer():
         pause = input("You have chosen not to sell your surplus cotton.\nUnfortunately, a wizard says some magic words that make you vanish.\nYou are never seen again.\n" + death_level)
         volor_savanna_original()
 
+def medicine_person():
+    global rand
+    rand = random.randint(1,2)
+    
+    os.system("clear")
+
+    #keeps track of the players progress through the level. Used to prevent cheating.
+    medicine_person_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+    medicine_person_list[1] = input("You have chosen to be a medicine person!\nA man is very sick with a fever.\nWhat do you want to do?\n1- Not do anything; 2- Wash him\nMake your choice " + name + ":\n")
+
+    if medicine_person_list[1] == "1":
+        os.system("clear")
+        pause = input("You have chosen not to do anything.\nUnfortunately, the man dies.\nThe man's family is very angry at you.\nYou are tried for murder.\nYou have been found guilty.\nSo you are put to death.\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[1] == "2":
+        os.system("clear")
+        medicine_person_list = input("You have chosen to wash him.\nThe man recovers from his fever.\nYou are a hero in your village.\nThe chief rewards you with a big meal.\nThe chief offers you a week off.\nWhat do you do?\n1- Take a week off; 2- Tend to more sick people\nMake your choice " + name + ":\n")
+
 user_name()
