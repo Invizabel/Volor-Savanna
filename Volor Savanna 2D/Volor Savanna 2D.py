@@ -4,10 +4,11 @@ from pygame import mixer
 import pygame
 import random
 import time
+import threading
 
 mixer.init()
 mixer.music.load("Music/Four Brave Champions.mp3")
-mixer.music.play()
+mixer.music.play(-1)
 
 pygame.init()
 screen_size = pygame.display.Info()
@@ -60,11 +61,11 @@ clock = pygame.time.Clock()
 
 while running:
     rand = random.randint(1,2)
+    
     player_health_font = my_font.render(player_health_total, True, (0,0,0))
     player_2_health_font = my_font.render(player_2_health_total, True, (0,0,0))
     
     tick = clock.tick(60)
-    #print(tick)
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
