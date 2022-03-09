@@ -330,7 +330,7 @@ def crafter():
     os.system("clear")
 
     #keeps track of the players progress through the level. Used to prevent cheating.
-    crafter_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    crafter_list = ["0", "1", "2", "3", "4", "5", "6"]
 
     crafter[1] = input("You have chosen to be a crafter!\nYou need to craft some arrows.\nHow do you want to craft them?\n1- Put red dye on the feathers; 2- Just make them\nMake your choice " + name + ":\n")
 
@@ -388,5 +388,70 @@ def crafter():
         os.system("clear")
         pause = input("You have chosen not to make them wooden toys with your milling machine.\nUnfortunately, your milling machine catches on fire and burns down your whole house.\nWhat's even more unfortunate is that you get caught on fire and burn to death.\n" + death_level)
         volor_savanna_original()
+
+def farmer():
+    global rand
+    rand = random.randint(1,2)
+    
+    os.system("clear")
+
+    #keeps track of the players progress through the level. Used to prevent cheating.
+    farmer_list = ["0", "1", "2", "3", "4", "5"]
+
+    farmer_list[1] = input("You have chosen to be a farmer!\nDo you want to go farm or sleep in?\n1- Farm; 2- Sleep in\nMake your choice " + name + ":\n")
+
+    if farmer_list[1] == "1":
+        os.system("clear")
+        farmer_list[2] = input("You have chosen to farm!\nYou have had a successful season!\nYour village has a feast.\nDo you want to store the rest of the food for winter or distribute the food to the whole village?\n3- Store the food for winter; 4- Distribute the food to the whole village\nMake your choice " + name + ":\n")
+
+    if farmer_list[1] == "2":
+        os.system("clear")
+        pause = input("You have chosen to sleep in.\nUnfortunately, a prairie fire destroys your crops and your whole village.\nEveryone has escaped and survived.\nEveryone except for one person.\nYou.\nYou have died in the fire.\nYou were burnt into ashes in your sleep.\n" + death_level)
+
+    if farmer_list[2] == "1":
+        os.system("clear")
+        farmer_list[3] = input("You have chosen to store the food for winter.\nBecause you have chosen to store the food for winter your tribe doesn't go hungry.\nLast year you grew wheat.\nDo you want to grow wheat again this year or farm corn for the first time in your life?\n1- Grow wheat again; 2- Farm corn\nMake your choice " + name + ":\n")
+
+    if farmer_list[2] == "2":
+        os.system("clear")
+        pause = input("You have chosen to distribute the food to the whole village.\nEveryone has enough food for the whole winter.\nUnfortunately, the food rots in a winter storm.\nYour village dies of starvation.\n" + death_level)
+        volor_savanna_original()
+
+    if farmer_list[3] == "1":
+        os.system("clear")
+        pause = input("You have chosen to grow wheat again for the second year in a row.\nUnfortunately, there are no nutrients in the soil so all your wheat dies.\nYour village starves.\n" + death_level)
+        volor_savanna_original()
+
+    if farmer_list[3] == "2":
+        os.system("clear")
+        farmer_list[4] = input("You have chosen to farm corn for the first time in your life.\nLuckily for you, someone else in your village knows how to grow corn.\nBecause of this you grow a lot of corn and your village has a feast.\nDo you want to store the rest of the food for the winter or distribute the rest of the food to your whole village?\n1- Store the food for winter; 2- Distribute the food to your whole village\nMake your choice " + name + ":\n")
+
+    if farmer_list[4] == "1":
+        os.system("clear")
+        farmer_list[5] = input("You have chosen to store the food for winter.\nThe corn lasts your tribe the whole winter.\nYour tribe is thriving!\nYou find out that you have extra corn.\nIt would be nice to get some oxen to help you plow the field.\nDo you sell your extra corn for oxen?\n1- Yes; 2- No\nMake your choice " + name + ":\n")
+
+    if farmer_list[4] == "2":
+        os.system("clear")
+        pause = input("You have chosen to distribute the food to your whole village.\nUnfortunately, because you have chosen to do this your food rots.\nYour whole village starves.\n" + death_level)
+        volor_savanna_original()
+
+    if farmer_list[5] == "1":
+        os.system("clear")
+        farmer_list[6] = input("You have chosen to sell your extra corn for oxen.\nYou choose to grow cotton.\nAt the end of the season you have surplus cotton.\nDo you want to sell your surplus cotton?\n1- Yes; 2- No\nMake your choice " + name + ":\n")
+
+    if farmer_list[5] == "2":
+        os.system("clear")
+        pause = input("You have chosen not to sell your extra corn for oxen.\nUnfortunately, Bob the Blobfish plops out from a nearby lake and you die because your eyes bleed to death.\n" + death_level)
+        volor_savanna_original()
         
+    if farmer_list[6] == "1":
+        os.system("clear")
+        pause = input("You have chosen to sell your surplus cotton.\nYou are now rich!\n" + victory_level)
+        volor_savanna_original()
+
+    if farmer_list[6] == "2":
+        os.system("clear")
+        pause = input("You have chosen not to sell your surplus cotton.\nUnfortunately, a wizard says some magic words that make you vanish.\nYou are never seen again.\n" + death_level)
+        volor_savanna_original()
+
 user_name()
