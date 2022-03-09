@@ -65,7 +65,7 @@ while running:
     player_health_font = my_font.render(player_health_total, True, (0,0,0))
     player_2_health_font = my_font.render(player_2_health_total, True, (0,0,0))
     
-    tick = clock.tick(60)
+    tick = clock.tick(1000)
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -75,28 +75,28 @@ while running:
     keyboard = pygame.key.get_pressed()
 
     if keyboard[pygame.K_LEFT] and player_2_x > 0:
-        player_2_x -= 12
+        player_2_x -= 10
 
     if keyboard[pygame.K_a] and player_x > 0:
-        player_x -= 12
+        player_x -= 10
 
     if keyboard[pygame.K_RIGHT] and player_2_x < (screen_size.current_w):
-        player_2_x += 12
+        player_2_x += 10
 
     if keyboard[pygame.K_d] and player_x < (screen_size.current_w):
-        player_x += 12
+        player_x += 10
 
     if keyboard[pygame.K_UP] and player_2_y > 0:
-        player_2_y -= 12
+        player_2_y -= 10
 
     if keyboard[pygame.K_w] and player_y > 0:
-        player_y -= 12
+        player_y -= 10
 
     if keyboard[pygame.K_DOWN] and player_2_y < (screen_size.current_h):
-        player_2_y += 12
+        player_2_y += 10
 
     if keyboard[pygame.K_s] and player_y < (screen_size.current_h):
-        player_y += 12
+        player_y += 10
 
     #quit game
     if keyboard[pygame.K_ESCAPE]:
@@ -136,110 +136,110 @@ while running:
     #AI 1
     if player_z < player_2_z:
         if ai_1_x < player_x:
-            ai_1_x += 2
+            ai_1_x += 5
 
         if ai_1_x > player_x:
-            ai_1_x -= 2
+            ai_1_x -= 5
 
         if ai_1_y < player_y:
-            ai_1_y += 2
+            ai_1_y += 5
 
         if ai_1_y > player_y:
-            ai_1_y -= 2
+            ai_1_y -= 5
 
     if player_z > player_2_z:
         if ai_1_x < player_2_x:
-            ai_1_x += 2
+            ai_1_x += 5
 
         if ai_1_x > player_2_x:
-            ai_1_x -= 2
+            ai_1_x -= 5
 
         if ai_1_y < player_2_y:
-            ai_1_y += 2
+            ai_1_y += 5
 
         if ai_1_y > player_2_y:
-            ai_1_y -= 2
+            ai_1_y -= 5
 
     #AI 2
     if player_z > player_2_z:
         if ai_2_x < player_x:
-            ai_2_x += 3
+            ai_2_x += 7
 
         if ai_2_x > player_x:
-            ai_2_x -= 3
+            ai_2_x -= 7
 
         if ai_2_y < player_y:
-            ai_2_y += 3
+            ai_2_y += 7
 
         if ai_2_y > player_y:
-            ai_2_y -= 3
+            ai_2_y -= 7
 
     if player_z < player_2_z:
         if ai_2_x < player_2_x:
-            ai_2_x += 3
+            ai_2_x += 7
 
         if ai_2_x > player_2_x:
-            ai_2_x -= 3
+            ai_2_x -= 7
 
         if ai_2_y < player_2_y:
-            ai_2_y += 3
+            ai_2_y += 7
 
         if ai_2_y > player_2_y:
-            ai_2_y -= 3
+            ai_2_y -= 7
 
     #AI 3
     if player_z < player_2_z:
         if ai_3_x < player_x:
-            ai_3_x += 4
+            ai_3_x += 8
 
         if ai_3_x > player_x:
-            ai_3_x -= 4
+            ai_3_x -= 8
 
         if ai_3_y < player_y:
-            ai_3_y += 4
+            ai_3_y += 8
 
         if ai_3_y > player_y:
-            ai_3_y -= 4
+            ai_3_y -= 8
 
     if player_z > player_2_z:
         if ai_3_x < player_2_x:
-            ai_3_x += 4
+            ai_3_x += 8
 
         if ai_3_x > player_2_x:
-            ai_3_x -= 4
+            ai_3_x -= 8
 
         if ai_3_y < player_2_y:
-            ai_3_y += 4
+            ai_3_y += 8
 
         if ai_3_y > player_2_y:
-            ai_3_y -= 4
+            ai_3_y -= 8
 
     #AI 4
     if player_z > player_2_z:
         if ai_4_x < player_x:
-            ai_4_x += 6
+            ai_4_x += 9
 
         if ai_4_x > player_x:
-            ai_4_x -= 6
+            ai_4_x -= 9
 
         if ai_4_y < player_y:
-            ai_4_y += 6
+            ai_4_y += 9
 
         if ai_4_y > player_y:
-            ai_4_y -= 6
+            ai_4_y -= 9
 
     if player_z < player_2_z:
         if ai_4_x < player_2_x:
-            ai_4_x += 6
+            ai_4_x += 9
 
         if ai_4_x > player_2_x:
-            ai_4_x -= 6
+            ai_4_x -= 9
 
         if ai_4_y < player_2_y:
-            ai_4_y += 6
+            ai_4_y += 9
 
         if ai_2_y > player_2_y:
-            ai_4_y -= 6
+            ai_4_y -= 9
 
     #collision detection
             
