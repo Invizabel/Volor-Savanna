@@ -315,7 +315,7 @@ while running:
         player_color = "cyan"
         player_health_boolean = True
 
-    if (ai_1_x != player_2_x and ai_1_y != player_2_y) and (ai_2_x != player_2_x and ai_2_y != player_2_y) and (ai_3_x != player_x and ai_3_y != player_2_y) and (ai_4_x != player_x and ai_4_y != player_2_y):
+    if (ai_1_x != player_2_x and ai_1_y != player_2_y) and (ai_2_x != player_2_x and ai_2_y != player_2_y) and (ai_3_x != player_2_x and ai_3_y != player_2_y) and (ai_4_x != player_x and ai_4_y != player_2_y):
         player_color_2 = "pink"
         player_2_health_boolean = True
         
