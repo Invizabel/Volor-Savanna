@@ -732,7 +732,7 @@ def title_screen():
         title = title_font.render("Welcome to Volor Savanna!",True, ("yellow"))
         one = sub_font.render("1 = one player",True, (0,0,0))
         two = sub_font.render("2 = two players",True, (0,0,0))
-        multi = sub_font.render("3 = multiplayer (requires server)",True, (0,0,0))
+        multi = sub_font.render("3 = multiplayer (coming soon)",True, (0,0,0))
         reset = sub_font.render("space bar = reset game",True, (0,0,0))
         escape = sub_font.render("escape = quit",True, (0,0,0))
         my_help = sub_font.render("t = title screen",True, (0,0,0))
