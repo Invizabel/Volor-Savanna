@@ -472,6 +472,18 @@ def medicine_person():
 
     if medicine_person_list[1] == "2":
         os.system("clear")
-        medicine_person_list = input("You have chosen to wash him.\nThe man recovers from his fever.\nYou are a hero in your village.\nThe chief rewards you with a big meal.\nThe chief offers you a week off.\nWhat do you do?\n1- Take a week off; 2- Tend to more sick people\nMake your choice " + name + ":\n")
+        medicine_person_list[2] = input("You have chosen to wash him.\nThe man recovers from his fever.\nYou are a hero in your village.\nThe chief rewards you with a big meal.\nThe chief offers you a week off.\nWhat do you do?\n1- Take a week off; 2- Tend to more sick people\nMake your choice " + name + ":\n")
+
+    if medicine_person_list[2] == "1":
+        os.system("clear")
+        medicine_person_list[3] = input("You have chosen to take a week off.\nYou come back and someone is very sick.\nYou are low on herbs.\nDo you go gather more herbs for your remedies or heal the patient with what you have?\n1- Go gather more herbs; 2- Heal the patient\nMake your choice " + name + ":\n")
+
+    if medicine_person_list[2] == "2":
+        os.system("clear")
+        medicine_person_list[4] = input("You have chosen to tend to more sick people.\nYou are very good at your craft.\nYou heal most of the people.\nHowever, you are low on herbs.\nDo you go gather some more herbs or tend to a couple more patients?\n1- Go gather more herbs; 2- Go tend to a couple more patients\nMake your choice " + name + ":\n")
+
+    if medicine_person_list[3] == "1":
+        os.system("clear")
+        medicine_person_list[5] = input("You have chosen to go gather more herbs.\nBecause of this the patient dies!\nYou are tried for murder.\nAre you found guilty?\n1- Find out!\nMake your choice " + name + ":\n")
 
 user_name()
