@@ -3,15 +3,18 @@ from pygame import mixer
 
 import math
 import pygame
+import random
 import sys
 
 mixer.init()
 mixer.music.load("Music/Four Brave Champions.mp3")
 mixer.music.play(-1)
 
+#draw screen
 pygame.init()
 screen_size = pygame.display.Info()
 my_screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+my_screen.fill("yellow")
 
 def entity_diamond():
     return "blue"
@@ -43,8 +46,9 @@ def one_player():
     load_game = False
     running = True
 
+    #load images
     lion_image_1 = pygame.image.load("Images/The Mighty Lion 1.png")
-    lion_image_1 = pygame.transform.scale(lion_image_1,(screen_size.current_h / 10, screen_size.current_h / 10))
+    lion_image_1 = pygame.transform.scale(lion_image_1,(100, 100))
 
     #player stats
     player_x = screen_size.current_w / 2
@@ -64,6 +68,8 @@ def one_player():
     inventory[1] = entity_emerald()
 
     while running:
+        my_screen.fill("yellow")
+        
         #render health
         player_health_font = my_font.render(player_health_total, True, (0,0,0))
 
@@ -128,10 +134,10 @@ def one_player():
             load_game = True
 
         if keyboard[pygame.K_q]:
-            break_entity = True
+            place_entity = True
 
         if keyboard[pygame.K_e]:
-            place_entity = True
+            break_entity = True
 
         #quit game
         if keyboard[pygame.K_ESCAPE]:
@@ -146,15 +152,11 @@ def one_player():
             player_x = screen_size.current_w / 2
             player_y = screen_size.current_h / 2
             player_health = 20
-
             player_health_total = "player 1: " + str(player_health)
 
         #alive
         player_color = "cyan"
         player_health_boolean = True
-
-        #draw screen
-        my_screen.fill("yellow")
 
         #inventory
 
@@ -183,11 +185,12 @@ def one_player():
             pygame.draw.rect(my_screen, "dark gray", pygame.Rect(screen_size.current_w * (6/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
             pygame.draw.rect(my_screen, "light gray", pygame.Rect(screen_size.current_w * (8/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
             pygame.draw.rect(my_screen, "white", pygame.Rect(screen_size.current_w * (10/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
-            
-        if player_health > 0:
-            pygame.draw.circle(my_screen, (player_color), (player_x, player_y), 100)
-            my_screen.blit(player_health_font, (100,(screen_size.current_h) - 100))
 
+        #render player
+        if player_health > 0:
+            my_screen.blit(lion_image_1,(player_x, player_y))
+            my_screen.blit(player_health_font, (100,(screen_size.current_h) - 100))
+            
         #place entity
         if place_entity == True:
             my_boolean = False
@@ -256,9 +259,6 @@ def title_screen():
         if keyboard[pygame.K_ESCAPE]:
             running = False
 
-        #draw screen
-        my_screen.fill("yellow")
-
         #draw fonts
         title_font = pygame.font.SysFont("Timesnewroman", 100)
         sub_font = pygame.font.SysFont("Timesnewroman", 50)
@@ -270,12 +270,12 @@ def title_screen():
         my_help = sub_font.render("t = title screen",True, (0,0,0))
         load = sub_font.render("tab = save game",True,(0,0,0))
 
-        my_screen.blit(title, (100,100))
+        my_screen.blit(title, (100,50))
         my_screen.blit(one, (100, 200))
-        my_screen.blit(reset, (100, 300))
-        my_screen.blit(escape, (100, 400))
-        my_screen.blit(my_help, (100, 500))
-        my_screen.blit(load, (100, 600))
+        my_screen.blit(reset, (100, 250))
+        my_screen.blit(escape, (100, 300))
+        my_screen.blit(my_help, (100, 350))
+        my_screen.blit(load, (100, 400))
 
         pygame.display.flip()
 
