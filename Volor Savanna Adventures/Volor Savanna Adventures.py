@@ -1,5 +1,6 @@
 #2D Game
-from pygame import mixer
+from pygame import *
+from tkinter import *
 
 import math
 import numpy as np
@@ -51,6 +52,11 @@ def one_player():
     log_list_x = np.array([])
     log_list_y = np.array([])
     log_total = [0,0,0,0]
+
+    plank_list_x = np.array([])
+    plank_list_y = np.array([])
+    plank_total = [0,0,0,0]
+
     sapling_list_x = np.array([])
     sapling_list_y = np.array([])
     sapling_total = [0,0,0,0]
@@ -77,17 +83,25 @@ def one_player():
     #load images
     axolotl_image = pygame.image.load("Images/axolotl.png")
     axolotl_image = pygame.transform.scale(axolotl_image,(100, 100))
+
     lion_image_1 = pygame.image.load("Images/The Mighty Lion 1.png")
     lion_image_1 = pygame.transform.scale(lion_image_1,(100, 100))
+
     log_image = pygame.image.load("Images/log.png")
     log_image = pygame.transform.scale(log_image,(100, 100))
+
+    plank_image = pygame.image.load("Images/plank.png")
+    plank_image = pygame.transform.scale(plank_image,(100, 100))
+
     sapling_image = pygame.image.load("Images/sapling.png")
     sapling_image = pygame.transform.scale(sapling_image,(100, 100))
+
     tree_image = pygame.image.load("Images/tree.png")
     tree_image = pygame.transform.scale(tree_image,(100, 100))
 
     #misc
     clock = pygame.time.Clock()
+    crafting = False
     load_game = False
     running = True
 
@@ -172,14 +186,51 @@ def one_player():
             inventory_3 = False
             inventory_4 = True
 
+        #craft
+        if keyboard[pygame.K_c]:
+            crafting = True
+
+        #load game
         if keyboard[pygame.K_TAB] and player_y < (screen_size.current_h):
             load_game = True
 
+        #right mouse
         if right_mouse:
             place_entity = True
 
+        #left mouse
         if left_mouse:
-            break_entity = True
+            if pygame.mouse.get_pos()[1] < screen_size.current_h - 200:
+                break_entity = True
+                
+            if pygame.mouse.get_pos()[1] >= screen_size.current_h - 200:
+                #inventory 1
+                if pygame.mouse.get_pos()[0] > (screen_size.current_w * (4/16)) and pygame.mouse.get_pos()[0] < screen_size.current_w * (6/16):
+                    inventory_1 = True
+                    inventory_2 = False
+                    inventory_3 = False
+                    inventory_4 = False
+
+                #inventory 2
+                if pygame.mouse.get_pos()[0] > (screen_size.current_w * (6/16)) and pygame.mouse.get_pos()[0] < screen_size.current_w * (8/16):
+                    inventory_1 = False
+                    inventory_2 = True
+                    inventory_3 = False
+                    inventory_4 = False
+
+                #inventory 3
+                if pygame.mouse.get_pos()[0] > (screen_size.current_w * (8/16)) and pygame.mouse.get_pos()[0] < screen_size.current_w * (10/16):
+                    inventory_1 = False
+                    inventory_2 = False
+                    inventory_3 = True
+                    inventory_4 = False
+
+                #inventory 4
+                if pygame.mouse.get_pos()[0] > (screen_size.current_w * (10/16)) and pygame.mouse.get_pos()[0] < screen_size.current_w * (12/16):
+                    inventory_1 = False
+                    inventory_2 = False
+                    inventory_3 = False
+                    inventory_4 = True
 
         #quit game
         if keyboard[pygame.K_ESCAPE]:
@@ -240,6 +291,59 @@ def one_player():
             pygame.draw.rect(my_screen, "light gray", pygame.Rect(screen_size.current_w * (8/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
             pygame.draw.rect(my_screen, "white", pygame.Rect(screen_size.current_w * (10/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
 
+        #crafting
+        if crafting == True:
+            crafting = False
+
+            #inventory 1
+            if inventory_1 == True:
+                if inventory[0] == "log" and int(log_total[0]) > 0:
+                    counter = 0
+                    for i in inventory:
+                        if i == "" or i == "plank":
+                            plank_total[counter] = log_total[0] * 4
+                            inventory[counter] = "plank"
+                            log_total[0] = 0
+
+                        counter += 1
+                
+            #inventory 2
+            if inventory_2 == True:
+                if inventory[1] == "log" and int(log_total[1]) > 0:
+                    counter = 0
+                    for i in inventory:
+                        if i == "" or i == "plank":
+                            plank_total[counter] = log_total[1] * 4
+                            inventory[counter] = "plank"
+                            log_total[1] = 0
+
+                        counter += 1
+
+            #inventory 3
+            if inventory_3 == True:
+                if inventory[2] == "log" and int(log_total[2]) > 0:
+                    counter = 0
+                    for i in inventory:
+                        if i == "" or i == "plank":
+                            plank_total[counter] = log_total[2] * 4
+                            inventory[counter] = "plank"
+                            log_total[2] = 0
+
+                        counter += 1
+
+            #inventory 4
+            if inventory_4 == True:
+                if inventory[3] == "log" and int(log_total[3]) > 0:
+                    counter = 0
+                    for i in inventory:
+                        if i == "" or i == "plank":
+                            plank_total[counter] = log_total[3] * 4
+                            inventory[counter] = "plank"
+                            log_total[3] = 0
+
+                        counter += 1
+            
+
         #render player
         if player_health > 0:
             my_screen.blit(lion_image_1,(player_x, player_y))
@@ -273,7 +377,27 @@ def one_player():
                         log_list_y = np.append(log_list_y, int(math.ceil(player_y / 100.0)) * 100)
                         log_total[0] = log_total[0] - 1
 
-                #saplings
+                #plank
+                if inventory[0] == "plank" and int(plank_total[0]) > 0:
+                    for i in range(len(plank_list_x)):
+                        if plank_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                            if plank_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                exists = True
+                                break
+
+                    if exists == False:
+                        for i in range(len(plank_list_x)):
+                            if plank_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                                if plank_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                    exists = True
+                                    break
+                        
+                    if exists == False:
+                        plank_list_x = np.append(plank_list_x, int(math.ceil(player_x / 100.0)) * 100)
+                        plank_list_y = np.append(plank_list_y, int(math.ceil(player_y / 100.0)) * 100)
+                        plank_total[0] = plank_total[0] - 1
+
+                #sapling
                 if inventory[0] == "sapling" and int(sapling_total[0]) > 0:
                     for i in range(len(log_list_x)):
                         if log_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
@@ -314,6 +438,26 @@ def one_player():
                         log_list_x = np.append(log_list_x, int(math.ceil(player_x / 100.0)) * 100)
                         log_list_y = np.append(log_list_y, int(math.ceil(player_y / 100.0)) * 100)
                         log_total[1] = log_total[1] - 1
+
+                #plank
+                if inventory[1] == "plank" and int(plank_total[1]) > 0:
+                    for i in range(len(plank_list_x)):
+                        if plank_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                            if plank_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                exists = True
+                                break
+
+                    if exists == False:
+                        for i in range(len(plank_list_x)):
+                            if plank_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                                if plank_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                    exists = True
+                                    break
+                        
+                    if exists == False:
+                        plank_list_x = np.append(plank_list_x, int(math.ceil(player_x / 100.0)) * 100)
+                        plank_list_y = np.append(plank_list_y, int(math.ceil(player_y / 100.0)) * 100)
+                        plank_total[1] = plank_total[1] - 1
 
                 #saplings
                 if inventory[1] == "sapling" and int(sapling_total[1]) > 0:
@@ -357,6 +501,26 @@ def one_player():
                         log_list_y = np.append(log_list_y, int(math.ceil(player_y / 100.0)) * 100)
                         log_total[2] = log_total[2] - 1
 
+                #plank
+                if inventory[2] == "plank" and int(plank_total[2]) > 0:
+                    for i in range(len(plank_list_x)):
+                        if plank_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                            if plank_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                exists = True
+                                break
+
+                    if exists == False:
+                        for i in range(len(plank_list_x)):
+                            if plank_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                                if plank_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                    exists = True
+                                    break
+                        
+                    if exists == False:
+                        plank_list_x = np.append(plank_list_x, int(math.ceil(player_x / 100.0)) * 100)
+                        plank_list_y = np.append(plank_list_y, int(math.ceil(player_y / 100.0)) * 100)
+                        plank_total[2] = plank_total[2] - 1
+
                 #saplings
                 if inventory[2] == "sapling" and int(sapling_total[2]) > 0:
                     for i in range(len(log_list_x)):
@@ -399,6 +563,26 @@ def one_player():
                         log_list_y = np.append(log_list_y, int(math.ceil(player_y / 100.0)) * 100)
                         log_total[3] = log_total[3] - 1
 
+                #plank
+                if inventory[3] == "plank" and int(plank_total[3]) > 0:
+                    for i in range(len(plank_list_x)):
+                        if plank_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                            if plank_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                exists = True
+                                break
+
+                    if exists == False:
+                        for i in range(len(plank_list_x)):
+                            if plank_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                                if plank_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                    exists = True
+                                    break
+                        
+                    if exists == False:
+                        plank_list_x = np.append(plank_list_x, int(math.ceil(player_x / 100.0)) * 100)
+                        plank_list_y = np.append(plank_list_y, int(math.ceil(player_y / 100.0)) * 100)
+                        plank_total[3] = plank_total[3] - 1
+
                 #saplings
                 if inventory[3] == "sapling" and int(sapling_total[3]) > 0:
                     for i in range(len(log_list_x)):
@@ -433,10 +617,27 @@ def one_player():
                             log_list_y = np.delete(log_list_y, i)
                             counter = 0
 
-                            for i in inventory:    
+                            for i in inventory:
                                 if i == "" or i == "log":
                                     inventory[counter] = "log"
                                     log_total[counter] = log_total[counter] + 1
+                                    break
+                                
+                                counter += 1
+
+            #plank
+            for i in range(len(plank_list_x)):
+                if i < len(plank_list_x):
+                    if player_x <= plank_list_x[i] + 75 and player_x >= plank_list_x[i] - 75:
+                        if player_y <= plank_list_y[i] + 75 and player_y >= plank_list_y[i] - 75:
+                            plank_list_x = np.delete(plank_list_x, i)
+                            plank_list_y = np.delete(plank_list_y, i)
+                            counter = 0
+
+                            for i in inventory:    
+                                if i == "" or i == "plank":
+                                    inventory[counter] = "plank"
+                                    plank_total[counter] = plank_total[counter] + 1
                                     break
                                 
                                 counter += 1
@@ -476,6 +677,10 @@ def one_player():
                                     log_total[counter] = log_total[counter] + rand
                                     break
 
+                                counter += 1
+
+                            counter = 0
+
                             for i in inventory:
                                 rand = random.randint(1,3)
 
@@ -491,7 +696,7 @@ def one_player():
             #pet
             my_screen.blit(axolotl_image,(pet_x, pet_y))
             
-            #logs
+            #log
             if log_total[0] > 0:
                 my_screen.blit(log_image,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 150))
                 item_font_1 = item_total_font.render(str(log_total[0]),True, ("black"))
@@ -512,7 +717,28 @@ def one_player():
                 item_font_4 = item_total_font.render(str(log_total[3]),True, ("black"))
                 my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 175))
 
-            #saplings
+            #plank
+            if plank_total[0] > 0:
+                my_screen.blit(plank_image,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 150))
+                item_font_1 = item_total_font.render(str(plank_total[0]),True, ("black"))
+                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 175))
+
+            if plank_total[1] > 0:
+                my_screen.blit(plank_image,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 150))
+                item_font_2 = item_total_font.render(str(plank_total[1]),True, ("black"))
+                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 175))
+
+            if plank_total[2] > 0:
+                my_screen.blit(plank_image,(screen_size.current_w * (8/16) + 100, screen_size.current_h - 150))
+                item_font_3 = item_total_font.render(str(plank_total[2]),True, ("black"))
+                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + 200, screen_size.current_h - 175))
+
+            if plank_total[3] > 0:
+                my_screen.blit(plank_image,(screen_size.current_w * (10/16) + 100, screen_size.current_h - 150))
+                item_font_4 = item_total_font.render(str(plank_total[3]),True, ("black"))
+                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 175))
+
+            #sapling
             if sapling_total[0] > 0:
                 my_screen.blit(sapling_image,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 150))
                 item_font_1 = item_total_font.render(str(sapling_total[0]),True, ("black"))
@@ -544,17 +770,22 @@ def one_player():
                     sapling_list_x = np.delete(sapling_list_x, random_sapling_growth)
                     sapling_list_y = np.delete(sapling_list_y, random_sapling_growth)
 
-            #render logs
+            #render log
             for i in range(len(log_list_x)):
                 if i < len(log_list_x):
                     my_screen.blit(log_image,(log_list_x[i], log_list_y[i]))
 
-            #render saplings
+            #render plank
+            for i in range(len(plank_list_x)):
+                if i < len(plank_list_x):
+                    my_screen.blit(plank_image,(plank_list_x[i], plank_list_y[i]))
+
+            #render sapling
             for i in range(len(sapling_list_x)):
                 if i < len(sapling_list_x):
                     my_screen.blit(sapling_image,(sapling_list_x[i], sapling_list_y[i]))
 
-            #render trees
+            #render tree
             for i in range(len(tree_x)):
                 if i < len(tree_x):
                     my_screen.blit(tree_image,(tree_x[i], tree_y[i]))
@@ -584,12 +815,6 @@ def title_screen():
         if keyboard[pygame.K_1]:
             one_player()
 
-        if keyboard[pygame.K_2]:
-            two_player()
-
-        if keyboard[pygame.K_3]:
-            multiplayer()
-
         #quit game
         if keyboard[pygame.K_ESCAPE]:
             running = False
@@ -607,6 +832,7 @@ def title_screen():
         break_block = sub_font.render("left click = break block",True,(0,0,0))
         place_block = sub_font.render("right click = place block",True,(0,0,0))
         hotbar = sub_font.render("1-4 = hotbar",True,(0,0,0))
+        crafting = sub_font.render("c = crafting",True,(0,0,0))
 
         my_screen.blit(title, (100,50))
         my_screen.blit(one, (100, 200))
@@ -617,6 +843,7 @@ def title_screen():
         my_screen.blit(break_block, (100, 450))
         my_screen.blit(place_block, (100, 500))
         my_screen.blit(hotbar, (100, 550))
+        my_screen.blit(crafting, (100, 600))
 
         pygame.display.flip()
 
