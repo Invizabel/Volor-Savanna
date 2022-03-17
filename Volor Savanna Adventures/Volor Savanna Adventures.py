@@ -48,8 +48,8 @@ def one_player():
     generate_terrain()
 
     #entity list
-    log_list_x = []
-    log_list_y = []
+    log_list_x = np.array([])
+    log_list_y = np.array([])
     log_total = [0,0,0,0]
     sapling_list_x = np.array([])
     sapling_list_y = np.array([])
@@ -75,6 +75,8 @@ def one_player():
     global tree_y
 
     #load images
+    axolotl_image = pygame.image.load("Images/axolotl.png")
+    axolotl_image = pygame.transform.scale(axolotl_image,(100, 100))
     lion_image_1 = pygame.image.load("Images/The Mighty Lion 1.png")
     lion_image_1 = pygame.transform.scale(lion_image_1,(100, 100))
     log_image = pygame.image.load("Images/log.png")
@@ -88,6 +90,10 @@ def one_player():
     clock = pygame.time.Clock()
     load_game = False
     running = True
+
+    #pet
+    pet_x = 0
+    pet_y = 0
 
     #player stats
     player_x = screen_size.current_w / 2
@@ -124,10 +130,10 @@ def one_player():
         if keyboard[pygame.K_a] and player_x > 0:
             player_x -= 10
 
-        if keyboard[pygame.K_RIGHT] and player_x < (screen_size.current_w):
+        if keyboard[pygame.K_RIGHT] and player_x < (screen_size.current_w) - 100:
             player_x += 10
 
-        if keyboard[pygame.K_d] and player_x < (screen_size.current_w):
+        if keyboard[pygame.K_d] and player_x < (screen_size.current_w) - 100:
             player_x += 10
 
         if keyboard[pygame.K_UP] and player_y > 0:
@@ -193,6 +199,19 @@ def one_player():
         #alive
         player_health_boolean = True
 
+        #pet ai
+        if player_x < pet_x:
+            pet_x -= 1
+
+        if player_x > pet_x:
+            pet_x += 1
+
+        if player_y < pet_y:
+            pet_y -= 1
+
+        if player_y > pet_y:
+            pet_y += 1
+
         #hotbar
         
         #slot 1
@@ -250,8 +269,8 @@ def one_player():
                                     break
                         
                     if exists == False:
-                        log_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
-                        log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        log_list_x = np.append(log_list_x, int(math.ceil(player_x / 100.0)) * 100)
+                        log_list_y = np.append(log_list_y, int(math.ceil(player_y / 100.0)) * 100)
                         log_total[0] = log_total[0] - 1
 
                 #saplings
@@ -292,8 +311,8 @@ def one_player():
                                     break
                         
                     if exists == False:
-                        log_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
-                        log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        log_list_x = np.append(log_list_x, int(math.ceil(player_x / 100.0)) * 100)
+                        log_list_y = np.append(log_list_y, int(math.ceil(player_y / 100.0)) * 100)
                         log_total[1] = log_total[1] - 1
 
                 #saplings
@@ -334,8 +353,8 @@ def one_player():
                                     break
                         
                     if exists == False:
-                        log_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
-                        log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        log_list_x = np.append(log_list_x, int(math.ceil(player_x / 100.0)) * 100)
+                        log_list_y = np.append(log_list_y, int(math.ceil(player_y / 100.0)) * 100)
                         log_total[2] = log_total[2] - 1
 
                 #saplings
@@ -376,8 +395,8 @@ def one_player():
                                     break
                         
                     if exists == False:
-                        log_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
-                        log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        log_list_x = np.append(log_list_x, int(math.ceil(player_x / 100.0)) * 100)
+                        log_list_y = np.append(log_list_y, int(math.ceil(player_y / 100.0)) * 100)
                         log_total[3] = log_total[3] - 1
 
                 #saplings
@@ -409,8 +428,8 @@ def one_player():
                 if i < len(log_list_x):
                     if player_x <= log_list_x[i] + 75 and player_x >= log_list_x[i] - 75:
                         if player_y <= log_list_y[i] + 75 and player_y >= log_list_y[i] - 75:
-                            log_list_x.pop(i)
-                            log_list_y.pop(i)
+                            log_list_x = np.delete(log_list_x, i)
+                            log_list_y = np.delete(log_list_y, i)
                             counter = 0
 
                             for i in inventory:    
@@ -451,6 +470,9 @@ def one_player():
                             
         #render entities
         if load_game == False:
+            #pet
+            my_screen.blit(axolotl_image,(pet_x, pet_y))
+            
             #logs
             if log_total[0] > 0:
                 my_screen.blit(log_image,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 150))
@@ -503,15 +525,18 @@ def one_player():
                     tree_y = np.append(tree_y, sapling_list_y[random_sapling_growth])
                     sapling_list_x = np.delete(sapling_list_x, random_sapling_growth)
                     sapling_list_y = np.delete(sapling_list_y, random_sapling_growth)
-            
+
+            #render logs
             for i in range(len(log_list_x)):
                 if i < len(log_list_x):
                     my_screen.blit(log_image,(log_list_x[i], log_list_y[i]))
 
+            #render saplings
             for i in range(len(sapling_list_x)):
                 if i < len(sapling_list_x):
                     my_screen.blit(sapling_image,(sapling_list_x[i], sapling_list_y[i]))
 
+            #render trees
             for i in range(len(tree_x)):
                 if i < len(tree_x):
                     my_screen.blit(tree_image,(tree_x[i], tree_y[i]))
