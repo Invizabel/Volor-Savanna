@@ -106,6 +106,9 @@ def one_player():
         #keyboard input
         keyboard = pygame.key.get_pressed()
 
+        left_mouse = pygame.mouse.get_pressed()[0]
+        right_mouse = pygame.mouse.get_pressed()[2]
+
         if keyboard[pygame.K_LEFT] and player_x > 0:
             player_x -= 10
 
@@ -157,10 +160,10 @@ def one_player():
         if keyboard[pygame.K_TAB] and player_y < (screen_size.current_h):
             load_game = True
 
-        if keyboard[pygame.K_q]:
+        if keyboard[pygame.K_q] or right_mouse:
             place_entity = True
 
-        if keyboard[pygame.K_e]:
+        if keyboard[pygame.K_e] or left_mouse:
             break_entity = True
 
         #quit game
@@ -538,8 +541,8 @@ def title_screen():
         escape = sub_font.render("escape = quit",True, (0,0,0))
         my_help = sub_font.render("t = title screen",True, (0,0,0))
         load = sub_font.render("tab = save game",True,(0,0,0))
-        break_block = sub_font.render("e = break block",True,(0,0,0))
-        place_block = sub_font.render("q = place block",True,(0,0,0))
+        break_block = sub_font.render("e or left click = break block",True,(0,0,0))
+        place_block = sub_font.render("q or right click = place block",True,(0,0,0))
         hotbar = sub_font.render("1-4 = hotbar",True,(0,0,0))
 
         my_screen.blit(title, (100,50))
