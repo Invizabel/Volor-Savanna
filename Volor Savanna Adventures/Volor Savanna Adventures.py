@@ -43,9 +43,12 @@ def one_player():
     generate_terrain()
 
     #entity list
-    log_total = [0,0,0,0]
     log_list_x = []
     log_list_y = []
+    log_total = [0,0,0,0]
+    sapling_list_x = []
+    sapling_list_y = []
+    sapling_total = [0,0,0,0]
 
     #inventory
     break_entity = False
@@ -87,12 +90,6 @@ def one_player():
     #terrain lists
     sapling_x = []
     sapling_y = []
-    
-    #temp
-    inventory[0] = "log"
-    inventory[1] = "log"
-    inventory[2] = "log"
-    inventory[3] = "log"
 
     while running:
         my_screen.fill("yellow")
@@ -222,12 +219,21 @@ def one_player():
             place_entity = False
             exists = False
 
+            #inventory 1
             if inventory_1 == True:
+                #print(int(math.ceil(player_x / 100.0)) * 100)
+                #log
                 if inventory[0] == "log" and int(log_total[0]) > 0:
-                    for i in log_list_x:
-                        if i == (int(math.ceil(player_x / 100.0)) * 100):
-                            for i in log_list_y:
-                                if i == (int(math.ceil(player_y / 100.0)) * 100):
+                    for i in range(len(log_list_x)):
+                        if log_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                            if log_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                exists = True
+                                break
+
+                    if exists == False:
+                        for i in range(len(sapling_list_x)):
+                            if sapling_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                                if sapling_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
                                     exists = True
                                     break
                         
@@ -235,13 +241,41 @@ def one_player():
                         log_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
                         log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
                         log_total[0] = log_total[0] - 1
-                    
+
+                #saplings
+                if inventory[0] == "sapling" and int(sapling_total[0]) > 0:
+                    for i in range(len(log_list_x)):
+                        if log_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                            if log_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                exists = True
+                                break
+
+                    if exists == False:
+                        for i in range(len(sapling_list_x)):
+                            if sapling_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                                if sapling_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                    exists = True
+                                    break
+                                
+                    if exists == False:
+                        sapling_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
+                        sapling_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        sapling_total[0] = sapling_total[0] - 1
+
+            #inventory 2
             if inventory_2 == True:
+                #log
                 if inventory[1] == "log" and int(log_total[1]) > 0:
-                    for i in log_list_x:
-                        if i == (int(math.ceil(player_x / 100.0)) * 100):
-                            for i in log_list_y:
-                                if i == (int(math.ceil(player_y / 100.0)) * 100):
+                    for i in range(len(log_list_x)):
+                        if log_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                            if log_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                exists = True
+                                break
+
+                    if exists == False:
+                        for i in range(len(sapling_list_x)):
+                            if sapling_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                                if sapling_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
                                     exists = True
                                     break
                         
@@ -250,12 +284,40 @@ def one_player():
                         log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
                         log_total[1] = log_total[1] - 1
 
+                #saplings
+                if inventory[1] == "sapling" and int(sapling_total[1]) > 0:
+                    for i in range(len(log_list_x)):
+                        if log_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                            if log_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                exists = True
+                                break
+
+                    if exists == False:
+                        for i in range(len(sapling_list_x)):
+                            if sapling_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                                if sapling_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                    exists = True
+                                    break
+                        
+                    if exists == False:
+                        sapling_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
+                        sapling_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        sapling_total[1] = sapling_total[1] - 1
+
+            #inventory 3
             if inventory_3 == True:
+                #log
                 if inventory[2] == "log" and int(log_total[2]) > 0:
-                    for i in log_list_x:
-                        if i == (int(math.ceil(player_x / 100.0)) * 100):
-                            for i in log_list_y:
-                                if i == (int(math.ceil(player_y / 100.0)) * 100):
+                    for i in range(len(log_list_x)):
+                        if log_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                            if log_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                exists = True
+                                break
+
+                    if exists == False:
+                        for i in range(len(sapling_list_x)):
+                            if sapling_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                                if sapling_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
                                     exists = True
                                     break
                         
@@ -264,12 +326,40 @@ def one_player():
                         log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
                         log_total[2] = log_total[2] - 1
 
+                #saplings
+                if inventory[2] == "sapling" and int(sapling_total[2]) > 0:
+                    for i in range(len(log_list_x)):
+                        if log_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                            if log_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                exists = True
+                                break
+
+                    if exists == False:
+                        for i in range(len(sapling_list_x)):
+                            if sapling_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                                if sapling_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                    exists = True
+                                    break
+                        
+                    if exists == False:
+                        sapling_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
+                        sapling_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        sapling_total[2] = sapling_total[2] - 1
+
+            #inventory 4
             if inventory_4 == True:
+                #log
                 if inventory[3] == "log" and int(log_total[3]) > 0:
-                    for i in log_list_x:
-                        if i == (int(math.ceil(player_x / 100.0)) * 100):
-                            for i in log_list_y:
-                                if i == (int(math.ceil(player_y / 100.0)) * 100):
+                    for i in range(len(log_list_x)):
+                        if log_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                            if log_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                exists = True
+                                break
+
+                    if exists == False:
+                        for i in range(len(sapling_list_x)):
+                            if sapling_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                                if sapling_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
                                     exists = True
                                     break
                         
@@ -277,6 +367,26 @@ def one_player():
                         log_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
                         log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
                         log_total[3] = log_total[3] - 1
+
+                #saplings
+                if inventory[3] == "sapling" and int(sapling_total[3]) > 0:
+                    for i in range(len(log_list_x)):
+                        if log_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                            if log_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                exists = True
+                                break
+
+                    if exists == False:
+                        for i in range(len(sapling_list_x)):
+                            if sapling_list_x[i] == (int(math.ceil(player_x / 100.0)) * 100):
+                                if sapling_list_y[i] == (int(math.ceil(player_y / 100.0)) * 100):
+                                    exists = True
+                                    break
+                        
+                    if exists == False:
+                        sapling_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
+                        sapling_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        sapling_total[3] = sapling_total[3] - 1
                 
         #break entity
         if break_entity == True:
@@ -289,43 +399,47 @@ def one_player():
                         if player_y <= log_list_y[i] + 75 and player_y >= log_list_y[i] - 75:
                             log_list_x.pop(i)
                             log_list_y.pop(i)
+                            counter = 0
 
-                            if inventory_1 == True:
-                                log_total[0] = log_total[0] + 1
+                            for i in inventory:    
+                                if i == "" or i == "log":
+                                    inventory[counter] = "log"
+                                    log_total[counter] = log_total[counter] + 1
+                                    break
                                 
-                            if inventory_2 == True:
-                                log_total[1] = log_total[1] + 1
-
-                            if inventory_3 == True:
-                                log_total[2] = log_total[2] + 1
-
-                            if inventory_4 == True:
-                                log_total[3] = log_total[3] + 1
+                                counter += 1
 
             #terrain
+            #trees
             for i in range(len(tree_x)):
                 if i < len(tree_x):
-                    if player_x <= tree_x[i] + 50 and player_x >= tree_x[i] - 50:
-                        if player_y <= tree_y[i] + 50 and player_y >= tree_y[i] - 50:
-                            sapling_x.append(tree_x[i])
-                            sapling_y.append(tree_y[i])
+                    if player_x <= tree_x[i] + 75 and player_x >= tree_x[i] - 75:
+                        if player_y <= tree_y[i] + 75 and player_y >= tree_y[i] - 75:
                             tree_x.pop(i)
                             tree_y.pop(i)
+                            counter = 0
                             
-                            if inventory_1 == True:
-                                log_total[0] = log_total[0] + 4
-                                
-                            if inventory_2 == True:
-                                log_total[1] = log_total[1] + 4
+                            for i in inventory:
+                                rand = random.randint(4,6)
 
-                            if inventory_3 == True:
-                                log_total[2] = log_total[2] + 4
+                                if i == "" or i == "log":
+                                    inventory[counter] = "log"
+                                    log_total[counter] = log_total[counter] + rand
+                                    break
 
-                            if inventory_4 == True:
-                                log_total[3] = log_total[3] + 4
+                            for i in inventory:
+                                rand = random.randint(1,3)
+
+                                if i == "" or i == "sapling":
+                                    inventory[counter] = "sapling"
+                                    sapling_total[counter] = sapling_total[counter] + rand
+                                    break
+
+                                counter += 1
                             
         #render entities
         if load_game == False:
+            #logs
             if log_total[0] > 0:
                 my_screen.blit(log_image,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 150))
                 item_font_1 = item_total_font.render(str(log_total[0]),True, ("black"))
@@ -346,17 +460,38 @@ def one_player():
                 item_font_4 = item_total_font.render(str(log_total[3]),True, ("black"))
                 my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 175))
 
+            #saplings
+            if sapling_total[0] > 0:
+                my_screen.blit(sapling_image,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 150))
+                item_font_1 = item_total_font.render(str(sapling_total[0]),True, ("black"))
+                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 175))
+
+            if sapling_total[1] > 0:
+                my_screen.blit(sapling_image,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 150))
+                item_font_2 = item_total_font.render(str(sapling_total[1]),True, ("black"))
+                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 175))
+
+            if sapling_total[2] > 0:
+                my_screen.blit(sapling_image,(screen_size.current_w * (8/16) + 100, screen_size.current_h - 150))
+                item_font_3 = item_total_font.render(str(sapling_total[2]),True, ("black"))
+                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + 200, screen_size.current_h - 175))
+
+            if sapling_total[3] > 0:
+                my_screen.blit(sapling_image,(screen_size.current_w * (10/16) + 100, screen_size.current_h - 150))
+                item_font_4 = item_total_font.render(str(sapling_total[3]),True, ("black"))
+                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 175))
+
             for i in range(len(log_list_x)):
                 if i < len(log_list_x):
                     my_screen.blit(log_image,(log_list_x[i], log_list_y[i]))
 
-        #render terrain
-        if load_game == False:
-            for i in range(len(tree_x)):
-                my_screen.blit(tree_image,(tree_x[i], tree_y[i]))
+            for i in range(len(sapling_list_x)):
+                if i < len(sapling_list_x):
+                    my_screen.blit(sapling_image,(sapling_list_x[i], sapling_list_y[i]))
 
-            for i in range(len(sapling_x)):
-                my_screen.blit(sapling_image,(sapling_x[i], sapling_y[i]))
+            for i in range(len(tree_x)):
+                if i < len(tree_x):
+                    my_screen.blit(tree_image,(tree_x[i], tree_y[i]))
 
         if load_game == True:
             load_game = False
