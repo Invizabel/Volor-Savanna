@@ -2,6 +2,7 @@
 from pygame import mixer
 
 import math
+import numpy as np
 import pygame
 import random
 import sys
@@ -46,8 +47,8 @@ def one_player():
     log_list_x = []
     log_list_y = []
     log_total = [0,0,0,0]
-    sapling_list_x = []
-    sapling_list_y = []
+    sapling_list_x = np.array([])
+    sapling_list_y = np.array([])
     sapling_total = [0,0,0,0]
 
     #inventory
@@ -84,7 +85,7 @@ def one_player():
     player_x = screen_size.current_w / 2
     player_y = screen_size.current_h / 2
     player_health = 20
-    player_health_total = "player 1: " + str(player_health)
+    player_health_total = "health: " + str(player_health)
     player_health_boolean = False
 
     #terrain lists
@@ -97,7 +98,7 @@ def one_player():
         #render health
         player_health_font = my_font.render(player_health_total, True, (0,0,0))
 
-        tick = clock.tick(10000)
+        tick = clock.tick(1000000)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -160,10 +161,10 @@ def one_player():
         if keyboard[pygame.K_TAB] and player_y < (screen_size.current_h):
             load_game = True
 
-        if keyboard[pygame.K_q] or right_mouse:
+        if right_mouse:
             place_entity = True
 
-        if keyboard[pygame.K_e] or left_mouse:
+        if left_mouse:
             break_entity = True
 
         #quit game
@@ -261,8 +262,8 @@ def one_player():
                                     break
                                 
                     if exists == False:
-                        sapling_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
-                        sapling_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        sapling_list_x = np.append(sapling_list_x, int(math.ceil(player_x / 100.0)) * 100)
+                        sapling_list_y = np.append(sapling_list_y, int(math.ceil(player_y / 100.0)) * 100)
                         sapling_total[0] = sapling_total[0] - 1
 
             #inventory 2
@@ -303,8 +304,8 @@ def one_player():
                                     break
                         
                     if exists == False:
-                        sapling_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
-                        sapling_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        sapling_list_x = np.append(sapling_list_x, int(math.ceil(player_x / 100.0)) * 100)
+                        sapling_list_y = np.append(sapling_list_y, int(math.ceil(player_y / 100.0)) * 100)
                         sapling_total[1] = sapling_total[1] - 1
 
             #inventory 3
@@ -345,8 +346,8 @@ def one_player():
                                     break
                         
                     if exists == False:
-                        sapling_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
-                        sapling_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        sapling_list_x = np.append(sapling_list_x, int(math.ceil(player_x / 100.0)) * 100)
+                        sapling_list_y = np.append(sapling_list_y, int(math.ceil(player_y / 100.0)) * 100)
                         sapling_total[2] = sapling_total[2] - 1
 
             #inventory 4
@@ -387,8 +388,8 @@ def one_player():
                                     break
                         
                     if exists == False:
-                        sapling_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
-                        sapling_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        sapling_list_x = np.append(sapling_list_x, int(math.ceil(player_x / 100.0)) * 100)
+                        sapling_list_y = np.append(sapling_list_y, int(math.ceil(player_y / 100.0)) * 100)
                         sapling_total[3] = sapling_total[3] - 1
                 
         #break entity
@@ -484,6 +485,17 @@ def one_player():
                 item_font_4 = item_total_font.render(str(sapling_total[3]),True, ("black"))
                 my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 175))
 
+            #growth
+            random_sapling_growth = random.randint(0,len(sapling_list_x))
+            random_time = random.randint(1,10000)
+
+            if random_time == 1 and len(sapling_list_x) > 0:
+                if random_sapling_growth < len(sapling_list_x):
+                    tree_x.append(sapling_list_x[random_sapling_growth])
+                    tree_y.append(sapling_list_y[random_sapling_growth])
+                    sapling_list_x = np.delete(sapling_list_x, random_sapling_growth)
+                    sapling_list_y = np.delete(sapling_list_y, random_sapling_growth)
+            
             for i in range(len(log_list_x)):
                 if i < len(log_list_x):
                     my_screen.blit(log_image,(log_list_x[i], log_list_y[i]))
@@ -541,8 +553,8 @@ def title_screen():
         escape = sub_font.render("escape = quit",True, (0,0,0))
         my_help = sub_font.render("t = title screen",True, (0,0,0))
         load = sub_font.render("tab = save game",True,(0,0,0))
-        break_block = sub_font.render("e or left click = break block",True,(0,0,0))
-        place_block = sub_font.render("q or right click = place block",True,(0,0,0))
+        break_block = sub_font.render("left click = break block",True,(0,0,0))
+        place_block = sub_font.render("right click = place block",True,(0,0,0))
         hotbar = sub_font.render("1-4 = hotbar",True,(0,0,0))
 
         my_screen.blit(title, (100,50))
