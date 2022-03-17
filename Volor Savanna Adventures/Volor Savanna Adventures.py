@@ -55,6 +55,15 @@ def one_player():
     sapling_list_y = np.array([])
     sapling_total = [0,0,0,0]
 
+    #fonts
+    item_total_font = pygame.font.SysFont("Timesnewroman", 50)
+    my_font = pygame.font.SysFont("Timesnewroman", 50)
+    fps = pygame.font.SysFont("Timesnewroman", 100)
+
+    #global
+    global tree_x
+    global tree_y
+
     #inventory
     break_entity = False
     entity_list = []
@@ -64,15 +73,6 @@ def one_player():
     inventory_3 = False
     inventory_4 = False
     place_entity = False
-
-    #fonts
-    item_total_font = pygame.font.SysFont("Timesnewroman", 50)
-    my_font = pygame.font.SysFont("Timesnewroman", 50)
-    fps = pygame.font.SysFont("Timesnewroman", 100)
-
-    #global
-    global tree_x
-    global tree_y
 
     #load images
     axolotl_image = pygame.image.load("Images/axolotl.png")
@@ -423,6 +423,7 @@ def one_player():
         if break_entity == True:
             break_entity = False
 
+            #entities
             #log
             for i in range(len(log_list_x)):
                 if i < len(log_list_x):
@@ -436,6 +437,23 @@ def one_player():
                                 if i == "" or i == "log":
                                     inventory[counter] = "log"
                                     log_total[counter] = log_total[counter] + 1
+                                    break
+                                
+                                counter += 1
+
+            #sapling
+            for i in range(len(sapling_list_x)):
+                if i < len(sapling_list_x):
+                    if player_x <= sapling_list_x[i] + 75 and player_x >= sapling_list_x[i] - 75:
+                        if player_y <= sapling_list_y[i] + 75 and player_y >= sapling_list_y[i] - 75:
+                            sapling_list_x = np.delete(sapling_list_x, i)
+                            sapling_list_y = np.delete(sapling_list_y, i)
+                            counter = 0
+
+                            for i in inventory:    
+                                if i == "" or i == "sapling":
+                                    inventory[counter] = "sapling"
+                                    sapling_total[counter] = sapling_total[counter] + 1
                                     break
                                 
                                 counter += 1
