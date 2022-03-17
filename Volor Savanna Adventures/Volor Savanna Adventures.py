@@ -18,10 +18,14 @@ my_screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
 my_screen.fill("yellow")
 
 #global variables
-tree_x = []
-tree_y = []
+tree_x = np.array([])
+tree_y = np.array([])
 
 def generate_terrain():
+    #global
+    global tree_x
+    global tree_y
+    
     #seed number is for development only
     #trees
     original_seed = "1234"
@@ -37,8 +41,8 @@ def generate_terrain():
     seed_y = math.ceil(seed_y)
     
     for i in range(0,math.ceil(screen_size.current_h / 5),50):
-        tree_x.append(i * seed_x)
-        tree_y.append(i * seed_y)
+        tree_x = np.append(tree_x, i * seed_x)
+        tree_y = np.append(tree_y, i * seed_y)
     
 def one_player():
     generate_terrain()
@@ -65,6 +69,10 @@ def one_player():
     item_total_font = pygame.font.SysFont("Timesnewroman", 50)
     my_font = pygame.font.SysFont("Timesnewroman", 50)
     fps = pygame.font.SysFont("Timesnewroman", 100)
+
+    #global
+    global tree_x
+    global tree_y
 
     #load images
     lion_image_1 = pygame.image.load("Images/The Mighty Lion 1.png")
@@ -419,8 +427,8 @@ def one_player():
                 if i < len(tree_x):
                     if player_x <= tree_x[i] + 75 and player_x >= tree_x[i] - 75:
                         if player_y <= tree_y[i] + 75 and player_y >= tree_y[i] - 75:
-                            tree_x.pop(i)
-                            tree_y.pop(i)
+                            tree_x = np.delete(tree_x, i)
+                            tree_y = np.delete(tree_y, i)
                             counter = 0
                             
                             for i in inventory:
@@ -491,8 +499,8 @@ def one_player():
 
             if random_time == 1 and len(sapling_list_x) > 0:
                 if random_sapling_growth < len(sapling_list_x):
-                    tree_x.append(sapling_list_x[random_sapling_growth])
-                    tree_y.append(sapling_list_y[random_sapling_growth])
+                    tree_x = np.append(tree_x, sapling_list_x[random_sapling_growth])
+                    tree_y = np.append(tree_y, sapling_list_y[random_sapling_growth])
                     sapling_list_x = np.delete(sapling_list_x, random_sapling_growth)
                     sapling_list_y = np.delete(sapling_list_y, random_sapling_growth)
             
