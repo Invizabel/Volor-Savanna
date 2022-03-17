@@ -23,12 +23,12 @@ tree_y = []
 def generate_terrain():
     #seed number is for development only
     #trees
-    original_seed = 11182001
+    original_seed = "1234"
     seed_x = random.seed(original_seed)
     seed_x = random.random()
     seed_x = seed_x * 10
     seed_x = math.ceil(seed_x)
-    mod_seed = "123"[::-1]
+    mod_seed = original_seed[::-1]
     mod_seed = int(mod_seed)
     seed_y = random.seed(mod_seed)
     seed_y = random.random()
@@ -41,7 +41,12 @@ def generate_terrain():
     
 def one_player():
     generate_terrain()
-    
+
+    #entity list
+    log_total = [0,0,0,0]
+    log_list_x = []
+    log_list_y = []
+
     #inventory
     break_entity = False
     entity_list = []
@@ -52,34 +57,37 @@ def one_player():
     inventory_4 = False
     place_entity = False
 
-    #entity list
-    log_total = [0,0,0,0]
-    log_list_x = []
-    log_list_y = []
-
-    #misc
-    load_game = False
-    running = True
+    #fonts
+    item_total_font = pygame.font.SysFont("Timesnewroman", 50)
+    my_font = pygame.font.SysFont("Timesnewroman", 50)
+    fps = pygame.font.SysFont("Timesnewroman", 100)
 
     #load images
     lion_image_1 = pygame.image.load("Images/The Mighty Lion 1.png")
     lion_image_1 = pygame.transform.scale(lion_image_1,(100, 100))
+    log_image = pygame.image.load("Images/log.png")
+    log_image = pygame.transform.scale(log_image,(100, 100))
+    sapling_image = pygame.image.load("Images/sapling.png")
+    sapling_image = pygame.transform.scale(sapling_image,(100, 100))
     tree_image = pygame.image.load("Images/tree.png")
     tree_image = pygame.transform.scale(tree_image,(100, 100))
+
+    #misc
+    clock = pygame.time.Clock()
+    load_game = False
+    running = True
 
     #player stats
     player_x = screen_size.current_w / 2
     player_y = screen_size.current_h / 2
-    player_z = 0
-    player_color = "cyan"
     player_health = 20
     player_health_total = "player 1: " + str(player_health)
     player_health_boolean = False
 
-    my_font = pygame.font.SysFont("Timesnewroman", 50)
-
-    clock = pygame.time.Clock()
-
+    #terrain lists
+    sapling_x = []
+    sapling_y = []
+    
     #temp
     inventory[0] = "log"
     inventory[1] = "log"
@@ -92,7 +100,7 @@ def one_player():
         #render health
         player_health_font = my_font.render(player_health_total, True, (0,0,0))
 
-        tick = clock.tick(1000)
+        tick = clock.tick(10000)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -174,11 +182,10 @@ def one_player():
             player_health_total = "player 1: " + str(player_health)
 
         #alive
-        player_color = "cyan"
         player_health_boolean = True
 
         #hotbar
-
+        
         #slot 1
         if inventory_1 == True:
             pygame.draw.rect(my_screen, "white", pygame.Rect(screen_size.current_w * (4/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
@@ -227,7 +234,7 @@ def one_player():
                     if exists == False:
                         log_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
                         log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
-                        log_total[0] = int(log_total[0]) - 1
+                        log_total[0] = log_total[0] - 1
                     
             if inventory_2 == True:
                 if inventory[1] == "log" and int(log_total[1]) > 0:
@@ -241,7 +248,7 @@ def one_player():
                     if exists == False:
                         log_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
                         log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
-                        log_total[1] = int(log_total[1]) - 1
+                        log_total[1] = log_total[1] - 1
 
             if inventory_3 == True:
                 if inventory[2] == "log" and int(log_total[2]) > 0:
@@ -255,7 +262,7 @@ def one_player():
                     if exists == False:
                         log_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
                         log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
-                        log_total[2] = int(log_total[2]) - 1
+                        log_total[2] = log_total[2] - 1
 
             if inventory_4 == True:
                 if inventory[3] == "log" and int(log_total[3]) > 0:
@@ -269,7 +276,7 @@ def one_player():
                     if exists == False:
                         log_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
                         log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
-                        log_total[3] = int(log_total[3]) - 1
+                        log_total[3] = log_total[3] - 1
                 
         #break entity
         if break_entity == True:
@@ -278,56 +285,85 @@ def one_player():
             #log
             for i in range(len(log_list_x)):
                 if i < len(log_list_x):
-                    if player_x <= log_list_x[i] + 50 and player_x >= log_list_x[i] - 50:
-                        if player_y <= log_list_y[i] + 50 and player_y >= log_list_y[i] - 50:
+                    if player_x <= log_list_x[i] + 75 and player_x >= log_list_x[i] - 75:
+                        if player_y <= log_list_y[i] + 75 and player_y >= log_list_y[i] - 75:
                             log_list_x.pop(i)
                             log_list_y.pop(i)
 
                             if inventory_1 == True:
-                                log_total[0] = int(log_total[0]) + 1
+                                log_total[0] = log_total[0] + 1
                                 
                             if inventory_2 == True:
-                                log_total[1] = int(log_total[1]) + 1
+                                log_total[1] = log_total[1] + 1
 
                             if inventory_3 == True:
-                                log_total[2] = int(log_total[2]) + 1
+                                log_total[2] = log_total[2] + 1
 
                             if inventory_4 == True:
-                                log_total[3] = int(log_total[3]) + 1
+                                log_total[3] = log_total[3] + 1
 
             #terrain
             for i in range(len(tree_x)):
                 if i < len(tree_x):
                     if player_x <= tree_x[i] + 50 and player_x >= tree_x[i] - 50:
                         if player_y <= tree_y[i] + 50 and player_y >= tree_y[i] - 50:
+                            sapling_x.append(tree_x[i])
+                            sapling_y.append(tree_y[i])
                             tree_x.pop(i)
                             tree_y.pop(i)
-
+                            
                             if inventory_1 == True:
-                                log_total[0] = int(log_total[0]) + 1
+                                log_total[0] = log_total[0] + 4
                                 
                             if inventory_2 == True:
-                                log_total[1] = int(log_total[0]) + 1
+                                log_total[1] = log_total[1] + 4
 
                             if inventory_3 == True:
-                                log_total[2] = int(log_total[0]) + 1
+                                log_total[2] = log_total[2] + 4
 
                             if inventory_4 == True:
-                                log_total[3] = int(log_total[0]) + 1
+                                log_total[3] = log_total[3] + 4
                             
         #render entities
         if load_game == False:
+            if log_total[0] > 0:
+                my_screen.blit(log_image,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 150))
+                item_font_1 = item_total_font.render(str(log_total[0]),True, ("black"))
+                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 175))
+
+            if log_total[1] > 0:
+                my_screen.blit(log_image,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 150))
+                item_font_2 = item_total_font.render(str(log_total[1]),True, ("black"))
+                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 175))
+
+            if log_total[2] > 0:
+                my_screen.blit(log_image,(screen_size.current_w * (8/16) + 100, screen_size.current_h - 150))
+                item_font_3 = item_total_font.render(str(log_total[2]),True, ("black"))
+                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + 200, screen_size.current_h - 175))
+
+            if log_total[3] > 0:
+                my_screen.blit(log_image,(screen_size.current_w * (10/16) + 100, screen_size.current_h - 150))
+                item_font_4 = item_total_font.render(str(log_total[3]),True, ("black"))
+                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 175))
+
             for i in range(len(log_list_x)):
                 if i < len(log_list_x):
-                    my_screen.blit(tree_image,(log_list_x[i], log_list_y[i]))
+                    my_screen.blit(log_image,(log_list_x[i], log_list_y[i]))
 
         #render terrain
         if load_game == False:
             for i in range(len(tree_x)):
                 my_screen.blit(tree_image,(tree_x[i], tree_y[i]))
 
+            for i in range(len(sapling_x)):
+                my_screen.blit(sapling_image,(sapling_x[i], sapling_y[i]))
+
         if load_game == True:
             load_game = False
+
+        #display fps
+        fps = item_total_font.render("fps: " + str(int(math.floor(clock.get_fps()))),True, ("black"))
+        my_screen.blit(fps, (100,(screen_size.current_h) - 200))
 
         pygame.display.flip()
 
