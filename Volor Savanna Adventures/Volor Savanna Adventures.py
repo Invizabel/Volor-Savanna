@@ -301,7 +301,7 @@ def one_player():
                     counter = 0
                     for i in inventory:
                         if i == "" or i == "plank":
-                            plank_total[counter] = log_total[0] * 4
+                            plank_total[counter] += log_total[0] * 4
                             inventory[counter] = "plank"
                             log_total[0] = 0
 
@@ -313,7 +313,7 @@ def one_player():
                     counter = 0
                     for i in inventory:
                         if i == "" or i == "plank":
-                            plank_total[counter] = log_total[1] * 4
+                            plank_total[counter] += log_total[1] * 4
                             inventory[counter] = "plank"
                             log_total[1] = 0
 
@@ -325,7 +325,7 @@ def one_player():
                     counter = 0
                     for i in inventory:
                         if i == "" or i == "plank":
-                            plank_total[counter] = log_total[2] * 4
+                            plank_total[counter] += log_total[2] * 4
                             inventory[counter] = "plank"
                             log_total[2] = 0
 
@@ -337,7 +337,7 @@ def one_player():
                     counter = 0
                     for i in inventory:
                         if i == "" or i == "plank":
-                            plank_total[counter] = log_total[3] * 4
+                            plank_total[counter] += log_total[3] * 4
                             inventory[counter] = "plank"
                             log_total[3] = 0
 
