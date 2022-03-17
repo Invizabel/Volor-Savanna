@@ -20,18 +20,6 @@ my_screen.fill("yellow")
 tree_x = []
 tree_y = []
 
-def entity_diamond():
-    return "blue"
-
-def entity_emerald():
-    return "green"
-
-def entity_lapis_lazuli():
-    return "blue"
-
-def entity_redstone():
-    return "red"
-
 def generate_terrain():
     #seed number is for development only
     #trees
@@ -63,9 +51,11 @@ def one_player():
     inventory_3 = False
     inventory_4 = False
     place_entity = False
-    super_entity = False
-    super_entity_list_x = []
-    super_entity_list_y = []
+
+    #entity list
+    log_total = [0,0,0,0]
+    log_list_x = []
+    log_list_y = []
 
     #misc
     load_game = False
@@ -91,8 +81,10 @@ def one_player():
     clock = pygame.time.Clock()
 
     #temp
-    inventory[0] = entity_redstone()
-    inventory[1] = entity_emerald()
+    inventory[0] = "log"
+    inventory[1] = "log"
+    inventory[2] = "log"
+    inventory[3] = "log"
 
     while running:
         my_screen.fill("yellow")
@@ -185,7 +177,7 @@ def one_player():
         player_color = "cyan"
         player_health_boolean = True
 
-        #inventory
+        #hotbar
 
         #slot 1
         if inventory_1 == True:
@@ -217,67 +209,119 @@ def one_player():
         if player_health > 0:
             my_screen.blit(lion_image_1,(player_x, player_y))
             my_screen.blit(player_health_font, (100,(screen_size.current_h) - 100))
-
-        #block break detection
-        '''if break_entity == True:
-            break_entity = False
-
-            for i in range(len(tree_x)):
-                #print(i, len(tree_x))
-                if i < len(tree_x):
-                    if player_x <= tree_x[i] + 100 and player_x >= tree_x[i] - 100:
-                        if player_y <= tree_y[i] + 100 and player_y >= tree_y[i] - 100:
-                            tree_x.pop(i)
-                            tree_y.pop(i)'''
-                    
+            
         #place entity
         if place_entity == True:
-            my_boolean = False
             place_entity = False
-            super_entity = True
-            for i in range(len(super_entity_list_x)):
-                if super_entity_list_x[i] == player_x:
-                    for i in range(len(super_entity_list_y)):
-                        if super_entity_list_y[i] == player_y:
-                            my_boolean = True
+            exists = False
 
-            if my_boolean == False:
-                super_entity_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
-                super_entity_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+            if inventory_1 == True:
+                if inventory[0] == "log" and int(log_total[0]) > 0:
+                    for i in log_list_x:
+                        if i == (int(math.ceil(player_x / 100.0)) * 100):
+                            for i in log_list_y:
+                                if i == (int(math.ceil(player_y / 100.0)) * 100):
+                                    exists = True
+                                    break
+                        
+                    if exists == False:
+                        log_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
+                        log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        log_total[0] = int(log_total[0]) - 1
+                    
+            if inventory_2 == True:
+                if inventory[1] == "log" and int(log_total[1]) > 0:
+                    for i in log_list_x:
+                        if i == (int(math.ceil(player_x / 100.0)) * 100):
+                            for i in log_list_y:
+                                if i == (int(math.ceil(player_y / 100.0)) * 100):
+                                    exists = True
+                                    break
+                        
+                    if exists == False:
+                        log_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
+                        log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        log_total[1] = int(log_total[1]) - 1
 
-                if inventory_1 == True and inventory[0] == entity_redstone():
-                    entity_list.append(entity_redstone())
+            if inventory_3 == True:
+                if inventory[2] == "log" and int(log_total[2]) > 0:
+                    for i in log_list_x:
+                        if i == (int(math.ceil(player_x / 100.0)) * 100):
+                            for i in log_list_y:
+                                if i == (int(math.ceil(player_y / 100.0)) * 100):
+                                    exists = True
+                                    break
+                        
+                    if exists == False:
+                        log_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
+                        log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        log_total[2] = int(log_total[2]) - 1
 
-                if inventory_2 == True and inventory[1] == entity_emerald():
-                    entity_list.append(entity_emerald())
-
+            if inventory_4 == True:
+                if inventory[3] == "log" and int(log_total[3]) > 0:
+                    for i in log_list_x:
+                        if i == (int(math.ceil(player_x / 100.0)) * 100):
+                            for i in log_list_y:
+                                if i == (int(math.ceil(player_y / 100.0)) * 100):
+                                    exists = True
+                                    break
+                        
+                    if exists == False:
+                        log_list_x.append(int(math.ceil(player_x / 100.0)) * 100)
+                        log_list_y.append(int(math.ceil(player_y / 100.0)) * 100)
+                        log_total[3] = int(log_total[3]) - 1
+                
         #break entity
         if break_entity == True:
             break_entity = False
 
-            for i in range(len(super_entity_list_x)):
-                if i < len(super_entity_list_x):
-                    if super_entity_list_x[i] <= player_x + 100 and super_entity_list_x[i] >= player_x - 100:
-                        if super_entity_list_y[i] <= player_y + 100 and super_entity_list_y[i] >= player_y - 100:
-                            super_entity_list_x.pop(i)
-                            super_entity_list_y.pop(i)
-                            entity_list.pop(i)
+            #log
+            for i in range(len(log_list_x)):
+                if i < len(log_list_x):
+                    if player_x <= log_list_x[i] + 50 and player_x >= log_list_x[i] - 50:
+                        if player_y <= log_list_y[i] + 50 and player_y >= log_list_y[i] - 50:
+                            log_list_x.pop(i)
+                            log_list_y.pop(i)
 
+                            if inventory_1 == True:
+                                log_total[0] = int(log_total[0]) + 1
+                                
+                            if inventory_2 == True:
+                                log_total[1] = int(log_total[1]) + 1
+
+                            if inventory_3 == True:
+                                log_total[2] = int(log_total[2]) + 1
+
+                            if inventory_4 == True:
+                                log_total[3] = int(log_total[3]) + 1
+
+            #terrain
             for i in range(len(tree_x)):
                 if i < len(tree_x):
-                    if player_x <= tree_x[i] + 100 and player_x >= tree_x[i] - 100:
-                        if player_y <= tree_y[i] + 100 and player_y >= tree_y[i] - 100:
+                    if player_x <= tree_x[i] + 50 and player_x >= tree_x[i] - 50:
+                        if player_y <= tree_y[i] + 50 and player_y >= tree_y[i] - 50:
                             tree_x.pop(i)
                             tree_y.pop(i)
 
-            
+                            if inventory_1 == True:
+                                log_total[0] = int(log_total[0]) + 1
+                                
+                            if inventory_2 == True:
+                                log_total[1] = int(log_total[0]) + 1
 
+                            if inventory_3 == True:
+                                log_total[2] = int(log_total[0]) + 1
+
+                            if inventory_4 == True:
+                                log_total[3] = int(log_total[0]) + 1
+                            
         #render entities
-        if super_entity == True and load_game == False:
-            for i in range(len(super_entity_list_x)):
-                pygame.draw.rect(my_screen, entity_list[i], pygame.Rect(super_entity_list_x[i], super_entity_list_y[i], 100, 100))
+        if load_game == False:
+            for i in range(len(log_list_x)):
+                if i < len(log_list_x):
+                    my_screen.blit(tree_image,(log_list_x[i], log_list_y[i]))
 
-        #render trees
+        #render terrain
         if load_game == False:
             for i in range(len(tree_x)):
                 my_screen.blit(tree_image,(tree_x[i], tree_y[i]))
@@ -323,6 +367,9 @@ def title_screen():
         escape = sub_font.render("escape = quit",True, (0,0,0))
         my_help = sub_font.render("t = title screen",True, (0,0,0))
         load = sub_font.render("tab = save game",True,(0,0,0))
+        break_block = sub_font.render("e = break block",True,(0,0,0))
+        place_block = sub_font.render("q = place block",True,(0,0,0))
+        hotbar = sub_font.render("1-4 = hotbar",True,(0,0,0))
 
         my_screen.blit(title, (100,50))
         my_screen.blit(one, (100, 200))
@@ -330,6 +377,9 @@ def title_screen():
         my_screen.blit(escape, (100, 300))
         my_screen.blit(my_help, (100, 350))
         my_screen.blit(load, (100, 400))
+        my_screen.blit(break_block, (100, 450))
+        my_screen.blit(place_block, (100, 500))
+        my_screen.blit(hotbar, (100, 550))
 
         pygame.display.flip()
 
