@@ -99,6 +99,7 @@ def one_player():
     tree_image = pygame.transform.scale(tree_image,(100, 100))
 
     #misc
+    cancel_action = False
     clock = pygame.time.Clock()
     crafting = False
     crafting_confirm = False
@@ -204,6 +205,9 @@ def one_player():
 
         else:
             crafting_confirm = False
+
+        if keyboard[pygame.K_z]:
+            cancel_action = True
 
         #left mouse
         if left_mouse:
@@ -311,14 +315,14 @@ def one_player():
                             plank_boi = True
                             total_log_boi = log_total[i]
 
-            if plank_boi == True:
+            if plank_boi == True and cancel_action == False:
                 #planks only
                 pygame.draw.rect(my_screen, "red", pygame.Rect(screen_size.current_w * (4/16), screen_size.current_h - 400, screen_size.current_w / 8, 200))
                 my_screen.blit(plank_image,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 350))
                 plank_font = item_total_font.render(str(total_log_boi * 4),True, ("black"))
                 my_screen.blit(plank_font, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 375))
                 
-            if crafting_confirm == True:
+            if crafting_confirm == True and cancel_action == False:
                 crafting = False
                 crafting_confirm = False
                 plank_boi = False
@@ -337,6 +341,11 @@ def one_player():
                                 plank_total[i] = log_total[i] * 4
                                 log_total[i] = 0
                                 break
+
+            if cancel_action == True:
+                cancel_action = False
+                crafting = False
+                crafting_confirm = False
                             
         #render player
         if player_health > 0:
@@ -827,6 +836,7 @@ def title_screen():
         place_block = sub_font.render("right click = place block",True,(0,0,0))
         hotbar = sub_font.render("1-4 = hotbar",True,(0,0,0))
         crafting = sub_font.render("c = crafting",True,(0,0,0))
+        cancel_action = sub_font.render("z = cancel action",True,(0,0,0))
 
         my_screen.blit(title, (100,50))
         my_screen.blit(one, (100, 200))
@@ -838,6 +848,7 @@ def title_screen():
         my_screen.blit(place_block, (100, 500))
         my_screen.blit(hotbar, (100, 550))
         my_screen.blit(crafting, (100, 600))
+        my_screen.blit(cancel_action, (100, 650))
 
         pygame.display.flip()
 
