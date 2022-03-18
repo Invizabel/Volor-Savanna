@@ -1,6 +1,5 @@
 #2D Game
 from pygame import *
-from tkinter import *
 
 import math
 import numpy as np
@@ -102,6 +101,7 @@ def one_player():
     #misc
     clock = pygame.time.Clock()
     crafting = False
+    crafting_confirm = False
     load_game = False
     running = True
 
@@ -156,10 +156,10 @@ def one_player():
         if keyboard[pygame.K_w] and player_y > 0:
             player_y -= 10
 
-        if keyboard[pygame.K_DOWN] and player_y < (screen_size.current_h - 400):
+        if keyboard[pygame.K_DOWN] and player_y < (screen_size.current_h - 600):
             player_y += 10
 
-        if keyboard[pygame.K_s] and player_y < (screen_size.current_h - 400):
+        if keyboard[pygame.K_s] and player_y < (screen_size.current_h - 600):
             player_y += 10
 
         if keyboard[pygame.K_1]:
@@ -198,9 +198,16 @@ def one_player():
         if right_mouse:
             place_entity = True
 
+        #only 1 craftable item
+        if pygame.mouse.get_pos()[1] >= screen_size.current_h - 600 and pygame.mouse.get_pos()[1] <= screen_size.current_h - 200 and pygame.mouse.get_pos()[0] > (screen_size.current_w * (4/16)) and pygame.mouse.get_pos()[0] < screen_size.current_w * (6/16) and left_mouse:
+                crafting_confirm = True
+
+        else:
+            crafting_confirm = False
+
         #left mouse
         if left_mouse:
-            if pygame.mouse.get_pos()[1] < screen_size.current_h - 200:
+            if pygame.mouse.get_pos()[1] < screen_size.current_h - 600:
                 break_entity = True
                 
             if pygame.mouse.get_pos()[1] >= screen_size.current_h - 200:
@@ -293,57 +300,44 @@ def one_player():
 
         #crafting
         if crafting == True:
-            crafting = False
+            plank_boi = False
+            total_log_boi = 0
 
-            #inventory 1
-            if inventory_1 == True:
-                if inventory[0] == "log" and int(log_total[0]) > 0:
-                    counter = 0
-                    for i in inventory:
-                        if i == "" or i == "plank":
-                            plank_total[counter] += log_total[0] * 4
-                            inventory[counter] = "plank"
-                            log_total[0] = 0
+            if crafting_confirm == False:
+                #craft planks
+                for i in range(len(inventory)):
+                    if i < len(inventory):
+                        if inventory[i] == "log":
+                            plank_boi = True
+                            total_log_boi = log_total[i]
 
-                        counter += 1
+            if plank_boi == True:
+                #planks only
+                pygame.draw.rect(my_screen, "red", pygame.Rect(screen_size.current_w * (4/16), screen_size.current_h - 400, screen_size.current_w / 8, 200))
+                my_screen.blit(plank_image,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 350))
+                plank_font = item_total_font.render(str(total_log_boi * 4),True, ("black"))
+                my_screen.blit(plank_font, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 375))
                 
-            #inventory 2
-            if inventory_2 == True:
-                if inventory[1] == "log" and int(log_total[1]) > 0:
-                    counter = 0
-                    for i in inventory:
-                        if i == "" or i == "plank":
-                            plank_total[counter] += log_total[1] * 4
-                            inventory[counter] = "plank"
-                            log_total[1] = 0
+            if crafting_confirm == True:
+                crafting = False
+                crafting_confirm = False
+                plank_boi = False
+                #planks
+                for i in range(len(inventory)):
+                    if inventory[i] == "log":
+                        for ii in range(len(inventory)):
+                            if inventory[ii] == "plank":
+                                #inventory[ii] = "plank"
+                                plank_total[ii] += log_total[i] * 4
+                                log_total[i] = 0
+                                break
 
-                        counter += 1
-
-            #inventory 3
-            if inventory_3 == True:
-                if inventory[2] == "log" and int(log_total[2]) > 0:
-                    counter = 0
-                    for i in inventory:
-                        if i == "" or i == "plank":
-                            plank_total[counter] += log_total[2] * 4
-                            inventory[counter] = "plank"
-                            log_total[2] = 0
-
-                        counter += 1
-
-            #inventory 4
-            if inventory_4 == True:
-                if inventory[3] == "log" and int(log_total[3]) > 0:
-                    counter = 0
-                    for i in inventory:
-                        if i == "" or i == "plank":
-                            plank_total[counter] += log_total[3] * 4
-                            inventory[counter] = "plank"
-                            log_total[3] = 0
-
-                        counter += 1
-            
-
+                            else:
+                                inventory[i] = "plank"
+                                plank_total[i] = log_total[i] * 4
+                                log_total[i] = 0
+                                break
+                            
         #render player
         if player_health > 0:
             my_screen.blit(lion_image_1,(player_x, player_y))
