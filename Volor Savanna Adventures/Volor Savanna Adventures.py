@@ -79,7 +79,7 @@ def one_player():
     inventory_4 = False
     place_entity = False
 
-    #load images
+    #load image entities
     axolotl_image = pygame.image.load("Images/axolotl.png")
     axolotl_image = pygame.transform.scale(axolotl_image,(100, 100))
 
@@ -98,8 +98,21 @@ def one_player():
     tree_image = pygame.image.load("Images/tree.png")
     tree_image = pygame.transform.scale(tree_image,(100, 100))
 
+    #load image inventory
+    log_image_inventory = pygame.image.load("Images/log.png")
+    log_image_inventory = pygame.transform.scale(log_image_inventory,(50, 50))
+
+    plank_image_inventory = pygame.image.load("Images/plank.png")
+    plank_image_inventory = pygame.transform.scale(plank_image_inventory,(50, 50))
+
+    sapling_image_inventory = pygame.image.load("Images/sapling.png")
+    sapling_image_inventory = pygame.transform.scale(sapling_image_inventory,(50, 50))
+
     #misc
     cancel_action = False
+    cancel_action_boi = False
+    cancel_action_down = False
+    cancel_action_up = False
     clock = pygame.time.Clock()
     crafting = False
     crafting_confirm = False
@@ -132,6 +145,14 @@ def one_player():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+
+            if event.type == pygame.KEYDOWN:
+                cancel_action_down = True
+                cancel_action_up = False
+
+            if event.type == pygame.KEYUP:
+                cancel_action_down = False
+                cancel_action_up = True
 
         #keyboard input
         keyboard = pygame.key.get_pressed()
@@ -188,7 +209,7 @@ def one_player():
             inventory_4 = True
 
         #craft
-        if keyboard[pygame.K_c]:
+        if keyboard[pygame.K_c] and cancel_action_down == True:
             crafting = True
 
         #load game
@@ -200,19 +221,19 @@ def one_player():
             place_entity = True
 
         #only 1 craftable item
-        if pygame.mouse.get_pos()[1] >= screen_size.current_h - 600 and pygame.mouse.get_pos()[1] <= screen_size.current_h - 200 and pygame.mouse.get_pos()[0] > (screen_size.current_w * (4/16)) and pygame.mouse.get_pos()[0] < screen_size.current_w * (6/16) and left_mouse:
+        if pygame.mouse.get_pos()[1] >= screen_size.current_h - 200 and pygame.mouse.get_pos()[1] <= screen_size.current_h - 100 and pygame.mouse.get_pos()[0] > (screen_size.current_w * (4/16)) and pygame.mouse.get_pos()[0] < screen_size.current_w * (6/16) and left_mouse:
                 crafting_confirm = True
 
         else:
             crafting_confirm = False
 
-        if keyboard[pygame.K_z]:
-            cancel_action = True
-
         #left mouse
         if left_mouse:
-            if pygame.mouse.get_pos()[1] < screen_size.current_h - 600:
+            if pygame.mouse.get_pos()[1] < screen_size.current_h - 200:
                 break_entity = True
+                cancel_action = False
+                crafting = False
+                crafting_confirm = False
                 
             if pygame.mouse.get_pos()[1] >= screen_size.current_h - 200:
                 #inventory 1
@@ -278,29 +299,29 @@ def one_player():
         
         #slot 1
         if inventory_1 == True:
-            pygame.draw.rect(my_screen, "white", pygame.Rect(screen_size.current_w * (4/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
-            pygame.draw.rect(my_screen, "dark gray", pygame.Rect(screen_size.current_w * (6/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
-            pygame.draw.rect(my_screen, "light gray", pygame.Rect(screen_size.current_w * (8/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
-            pygame.draw.rect(my_screen, "dark gray", pygame.Rect(screen_size.current_w * (10/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "white", pygame.Rect(screen_size.current_w * (4/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "dark gray", pygame.Rect(screen_size.current_w * (6/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "light gray", pygame.Rect(screen_size.current_w * (8/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "dark gray", pygame.Rect(screen_size.current_w * (10/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
 
         #slot 2
         if inventory_2 == True:
-            pygame.draw.rect(my_screen, "light gray", pygame.Rect(screen_size.current_w * (4/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
-            pygame.draw.rect(my_screen, "white", pygame.Rect(screen_size.current_w * (6/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
-            pygame.draw.rect(my_screen, "light gray", pygame.Rect(screen_size.current_w * (8/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
-            pygame.draw.rect(my_screen, "dark gray", pygame.Rect(screen_size.current_w * (10/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "light gray", pygame.Rect(screen_size.current_w * (4/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "white", pygame.Rect(screen_size.current_w * (6/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "light gray", pygame.Rect(screen_size.current_w * (8/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "dark gray", pygame.Rect(screen_size.current_w * (10/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
 
         if inventory_3 == True:
-            pygame.draw.rect(my_screen, "light gray", pygame.Rect(screen_size.current_w * (4/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
-            pygame.draw.rect(my_screen, "dark gray", pygame.Rect(screen_size.current_w * (6/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
-            pygame.draw.rect(my_screen, "white", pygame.Rect(screen_size.current_w * (8/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
-            pygame.draw.rect(my_screen, "dark gray", pygame.Rect(screen_size.current_w * (10/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "light gray", pygame.Rect(screen_size.current_w * (4/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "dark gray", pygame.Rect(screen_size.current_w * (6/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "white", pygame.Rect(screen_size.current_w * (8/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "dark gray", pygame.Rect(screen_size.current_w * (10/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
 
         if inventory_4 == True:
-            pygame.draw.rect(my_screen, "light gray", pygame.Rect(screen_size.current_w * (4/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
-            pygame.draw.rect(my_screen, "dark gray", pygame.Rect(screen_size.current_w * (6/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
-            pygame.draw.rect(my_screen, "light gray", pygame.Rect(screen_size.current_w * (8/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
-            pygame.draw.rect(my_screen, "white", pygame.Rect(screen_size.current_w * (10/16), screen_size.current_h - 200, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "light gray", pygame.Rect(screen_size.current_w * (4/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "dark gray", pygame.Rect(screen_size.current_w * (6/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "light gray", pygame.Rect(screen_size.current_w * (8/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
+            pygame.draw.rect(my_screen, "white", pygame.Rect(screen_size.current_w * (10/16), screen_size.current_h - 100, screen_size.current_w / 8, screen_size.current_h - 100))
 
         #crafting
         if crafting == True:
@@ -317,10 +338,10 @@ def one_player():
 
             if plank_boi == True and cancel_action == False:
                 #planks only
-                pygame.draw.rect(my_screen, "red", pygame.Rect(screen_size.current_w * (4/16), screen_size.current_h - 400, screen_size.current_w / 8, 200))
-                my_screen.blit(plank_image,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 350))
+                pygame.draw.rect(my_screen, "red", pygame.Rect(screen_size.current_w * (4/16), screen_size.current_h - 200, screen_size.current_w / 8, 100))
+                my_screen.blit(plank_image_inventory,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 175))
                 plank_font = item_total_font.render(str(total_log_boi * 4),True, ("black"))
-                my_screen.blit(plank_font, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 375))
+                my_screen.blit(plank_font, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 175))
                 
             if crafting_confirm == True and cancel_action == False:
                 crafting = False
@@ -694,73 +715,73 @@ def one_player():
 
                                 counter += 1
                             
-        #render entities
+        #render entities in inventory
         if load_game == False:
             #pet
             my_screen.blit(axolotl_image,(pet_x, pet_y))
             
             #log
             if log_total[0] > 0:
-                my_screen.blit(log_image,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 150))
+                my_screen.blit(log_image_inventory,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 75))
                 item_font_1 = item_total_font.render(str(log_total[0]),True, ("black"))
-                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 175))
+                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 100))
 
             if log_total[1] > 0:
-                my_screen.blit(log_image,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 150))
+                my_screen.blit(log_image_inventory,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 75))
                 item_font_2 = item_total_font.render(str(log_total[1]),True, ("black"))
-                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 175))
+                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 100))
 
             if log_total[2] > 0:
-                my_screen.blit(log_image,(screen_size.current_w * (8/16) + 100, screen_size.current_h - 150))
+                my_screen.blit(log_image_inventory,(screen_size.current_w * (8/16) + 100, screen_size.current_h - 75))
                 item_font_3 = item_total_font.render(str(log_total[2]),True, ("black"))
-                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + 200, screen_size.current_h - 175))
+                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + 200, screen_size.current_h - 100))
 
             if log_total[3] > 0:
-                my_screen.blit(log_image,(screen_size.current_w * (10/16) + 100, screen_size.current_h - 150))
+                my_screen.blit(log_image_inventory,(screen_size.current_w * (10/16) + 100, screen_size.current_h - 75))
                 item_font_4 = item_total_font.render(str(log_total[3]),True, ("black"))
-                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 175))
+                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 100))
 
             #plank
             if plank_total[0] > 0:
-                my_screen.blit(plank_image,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 150))
+                my_screen.blit(plank_image_inventory,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 75))
                 item_font_1 = item_total_font.render(str(plank_total[0]),True, ("black"))
-                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 175))
+                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 100))
 
             if plank_total[1] > 0:
-                my_screen.blit(plank_image,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 150))
+                my_screen.blit(plank_image_inventory,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 75))
                 item_font_2 = item_total_font.render(str(plank_total[1]),True, ("black"))
-                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 175))
+                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 100))
 
             if plank_total[2] > 0:
-                my_screen.blit(plank_image,(screen_size.current_w * (8/16) + 100, screen_size.current_h - 150))
+                my_screen.blit(plank_image_inventory,(screen_size.current_w * (8/16) + 100, screen_size.current_h - 75))
                 item_font_3 = item_total_font.render(str(plank_total[2]),True, ("black"))
-                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + 200, screen_size.current_h - 175))
+                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + 200, screen_size.current_h - 100))
 
             if plank_total[3] > 0:
-                my_screen.blit(plank_image,(screen_size.current_w * (10/16) + 100, screen_size.current_h - 150))
+                my_screen.blit(plank_image_inventory,(screen_size.current_w * (10/16) + 100, screen_size.current_h - 75))
                 item_font_4 = item_total_font.render(str(plank_total[3]),True, ("black"))
-                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 175))
+                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 100))
 
             #sapling
             if sapling_total[0] > 0:
-                my_screen.blit(sapling_image,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 150))
+                my_screen.blit(sapling_image_inventory,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 75))
                 item_font_1 = item_total_font.render(str(sapling_total[0]),True, ("black"))
-                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 175))
+                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 100))
 
             if sapling_total[1] > 0:
-                my_screen.blit(sapling_image,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 150))
+                my_screen.blit(sapling_image_inventory,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 75))
                 item_font_2 = item_total_font.render(str(sapling_total[1]),True, ("black"))
-                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 175))
+                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 100))
 
             if sapling_total[2] > 0:
-                my_screen.blit(sapling_image,(screen_size.current_w * (8/16) + 100, screen_size.current_h - 150))
+                my_screen.blit(sapling_image_inventory,(screen_size.current_w * (8/16) + 100, screen_size.current_h - 75))
                 item_font_3 = item_total_font.render(str(sapling_total[2]),True, ("black"))
-                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + 200, screen_size.current_h - 175))
+                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + 200, screen_size.current_h - 100))
 
             if sapling_total[3] > 0:
-                my_screen.blit(sapling_image,(screen_size.current_w * (10/16) + 100, screen_size.current_h - 150))
+                my_screen.blit(sapling_image_inventory,(screen_size.current_w * (10/16) + 100, screen_size.current_h - 75))
                 item_font_4 = item_total_font.render(str(sapling_total[3]),True, ("black"))
-                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 175))
+                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 100))
 
             #growth
             random_sapling_growth = random.randint(0,len(sapling_list_x))
@@ -836,7 +857,6 @@ def title_screen():
         place_block = sub_font.render("right click = place block",True,(0,0,0))
         hotbar = sub_font.render("1-4 = hotbar",True,(0,0,0))
         crafting = sub_font.render("c = crafting",True,(0,0,0))
-        cancel_action = sub_font.render("z = cancel action",True,(0,0,0))
 
         my_screen.blit(title, (100,50))
         my_screen.blit(one, (100, 200))
@@ -848,7 +868,6 @@ def title_screen():
         my_screen.blit(place_block, (100, 500))
         my_screen.blit(hotbar, (100, 550))
         my_screen.blit(crafting, (100, 600))
-        my_screen.blit(cancel_action, (100, 650))
 
         pygame.display.flip()
 
