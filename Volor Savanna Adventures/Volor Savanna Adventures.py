@@ -60,6 +60,8 @@ def one_player():
     sapling_list_y = np.array([])
     sapling_total = [0,0,0,0]
 
+    stick_total = [0,0,0,0]
+
     #fonts
     item_total_font = pygame.font.SysFont("Timesnewroman", 50)
     my_font = pygame.font.SysFont("Timesnewroman", 50)
@@ -107,6 +109,9 @@ def one_player():
 
     sapling_image_inventory = pygame.image.load("Images/sapling.png")
     sapling_image_inventory = pygame.transform.scale(sapling_image_inventory,(50, 50))
+    
+    stick_image_inventory = pygame.image.load("Images/stick.png")
+    stick_image_inventory = pygame.transform.scale(stick_image_inventory,(50, 50))
 
     #misc
     cancel_action = False
@@ -115,7 +120,8 @@ def one_player():
     cancel_action_up = False
     clock = pygame.time.Clock()
     crafting = False
-    crafting_confirm = False
+    crafting_confirm_1 = False
+    crafting_confirm_2 = False
     load_game = False
     running = True
 
@@ -220,12 +226,19 @@ def one_player():
         if right_mouse:
             place_entity = True
 
-        #only 1 craftable item
+        #craftable item slot 1
         if pygame.mouse.get_pos()[1] >= screen_size.current_h - 200 and pygame.mouse.get_pos()[1] <= screen_size.current_h - 100 and pygame.mouse.get_pos()[0] > (screen_size.current_w * (4/16)) and pygame.mouse.get_pos()[0] < screen_size.current_w * (6/16) and left_mouse:
-                crafting_confirm = True
+                crafting_confirm_1 = True
 
         else:
-            crafting_confirm = False
+            crafting_confirm_1 = False
+
+        #craftable item slot 2
+        if pygame.mouse.get_pos()[1] >= screen_size.current_h - 200 and pygame.mouse.get_pos()[1] <= screen_size.current_h - 100 and pygame.mouse.get_pos()[0] > (screen_size.current_w * (6/16)) and pygame.mouse.get_pos()[0] < screen_size.current_w * (8/16) and left_mouse:
+                crafting_confirm_2 = True
+
+        else:
+            crafting_confirm_2 = False
 
         #left mouse
         if left_mouse:
@@ -326,47 +339,87 @@ def one_player():
         #crafting
         if crafting == True:
             plank_boi = False
+            stick_boi = False
             total_log_boi = 0
+            total_plank_boi = 0
 
-            if crafting_confirm == False:
-                #craft planks
+            if crafting_confirm_1 == False and crafting_confirm_2 == False:
                 for i in range(len(inventory)):
                     if i < len(inventory):
+                        #craft planks
                         if inventory[i] == "log":
                             plank_boi = True
                             total_log_boi = log_total[i]
 
+                        #craft sticks
+                        if inventory[i] == "plank":
+                            stick_boi = True
+                            total_plank_boi += plank_total[i]
+
             if plank_boi == True and cancel_action == False:
-                #planks only
+                #planks
                 pygame.draw.rect(my_screen, "red", pygame.Rect(screen_size.current_w * (4/16), screen_size.current_h - 200, screen_size.current_w / 8, 100))
                 my_screen.blit(plank_image_inventory,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 175))
                 plank_font = item_total_font.render(str(total_log_boi * 4),True, ("black"))
                 my_screen.blit(plank_font, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 175))
+
+            if stick_boi == True and cancel_action == False:
+                #sticks
+                pygame.draw.rect(my_screen, "red", pygame.Rect(screen_size.current_w * (6/16), screen_size.current_h - 200, screen_size.current_w / 8, 100))
+                my_screen.blit(stick_image_inventory,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 175))
+                stick_font = item_total_font.render(str(int(math.floor(total_plank_boi / 2)) * 4),True, ("black"))
+                my_screen.blit(stick_font, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 175))
                 
-            if crafting_confirm == True and cancel_action == False:
+            if crafting_confirm_1 == True and cancel_action == False:
                 crafting = False
-                crafting_confirm = False
+                crafting_confirm_1 = False
                 plank_boi = False
                 #planks
                 for i in range(len(inventory)):
                     if inventory[i] == "log":
                         for ii in range(len(inventory)):
                             if inventory[ii] == "plank":
-                                #inventory[ii] = "plank"
                                 plank_total[ii] += log_total[i] * 4
                                 log_total[i] = 0
                                 break
 
-                            else:
-                                inventory[i] = "plank"
-                                plank_total[i] = log_total[i] * 4
+                            if inventory[ii] == "":
+                                inventory[ii] = "plank"
+                                plank_total[ii] = log_total[i] * 4
                                 log_total[i] = 0
                                 break
+
+            if crafting_confirm_2 == True and cancel_action == False:
+                #sticks
+                crafting = False
+                crafting_confirm_2 = False
+                stick_boi = False
+                for i in range(len(inventory)):
+                    if inventory[i] == "plank":
+                        for ii in range(len(inventory)):
+                            if inventory[ii] == "stick":
+                                stick_total[ii] += int(math.floor(plank_total[i] / 2)) * 4
+                                plank_total[i] = 0
+                                break
+
+                            elif inventory[ii] == "":
+                                inventory[ii] = "stick"
+                                stick_total[ii] = int(math.floor(plank_total[i] / 2)) * 4
+
+                                if (plank_total[ii] / 2) == 0:
+                                    inventory[i] = ""
+                                    plank_total[i] = 0
+                                    break
+
+                                if (plank_total[ii] / 2) != 0:
+                                    plank_total[i] = 1
+                                    break
 
             if cancel_action == True:
                 cancel_action = False
                 crafting = False
-                crafting_confirm = False
+                crafting_confirm_1 = False
+                crafting_confirm_2 = False
                             
         #render player
         if player_health > 0:
@@ -380,7 +433,6 @@ def one_player():
 
             #inventory 1
             if inventory_1 == True:
-                #print(int(math.ceil(player_x / 100.0)) * 100)
                 #log
                 if inventory[0] == "log" and int(log_total[0]) > 0:
                     for i in range(len(log_list_x)):
@@ -630,7 +682,7 @@ def one_player():
         #break entity
         if break_entity == True:
             break_entity = False
-
+            
             #entities
             #log
             for i in range(len(log_list_x)):
@@ -639,16 +691,15 @@ def one_player():
                         if player_y <= log_list_y[i] + 75 and player_y >= log_list_y[i] - 75:
                             log_list_x = np.delete(log_list_x, i)
                             log_list_y = np.delete(log_list_y, i)
-                            counter = 0
 
-                            for i in inventory:
-                                if i == "" or i == "log":
-                                    inventory[counter] = "log"
-                                    log_total[counter] = log_total[counter] + 1
+                            for ii in range(len(inventory)):
+                                if inventory[ii] == "" or inventory[ii] == "log":
+                                    inventory[ii] = "log"
+                                    log_total[ii] += 1
                                     break
-                                
-                                counter += 1
 
+                                else:
+                                    break
             #plank
             for i in range(len(plank_list_x)):
                 if i < len(plank_list_x):
@@ -781,6 +832,27 @@ def one_player():
             if sapling_total[3] > 0:
                 my_screen.blit(sapling_image_inventory,(screen_size.current_w * (10/16) + 100, screen_size.current_h - 75))
                 item_font_4 = item_total_font.render(str(sapling_total[3]),True, ("black"))
+                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 100))
+
+            #stick
+            if stick_total[0] > 0:
+                my_screen.blit(stick_image_inventory,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 75))
+                item_font_1 = item_total_font.render(str(stick_total[0]),True, ("black"))
+                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 100))
+
+            if stick_total[1] > 0:
+                my_screen.blit(stick_image_inventory,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 75))
+                item_font_2 = item_total_font.render(str(stick_total[1]),True, ("black"))
+                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 100))
+
+            if stick_total[2] > 0:
+                my_screen.blit(stick_image_inventory,(screen_size.current_w * (8/16) + 100, screen_size.current_h - 75))
+                item_font_3 = item_total_font.render(str(stick_total[2]),True, ("black"))
+                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + 200, screen_size.current_h - 100))
+
+            if stick_total[3] > 0:
+                my_screen.blit(stick_image_inventory,(screen_size.current_w * (10/16) + 100, screen_size.current_h - 75))
+                item_font_4 = item_total_font.render(str(stick_total[3]),True, ("black"))
                 my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 100))
 
             #growth
