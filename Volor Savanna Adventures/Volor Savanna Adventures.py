@@ -63,9 +63,9 @@ def one_player():
     stick_total = [0,0,0,0]
 
     #fonts
-    item_total_font = pygame.font.SysFont("Timesnewroman", 50)
-    my_font = pygame.font.SysFont("Timesnewroman", 50)
-    fps = pygame.font.SysFont("Timesnewroman", 100)
+    item_total_font = pygame.font.SysFont("Timesnewroman", int(math.ceil(screen_size.current_h / 50)))
+    my_font = pygame.font.SysFont("Timesnewroman", int(math.ceil(screen_size.current_w / 55)))
+    fps_font = pygame.font.SysFont("Timesnewroman", int(math.ceil(screen_size.current_w / 55)))
 
     #global
     global tree_x
@@ -184,10 +184,10 @@ def one_player():
         if keyboard[pygame.K_w] and player_y > 0:
             player_y -= 10
 
-        if keyboard[pygame.K_DOWN] and player_y < (screen_size.current_h - 600):
+        if keyboard[pygame.K_DOWN] and player_y < (screen_size.current_h - 300):
             player_y += 10
 
-        if keyboard[pygame.K_s] and player_y < (screen_size.current_h - 600):
+        if keyboard[pygame.K_s] and player_y < (screen_size.current_h - 300):
             player_y += 10
 
         if keyboard[pygame.K_1]:
@@ -248,7 +248,7 @@ def one_player():
                 crafting = False
                 crafting_confirm = False
                 
-            if pygame.mouse.get_pos()[1] >= screen_size.current_h - 200:
+            if pygame.mouse.get_pos()[1] >= screen_size.current_h - 100:
                 #inventory 1
                 if pygame.mouse.get_pos()[0] > (screen_size.current_w * (4/16)) and pygame.mouse.get_pos()[0] < screen_size.current_w * (6/16):
                     inventory_1 = True
@@ -436,7 +436,7 @@ def one_player():
         #render player
         if player_health > 0:
             my_screen.blit(lion_image_1,(player_x, player_y))
-            my_screen.blit(player_health_font, (100,(screen_size.current_h) - 100))
+            my_screen.blit(player_health_font, (25,(screen_size.current_h) - 50))
             
         #place entity
         if place_entity == True:
@@ -782,87 +782,87 @@ def one_player():
             
             #log
             if log_total[0] > 0:
-                my_screen.blit(log_image_inventory,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(log_image_inventory,(screen_size.current_w * (4/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_1 = item_total_font.render(str(log_total[0]),True, ("black"))
-                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             if log_total[1] > 0:
-                my_screen.blit(log_image_inventory,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(log_image_inventory,(screen_size.current_w * (6/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_2 = item_total_font.render(str(log_total[1]),True, ("black"))
-                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             if log_total[2] > 0:
-                my_screen.blit(log_image_inventory,(screen_size.current_w * (8/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(log_image_inventory,(screen_size.current_w * (8/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_3 = item_total_font.render(str(log_total[2]),True, ("black"))
-                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             if log_total[3] > 0:
-                my_screen.blit(log_image_inventory,(screen_size.current_w * (10/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(log_image_inventory,(screen_size.current_w * (10/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_4 = item_total_font.render(str(log_total[3]),True, ("black"))
-                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             #plank
             if plank_total[0] > 0:
-                my_screen.blit(plank_image_inventory,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(plank_image_inventory,(screen_size.current_w * (4/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_1 = item_total_font.render(str(plank_total[0]),True, ("black"))
-                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             if plank_total[1] > 0:
-                my_screen.blit(plank_image_inventory,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(plank_image_inventory,(screen_size.current_w * (6/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_2 = item_total_font.render(str(plank_total[1]),True, ("black"))
-                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             if plank_total[2] > 0:
-                my_screen.blit(plank_image_inventory,(screen_size.current_w * (8/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(plank_image_inventory,(screen_size.current_w * (8/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_3 = item_total_font.render(str(plank_total[2]),True, ("black"))
-                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             if plank_total[3] > 0:
-                my_screen.blit(plank_image_inventory,(screen_size.current_w * (10/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(plank_image_inventory,(screen_size.current_w * (10/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_4 = item_total_font.render(str(plank_total[3]),True, ("black"))
-                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             #sapling
             if sapling_total[0] > 0:
-                my_screen.blit(sapling_image_inventory,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(sapling_image_inventory,(screen_size.current_w * (4/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_1 = item_total_font.render(str(sapling_total[0]),True, ("black"))
-                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             if sapling_total[1] > 0:
-                my_screen.blit(sapling_image_inventory,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(sapling_image_inventory,(screen_size.current_w * (6/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_2 = item_total_font.render(str(sapling_total[1]),True, ("black"))
-                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             if sapling_total[2] > 0:
-                my_screen.blit(sapling_image_inventory,(screen_size.current_w * (8/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(sapling_image_inventory,(screen_size.current_w * (8/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_3 = item_total_font.render(str(sapling_total[2]),True, ("black"))
-                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             if sapling_total[3] > 0:
-                my_screen.blit(sapling_image_inventory,(screen_size.current_w * (10/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(sapling_image_inventory,(screen_size.current_w * (10/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_4 = item_total_font.render(str(sapling_total[3]),True, ("black"))
-                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             #stick
             if stick_total[0] > 0:
-                my_screen.blit(stick_image_inventory,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(stick_image_inventory,(screen_size.current_w * (4/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_1 = item_total_font.render(str(stick_total[0]),True, ("black"))
-                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_1, (screen_size.current_w * (4/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             if stick_total[1] > 0:
-                my_screen.blit(stick_image_inventory,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(stick_image_inventory,(screen_size.current_w * (6/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_2 = item_total_font.render(str(stick_total[1]),True, ("black"))
-                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_2, (screen_size.current_w * (6/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             if stick_total[2] > 0:
-                my_screen.blit(stick_image_inventory,(screen_size.current_w * (8/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(stick_image_inventory,(screen_size.current_w * (8/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_3 = item_total_font.render(str(stick_total[2]),True, ("black"))
-                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_3, (screen_size.current_w * (8/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             if stick_total[3] > 0:
-                my_screen.blit(stick_image_inventory,(screen_size.current_w * (10/16) + 100, screen_size.current_h - 75))
+                my_screen.blit(stick_image_inventory,(screen_size.current_w * (10/16) + screen_size.current_w / 26, screen_size.current_h - 75))
                 item_font_4 = item_total_font.render(str(stick_total[3]),True, ("black"))
-                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + 200, screen_size.current_h - 100))
+                my_screen.blit(item_font_4, (screen_size.current_w * (10/16) + screen_size.current_w / 13, screen_size.current_h - 100))
 
             #growth
             random_sapling_growth = random.randint(0,len(sapling_list_x))
@@ -899,8 +899,8 @@ def one_player():
             load_game = False
 
         #display fps
-        fps = item_total_font.render("fps: " + str(int(math.floor(clock.get_fps()))),True, ("black"))
-        my_screen.blit(fps, (100,(screen_size.current_h) - 200))
+        fps = fps_font.render("fps: " + str(int(math.floor(clock.get_fps()))),True, ("black"))
+        my_screen.blit(fps, (25,(screen_size.current_h) - 100))
 
         pygame.display.flip()
 
