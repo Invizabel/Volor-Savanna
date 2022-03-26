@@ -391,30 +391,41 @@ def one_player():
 
             if crafting_confirm_2 == True and cancel_action == False:
                 #sticks
+                break_loop = False
                 crafting = False
                 crafting_confirm_2 = False
                 stick_boi = False
                 for i in range(len(inventory)):
+                    if break_loop == True:
+                        break
+                    
                     if inventory[i] == "plank":
                         for ii in range(len(inventory)):
-                            if inventory[ii] == "stick":
+                            if inventory[ii] == "stick" and (plank_total[i] % 2) == 0:
                                 stick_total[ii] += int(math.floor(plank_total[i] / 2)) * 4
                                 plank_total[i] = 0
+                                break_loop = True
                                 break
 
-                            elif inventory[ii] == "":
-                                if (plank_total[i] / 2) == 0:
-                                    inventory[i] = "stick"
-                                    stick_total[i] = int(math.floor(plank_total[i] / 2)) * 4
-                                    plank_total[i] = 0
-                                    break
+                            if inventory[ii] == "stick" and (plank_total[i] % 2) != 0:
+                                stick_total[ii] += int(math.floor(plank_total[i] / 2)) * 4
+                                plank_total[i] = 1
+                                break_loop = True
+                                break
 
-                                if (plank_total[i] / 2) != 0:
-                                    print(True)
-                                    inventory[ii] = "stick"
-                                    stick_total[ii] = int(math.floor(plank_total[i] / 2)) * 4
-                                    plank_total[i] = 1
-                                    break
+                            if inventory[ii] == "" and (plank_total[i] % 2) == 0:
+                                inventory[i] = "stick"
+                                stick_total[i] = int(math.floor(plank_total[i] / 2)) * 4
+                                plank_total[i] = 0
+                                break_loop = True
+                                break
+
+                            if inventory[ii] == "" and (plank_total[i] % 2) != 0:
+                                inventory[ii] = "stick"
+                                stick_total[ii] = int(math.floor(plank_total[i] / 2)) * 4
+                                plank_total[i] = 1
+                                break_loop = True
+                                break
 
             if cancel_action == True:
                 cancel_action = False
