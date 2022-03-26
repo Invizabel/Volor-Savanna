@@ -383,7 +383,7 @@ def one_player():
                                 log_total[i] = 0
                                 break
 
-                            if inventory[ii] == "":
+                            if inventory[ii] == "log":
                                 inventory[ii] = "plank"
                                 plank_total[ii] = log_total[i] * 4
                                 log_total[i] = 0
@@ -403,15 +403,16 @@ def one_player():
                                 break
 
                             elif inventory[ii] == "":
-                                inventory[ii] = "stick"
-                                stick_total[ii] = int(math.floor(plank_total[i] / 2)) * 4
-
-                                if (plank_total[ii] / 2) == 0:
-                                    inventory[i] = ""
+                                if (plank_total[i] / 2) == 0:
+                                    inventory[i] = "stick"
+                                    stick_total[i] = int(math.floor(plank_total[i] / 2)) * 4
                                     plank_total[i] = 0
                                     break
 
-                                if (plank_total[ii] / 2) != 0:
+                                if (plank_total[i] / 2) != 0:
+                                    print(True)
+                                    inventory[ii] = "stick"
+                                    stick_total[ii] = int(math.floor(plank_total[i] / 2)) * 4
                                     plank_total[i] = 1
                                     break
 
@@ -742,24 +743,21 @@ def one_player():
                         if player_y <= tree_y[i] + 75 and player_y >= tree_y[i] - 75:
                             tree_x = np.delete(tree_x, i)
                             tree_y = np.delete(tree_y, i)
-                            counter = 0
                             
-                            for i in inventory:
+                            for ii in range(len(inventory)):
                                 rand = random.randint(4,6)
-
-                                if i == "" or i == "log":
-                                    inventory[counter] = "log"
-                                    log_total[counter] = log_total[counter] + rand
+                                
+                                if inventory[ii] == "" or inventory[ii] == "log":
+                                    inventory[ii] = "log"
+                                    log_total[ii] = log_total[ii] + rand
                                     break
 
-                                counter += 1
-
                             counter = 0
 
-                            for i in inventory:
+                            for ii in range(len(inventory)):
                                 rand = random.randint(1,3)
 
-                                if i == "" or i == "sapling":
+                                if inventory[ii] == "" or inventory[ii] == "sapling":
                                     inventory[counter] = "sapling"
                                     sapling_total[counter] = sapling_total[counter] + rand
                                     break
