@@ -359,16 +359,16 @@ def one_player():
             if plank_boi == True and cancel_action == False:
                 #planks
                 pygame.draw.rect(my_screen, "red", pygame.Rect(screen_size.current_w * (4/16), screen_size.current_h - 200, screen_size.current_w / 8, 100))
-                my_screen.blit(plank_image_inventory,(screen_size.current_w * (4/16) + 100, screen_size.current_h - 175))
+                my_screen.blit(plank_image_inventory,(screen_size.current_w * (4/16) + screen_size.current_w / 26, screen_size.current_h - 175))
                 plank_font = item_total_font.render(str(total_log_boi * 4),True, ("black"))
-                my_screen.blit(plank_font, (screen_size.current_w * (4/16) + 200, screen_size.current_h - 175))
+                my_screen.blit(plank_font, (screen_size.current_w * (4/16) + screen_size.current_w / 13, screen_size.current_h - 175))
 
             if stick_boi == True and cancel_action == False:
                 #sticks
                 pygame.draw.rect(my_screen, "red", pygame.Rect(screen_size.current_w * (6/16), screen_size.current_h - 200, screen_size.current_w / 8, 100))
-                my_screen.blit(stick_image_inventory,(screen_size.current_w * (6/16) + 100, screen_size.current_h - 175))
+                my_screen.blit(stick_image_inventory,(screen_size.current_w * (6/16) + screen_size.current_w / 26, screen_size.current_h - 175))
                 stick_font = item_total_font.render(str(int(math.floor(total_plank_boi / 2)) * 4),True, ("black"))
-                my_screen.blit(stick_font, (screen_size.current_w * (6/16) + 200, screen_size.current_h - 175))
+                my_screen.blit(stick_font, (screen_size.current_w * (6/16) + screen_size.current_w / 13, screen_size.current_h - 175))
                 
             if crafting_confirm_1 == True and cancel_action == False:
                 crafting = False
