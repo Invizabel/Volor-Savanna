@@ -486,4 +486,38 @@ def medicine_person():
         os.system("clear")
         medicine_person_list[5] = input("You have chosen to go gather more herbs.\nBecause of this the patient dies!\nYou are tried for murder.\nAre you found guilty?\n1- Find out!\nMake your choice " + name + ":\n")
 
+    if medicine_person_list[3] == "2":
+        os.system("clear")
+        medicine_person_list[6] = input("You have chosen to heal the patient.\nLuckily, you have enough herbs to heal the patient.\nYou need to gather more herbs.\nYou go gather some more herbs.\nWhile gathering more herbs you find a signal that says: \"S.O.S. >\"\nWhat do you do?\n1- Go investigate the distress signal; 2- Ignore it; 3- Go back to my tribe and tell someone about it\nMake your choice " + name + ":\n")
+
+    if medicine_person_list[4] == "1":
+        os.system("clear")
+        medicine_person_list[7] = input("You have chosen to gather more herbs.\nYou go gather more herbs.\nLuckily, none of the patients die and you heal all of them.\nWhile gathering more herbs you find a signal that says: \"S.O.S. >\"\n1- Go investigate the distress signal; 2- Ignore it; 3- Tell someone about it\nWhat do you do?\nMake your choice " + name + ":\n")
+
+    if medicine_person_list[4] == "2":
+        os.system("clear")
+        medicine_person_list[8] = input("You have chosen to go tend to a couple more patients.\nYou run out of herbs so you go gather more herbs.\nUnfortunately, while gathering herbs, all your patients die!\nYou are tried for murder.\nYou are found guilty.\nHow do you want to be executed?\n1- Arrows; 2- Sword; 3- Flying lawnmower; 4- Musket; 5- Bob the Blobfish\nMake your choice " + name + ":\n")
+
+    if medicine_person_list[5] == "1" and rand == 1:
+        os.system("clear")
+        medicine_person_list[9] = input("Unfortunately, you have been found guilty.\nHow do you want to be executed?\n18- Arrows; 19- Sword; 20- Stoned; 21- Knife; 22- Gun\nMake your choice " + name + ":\n")
+
+    if medicine_person_list[5] == "1" and rand == 2:
+        os.system("clear")
+        medicine_person_list[10] = input("You are not found guilty.\nSome white man come to your tribe.\nThey're asking you if they can settle near you.\nDo you want them to settle near you?\n1- Yes; 2- No\nMake your choice " + name + ":\n")
+
+    if medicine_person_list[6] == "1" or medicine_person_list[7] == "1":
+        os.system("clear")
+        pause = input("You have chosen to go investigate the distress signal.\nUnfortunately, you get eaten by a pack of dingos.\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[6] == "2" or medicine_person_list[7] == "2":
+        os.system("clear")
+        pause = input("You have chosen to ignore it.\nUnfortunately, on your way back you get eaten by a cheetah.\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[6] == "3" or medicine_person_list[7] == "3":
+        os.system("clear")
+        medicine_person_list[11] = input("You have chosen to tell someone about it.\nApparently, some members in your tribe say a mother was kidnapped and that there is a $10,000 reward for the capture of the kidnapper!\nDo you want to go hunt the kidnapper?\n1- Yes; 2- No\nMake your choice " + name + ":\n")
+        
 user_name()
