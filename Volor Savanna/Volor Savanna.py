@@ -334,7 +334,7 @@ def crafter():
 
     crafter[1] = input("You have chosen to be a crafter!\nYou need to craft some arrows.\nHow do you want to craft them?\n1- Put red dye on the feathers; 2- Just make them\nMake your choice " + name + ":\n")
 
-    if crafter[1] = "1":
+    if crafter[1] == "1":
         os.system("clear")
         crafter[2] = input("You have chosen to put red dye on the feathers!\nBecause you put red dye on the feathers none were lost so the hunters were able to bring home more food!\nBecause of this you have one months worth of food for the winter!\nYou have been asked to craft some spearheads.\nHow do you want to craft them?\n1- Put poison on the spearheads; 2- Just make them\nMake your choice " + name + ":\n")
 
