@@ -396,7 +396,7 @@ def farmer():
     os.system("clear")
 
     #keeps track of the players progress through the level. Used to prevent cheating.
-    farmer_list = ["0", "1", "2", "3", "4", "5"]
+    farmer_list = ["0", "1", "2", "3", "4", "5", "6"]
 
     farmer_list[1] = input("You have chosen to be a farmer!\nDo you want to go farm or sleep in?\n1- Farm; 2- Sleep in\nMake your choice " + name + ":\n")
 
@@ -461,7 +461,7 @@ def medicine_person():
     os.system("clear")
 
     #keeps track of the players progress through the level. Used to prevent cheating.
-    medicine_person_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    medicine_person_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
 
     medicine_person_list[1] = input("You have chosen to be a medicine person!\nA man is very sick with a fever.\nWhat do you want to do?\n1- Not do anything; 2- Wash him\nMake your choice " + name + ":\n")
 
@@ -500,7 +500,7 @@ def medicine_person():
 
     if medicine_person_list[5] == "1" and rand == 1:
         os.system("clear")
-        medicine_person_list[9] = input("Unfortunately, you have been found guilty.\nHow do you want to be executed?\n18- Arrows; 19- Sword; 20- Stoned; 21- Knife; 22- Gun\nMake your choice " + name + ":\n")
+        medicine_person_list[9] = input("Unfortunately, you have been found guilty.\nHow do you want to be executed?\n1- Arrows; 2- Sword; 3- Stoned; 4- Knife; 5- Gun\nMake your choice " + name + ":\n")
 
     if medicine_person_list[5] == "1" and rand == 2:
         os.system("clear")
@@ -519,5 +519,84 @@ def medicine_person():
     if medicine_person_list[6] == "3" or medicine_person_list[7] == "3":
         os.system("clear")
         medicine_person_list[11] = input("You have chosen to tell someone about it.\nApparently, some members in your tribe say a mother was kidnapped and that there is a $10,000 reward for the capture of the kidnapper!\nDo you want to go hunt the kidnapper?\n1- Yes; 2- No\nMake your choice " + name + ":\n")
+    
+    if medicine_person_list[8] == "1":
+        os.system("clear")
+        pause = input("You have chosen to die from arrows.\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[8] == "2":
+        os.system("clear")
+        pause = input("You have chosen to die from a sword.\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[8] == "3":
+        os.system("clear")
+        pause = input("You have chosen to die from a flying lawnmower.\nSeriously though, how do you manage to die from a flying lawnmower?!\nI guess someone strapped jet engines and/or rockets to a lawnmower and it became a flying lawnmower!\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[8] == "4":
+        os.system("clear")
+        pause = input("You have chosen to die from a musket.\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[8] == "5":
+        os.system("clear")
+        pause = input("You have chosen to die from Bob the Blobfish.\nBob the Blobfish rockets out of his toilet and makes your eyes bleed to death!\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[9] == "1":
+        os.system("clear")
+        pause = input("You die from arrows.\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[9] == "2":
+        os.system("clear")
+        pause = input("You get stabbed to death by a sword.\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[9] == "3":
+        os.system("clear")
+        pause = input("You get stoned to death.\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[9] == "4":
+        os.system("clear")
+        pause = input("You get stabbed to death by a knife.\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[9] == "5":
+        os.system("clear")
+        pause = input("You are shot to death with a bebe gun.\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[10] == "1":
+        os.system("clear")
+        pause = input("You have chosen to let them settle here.\nThey build a hospital.\nTheir settlement grows.\nYour village thrives because of the new settlement.\n" + victory_level)
+        volor_savanna_original()
+
+    if medicine_person_list[10] == "2":
+        os.system("clear")
+        pause = input("You do not let them settle here.\nUnfortunately, Cooper the Dog hears a doorbell on TV.\nHe goes to bark at the door.\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[11] == "1":
+        os.system("clear")
+        medicine_person_list[12] = input("You hunt the kidnapper.\nDo you capture him?\n1- Find out!\nMake your choice " + name + ":\n")
+
+    if medicine_person_list[11] == "2":
+        os.system("clear")
+        pause = input("You don't hunt the kidnapper.\nUnfortunately, Zeus comes out from the middle of nowhere and shocks you to death.\nHow shocking!\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[12] == "1" and rand == 1:
+        os.system("clear")
+        pause = input("You don't capture the kidnapper.\nUnfortunately, the kidnapper puts you guys in a trap and kills you.\nYou die.\n" + death_level)
+        volor_savanna_original()
+
+    if medicine_person_list[12] == "1" and rand == 2:
+        os.system("clear")
+        pause = input("You capture the kidnapper.\nYou receive $10k from the local authorities.\n" + victory_level)
+        volor_savanna_original()
         
 user_name()
