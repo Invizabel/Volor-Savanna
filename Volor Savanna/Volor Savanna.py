@@ -166,7 +166,7 @@ def the_mighty_lion():
         volor_savanna_original()
 
     if the_mighty_lion_list[1] == "2":
-        os.system(clear)
+        os.system("clear")
         the_mighty_lion_list[2] = input("You have chosen to go through the prairie!\nWhich way do you travel?\n\n1- Left; 2- Right\nMake your choice " + name + ":\n")
 
     if the_mighty_lion_list[1] == "3":
