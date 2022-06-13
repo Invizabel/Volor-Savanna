@@ -167,28 +167,28 @@ def one_player():
         right_mouse = pygame.mouse.get_pressed()[2]
 
         if keyboard[pygame.K_LEFT] and player_x > 0:
-            player_x -= 10
+            player_x -= screen_size.current_w / 500
 
         if keyboard[pygame.K_a] and player_x > 0:
-            player_x -= 10
+            player_x -= screen_size.current_w / 500
 
         if keyboard[pygame.K_RIGHT] and player_x < (screen_size.current_w) - 100:
-            player_x += 10
+            player_x += screen_size.current_w / 500
 
         if keyboard[pygame.K_d] and player_x < (screen_size.current_w) - 100:
-            player_x += 10
+            player_x += screen_size.current_w / 500
 
         if keyboard[pygame.K_UP] and player_y > 0:
-            player_y -= 10
+            player_y -= screen_size.current_w / 500
 
         if keyboard[pygame.K_w] and player_y > 0:
-            player_y -= 10
+            player_y -= screen_size.current_w / 500
 
         if keyboard[pygame.K_DOWN] and player_y < (screen_size.current_h - 300):
-            player_y += 10
+            player_y += screen_size.current_w / 500
 
         if keyboard[pygame.K_s] and player_y < (screen_size.current_h - 300):
-            player_y += 10
+            player_y += screen_size.current_w / 500
 
         if keyboard[pygame.K_1]:
             inventory_1 = True
