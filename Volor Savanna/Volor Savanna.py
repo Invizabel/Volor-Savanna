@@ -402,7 +402,7 @@ def farmer():
 
     if farmer_list[1] == "1":
         os.system("clear")
-        farmer_list[2] = input("You have chosen to farm!\nYou have had a successful season!\nYour village has a feast.\nDo you want to store the rest of the food for winter or distribute the food to the whole village?\n3- Store the food for winter; 4- Distribute the food to the whole village\nMake your choice " + name + ":\n")
+        farmer_list[2] = input("You have chosen to farm!\nYou have had a successful season!\nYour village has a feast.\nDo you want to store the rest of the food for winter or distribute the food to the whole village?\n1- Store the food for winter; 2- Distribute the food to the whole village\nMake your choice " + name + ":\n")
 
     if farmer_list[1] == "2":
         os.system("clear")
