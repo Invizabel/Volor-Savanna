@@ -212,7 +212,7 @@ def the_mighty_lion():
 
     if the_mighty_lion_list[5] == "2":
         clear()
-        the_mighty_lion_list[6] = input("You have chosen to sleep in a tree.\nNo animals eat you.\nYou see a river.\nDo you drink from it?\n\n12- Yes; 13- No\nMake your choice " + name + ":\n")
+        the_mighty_lion_list[6] = input("You have chosen to sleep in a tree.\nNo animals eat you.\nYou see a river.\nDo you drink from it?\n\n1- Yes; 2- No\nMake your choice " + name + ":\n")
 
     if the_mighty_lion_list[6] == "1":
         the_mighty_lion_terrain()
