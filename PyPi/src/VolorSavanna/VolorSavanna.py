@@ -233,11 +233,11 @@ def the_mighty_lion_terrain():
 
     the_mighty_lion_terrain_list[1] = input("You have chosen to drink from the river.\nLuckily, the water doesn't have any diseases or viruses.\nYou are full.\nYou need to cross the river.\nHowever, the river is very deep.\nYou could make a temporary bridge but that would kill vital time to hunt The Mighty Lion.\nThe fastest way to cross the river is to make a raft.\nWhat do you do?\n\n1- Make a bridge; 2- Build a raft\nMake your choice " + name + ":\n")
 
-    if the_mighty_lion_terrain[1] == "1":
+    if the_mighty_lion_terrain_list[1] == "1":
         clear()
-        the_mighty_lion_terrain[2] = input("You have chosen to make a bridge.\nYour patience pays off and you get across the river in no time!\nThe path splits in two.\nDo you travel through the hills or the extreme hills?\n\n1- Hills; 2- Extreme hills\nMake your choice " + name + ":\n")
+        the_mighty_lion_terrain_list[2] = input("You have chosen to make a bridge.\nYour patience pays off and you get across the river in no time!\nThe path splits in two.\nDo you travel through the hills or the extreme hills?\n\n1- Hills; 2- Extreme hills\nMake your choice " + name + ":\n")
 
-    if the_mighty_lion_terrain[1] == "2":
+    if the_mighty_lion_terrain_list[1] == "2":
         clear()
         pause = input("You have chosen to build a raft.\nUnfortunately, the river brings you to the rapids before you are able to reach the other side.\nThe rapids are heading towards a waterfall, so you panic.\nYou throw your paddle into the river.\nYou fall down the waterfall and hit the rocks at the bottom.\nYour head splits open and you die!\n" + death_level)
         volor_savanna_original()
