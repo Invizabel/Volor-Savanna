@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+src/VolorSavanna/VolorSavanna.py
+src/VolorSavanna/__init__.py
+src/VolorSavanna/clear.py
+src/VolorSavanna.egg-info/PKG-INFO
+src/VolorSavanna.egg-info/SOURCES.txt
+src/VolorSavanna.egg-info/dependency_links.txt
+src/VolorSavanna.egg-info/top_level.txt
