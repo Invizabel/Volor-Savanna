@@ -1,16 +1,15 @@
-from VolorSavanna.clear import *
-
 import os
 import random
+from VolorSavanna.clear import *
 
-#the players name
+# the players name
 name = ""
 
-#variables for level finish
+# variables for level finish
 death_level = ""
 victory_level = ""
 
-#random number generator
+# random number generator
 rand = random.randint(1,2)
 
 cyan = "\033[1;36m"
@@ -60,7 +59,7 @@ def hunter():
     
     clear()
 
-    #keeps track of the players progress through the level. Used to prevent cheating.
+    # keeps track of the players progress through the level. Used to prevent cheating.
     hunter_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
     hunter_list[1] = input("You have chosen to be a hunter!\nDo you want to go hunt or stay put?\n\n1- Hunt; 2- Stay put\nMake your choice " + name + ":\n")
@@ -161,7 +160,7 @@ def the_mighty_lion():
     
     clear()
 
-    #keeps track of the players progress through the level. Used to prevent cheating.
+    # keeps track of the players progress through the level. Used to prevent cheating.
     the_mighty_lion_list = ["0", "1", "2", "3", "4", "5", "6", "7"]
 
     the_mighty_lion_list[1] = input("You have chosen to hunt The Mighty Lion.\nYou have been on your journey for about a week now.\nThe trail splits off into three sections.\nDo you choose to go through the canyon?\nHow about the prairie?\nOr what about keep continuing through the forest?\n\n1- Canyon; 2- Prairie; 3- Forest\nMake your choice " + name + ":\n")
@@ -228,7 +227,7 @@ def the_mighty_lion_terrain():
     
     clear()
 
-    #keeps track of the players progress through the level. Used to prevent cheating.
+    # keeps track of the players progress through the level. Used to prevent cheating.
     the_mighty_lion_terrain_list = ["0", "1", "2", "3", "4"]
 
     the_mighty_lion_terrain_list[1] = input("You have chosen to drink from the river.\nLuckily, the water doesn't have any diseases or viruses.\nYou are full.\nYou need to cross the river.\nHowever, the river is very deep.\nYou could make a temporary bridge but that would kill vital time to hunt The Mighty Lion.\nThe fastest way to cross the river is to make a raft.\nWhat do you do?\n\n1- Make a bridge; 2- Build a raft\nMake your choice " + name + ":\n")
@@ -280,7 +279,7 @@ def warrior():
     
     clear()
 
-    #keeps track of the players progress through the level. Used to prevent cheating.
+    # keeps track of the players progress through the level. Used to prevent cheating.
     warrior_list = ["0", "1", "2", "3", "4", "5"]
 
     warrior_list[1] = input("You have chosen to be a warrior!\nDo you want to go hunt The Mighty Lion or stay put?\n\n1- Hunt The Mighty Lion; 2- Stay put\nMake your choice " + name + ":\n")
@@ -335,7 +334,7 @@ def crafter():
     
     clear()
 
-    #keeps track of the players progress through the level. Used to prevent cheating.
+    # keeps track of the players progress through the level. Used to prevent cheating.
     crafter_list = ["0", "1", "2", "3", "4", "5", "6"]
 
     crafter[1] = input("You have chosen to be a crafter!\nYou need to craft some arrows.\nHow do you want to craft them?\n1- Put red dye on the feathers; 2- Just make them\nMake your choice " + name + ":\n")
@@ -401,7 +400,7 @@ def farmer():
     
     clear()
 
-    #keeps track of the players progress through the level. Used to prevent cheating.
+    # keeps track of the players progress through the level. Used to prevent cheating.
     farmer_list = ["0", "1", "2", "3", "4", "5", "6"]
 
     farmer_list[1] = input("You have chosen to be a farmer!\nDo you want to go farm or sleep in?\n1- Farm; 2- Sleep in\nMake your choice " + name + ":\n")
@@ -466,7 +465,7 @@ def medicine_person():
     
     clear()
 
-    #keeps track of the players progress through the level. Used to prevent cheating.
+    # keeps track of the players progress through the level. Used to prevent cheating.
     medicine_person_list = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
 
     medicine_person_list[1] = input("You have chosen to be a medicine person!\nA man is very sick with a fever.\nWhat do you want to do?\n1- Not do anything; 2- Wash him\nMake your choice " + name + ":\n")
