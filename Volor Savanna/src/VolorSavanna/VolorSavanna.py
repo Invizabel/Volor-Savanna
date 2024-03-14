@@ -1,4 +1,3 @@
-import os
 import random
 from VolorSavanna.clear import *
 
@@ -270,7 +269,7 @@ def the_mighty_lion_terrain():
 
     if the_mighty_lion_terrain_list[4] == "1" and rand == 2:
         clear()
-        pause = input("You kill The Mighty Lion!\nYour tribe celebrates!\n" + death_level)
+        pause = input("You kill The Mighty Lion!\nYour tribe celebrates!\n" + victory_level)
         volor_savanna_original()
 
 def warrior():
