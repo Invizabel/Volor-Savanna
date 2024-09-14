@@ -1,15 +1,6 @@
 import random
+import sys
 from clear import *
-
-# the players name
-name = ""
-
-# variables for level finish
-death_level = ""
-victory_level = ""
-
-# random number generator
-rand = random.randint(1,2)
 
 cyan = "\033[1;36m"
 
@@ -50,10 +41,9 @@ def volor_savanna_original():
         medicine_person()
 
     if character == "e":
-        exit()
+        sys.exit()
 
 def hunter():
-    global rand
     rand = random.randint(1,2)
     
     clear()
@@ -154,7 +144,6 @@ def hunter():
         volor_savanna_original()
         
 def the_mighty_lion():
-    global rand
     rand = random.randint(1,2)
     
     clear()
@@ -221,7 +210,6 @@ def the_mighty_lion():
         volor_savanna_original()
         
 def the_mighty_lion_terrain():
-    global rand
     rand = random.randint(1,2)
     
     clear()
@@ -273,7 +261,6 @@ def the_mighty_lion_terrain():
         volor_savanna_original()
 
 def warrior():
-    global rand
     rand = random.randint(1,2)
     
     clear()
@@ -328,7 +315,6 @@ def warrior():
         volor_savanna_original()
 
 def crafter():
-    global rand
     rand = random.randint(1,2)
     
     clear()
@@ -394,7 +380,6 @@ def crafter():
         volor_savanna_original()
 
 def farmer():
-    global rand
     rand = random.randint(1,2)
     
     clear()
@@ -459,7 +444,6 @@ def farmer():
         volor_savanna_original()
 
 def medicine_person():
-    global rand
     rand = random.randint(1,2)
     
     clear()
