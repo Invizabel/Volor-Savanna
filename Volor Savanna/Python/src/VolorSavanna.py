@@ -149,7 +149,7 @@ def the_mighty_lion():
     clear()
 
     # keeps track of the players progress through the level. Used to prevent cheating.
-    the_mighty_lion_list = ["0", "1", "2", "3", "4", "5", "6", "7"]
+    the_mighty_lion_list = ["0", "1", "2", "3", "4", "5", "6"]
 
     the_mighty_lion_list[1] = input("You have chosen to hunt The Mighty Lion.\nYou have been on your journey for about a week now.\nThe trail splits off into three sections.\nDo you choose to go through the canyon?\nHow about the prairie?\nOr what about keep continuing through the forest?\n\n1- Canyon; 2- Prairie; 3- Forest\nMake your choice " + name + ":\n")
 
@@ -204,7 +204,7 @@ def the_mighty_lion():
     if the_mighty_lion_list[6] == "1":
         the_mighty_lion_terrain()
 
-    if the_mighty_lion_list[7] == "2":
+    if the_mighty_lion_list[6] == "2":
         clear()
         pause = input("You have chosen not to drink from the river.\nYour fellow warriors have.\nThe river doesn't make them sick because the river comes from a far off glacier.\nUnfortunately, you cross the river and find no more water sources.\nYou die from dehydration.\n" + death_level)
         volor_savanna_original()
