@@ -232,6 +232,11 @@ def the_mighty_lion_terrain():
         clear()
         the_mighty_lion_terrain_list[3] = input("You have chosen to go through the hills.\nYou travel through the hills and see The Mighty Lion!\nWhat weapon do you want to use?\n\n1- Knife; 2- Bow and arrows; 3- Spear; 4- Gun\nMake your choice " + name + ":\n")
 
+    if the_mighty_lion_terrain_list[2] == "2":
+        clear()
+        pause = input("You have chosen to go through the extreme hills.\nYou freeze to death.\n" + death_level)
+        volor_savanna_original()
+    
     if the_mighty_lion_terrain_list[3] == "1":
         clear()
         the_mighty_lion_terrain_list[4] = input("You have chosen to use your trusty knife to kill The Mighty Lion!\nSo, " + name + " do you kill The Mighty Lion?\n\n1- Find out!\n")

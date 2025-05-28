@@ -479,6 +479,20 @@
                     document.getElementById("my_text").innerHTML = "You have chosen to build a raft.<br>Unfortunately, the river brings you to the rapids before you are able to reach the other side.<br>The rapids are heading towards a waterfall, so you panic.<br>You throw your paddle into the river.<br>You fall down the waterfall and hit the rocks at the bottom.<br>Your head splits open and you die!<br>" + document.cookie.split(";")[0].split("name=")[1] + ", YOU LOSE!<br>THE END!"
                     var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
                 }
+
+                if (document.cookie.includes("terrain_list_2=1"))
+                {
+                    document.getElementById("my_text").innerHTML = "You have chosen to go through the hills.<br>You travel through the hills and see The Mighty Lion!<br>What weapon do you want to use?<br><br>1- Knife; 2- Bow and arrows; 3- Spear; 4- Gun<br>Make your choice " + document.cookie.split(";")[0].split("name=")[1] + ":";
+                    var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
+
+                    if (document.forms["choiceForm"]["choice_field"].value.trim() != "")
+                    {
+                        clear_choices_js();
+                        document.cookie = "terrain_list_3=" + new_choice + "; Path=/;";
+                        document.getElementById("choice_field").value = "";
+                        location.reload();
+                    }
+                }
             }
             
         </script>
