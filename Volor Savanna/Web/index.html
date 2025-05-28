@@ -462,7 +462,7 @@
                 
                 if (document.cookie.includes("terrain_list_1=1"))
                 {
-                    document.getElementById("my_text").innerHTML = "You have chosen to make a bridge.<br>Your patience pays off and you get across the river in no time!<br>The path splits in two.<br>Do you travel through the hills or the extreme hills?<br><br>1- Hills; 2- Extreme hills<br>Make your choice " + document.cookie.split(";")[0].split("name=")[1] + ":";
+                    document.getElementById("my_text").innerHTML = "You have chosen to make a bridge.<br>Your patience pays off and you get across the river in no time!<br>The path splits in two.<br>Do you travel through the hills or the  hills?<br><br>1- Hills; 2- Extreme hills<br>Make your choice " + document.cookie.split(";")[0].split("name=")[1] + ":";
                     var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
 
                     if (document.forms["choiceForm"]["choice_field"].value.trim() != "")
@@ -492,6 +492,12 @@
                         document.getElementById("choice_field").value = "";
                         location.reload();
                     }
+                }
+
+                if (document.cookie.includes("terrain_list_2=2"))
+                {
+                    document.getElementById("my_text").innerHTML = "You have chosen to go through the extreme hills.<br>You freeze to death.<br>" + document.cookie.split(";")[0].split("name=")[1] + ", YOU LOSE!<br>THE END!"
+                    var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
                 }
             }
             
