@@ -499,6 +499,76 @@
                     document.getElementById("my_text").innerHTML = "You have chosen to go through the extreme hills.<br>You freeze to death.<br>" + document.cookie.split(";")[0].split("name=")[1] + ", YOU LOSE!<br>THE END!"
                     var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
                 }
+
+                if (document.cookie.includes("terrain_list_3=1"))
+                {
+                    document.getElementById("my_text").innerHTML = "You have chosen to use your trusty knife to kill The Mighty Lion!<br>So, do you kill The Mighty Lion?<br><br>1- Find out!<br>Make your choice " + document.cookie.split(";")[0].split("name=")[1] + ":<br>"
+                    var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
+
+                    if (document.forms["choiceForm"]["choice_field"].value.trim() != "")
+                    {
+                        clear_choices_js();
+                        document.cookie = "terrain_list_4=" + new_choice + "; Path=/;";
+                        document.getElementById("choice_field").value = "";
+                        rand = Math.floor(Math.random() * 2) + 1;
+                        document.cookie = "random_cookie=" + rand.toString() + "; Path=/;";
+                        location.reload();
+                    }
+                }
+
+                if (document.cookie.includes("terrain_list_3=2"))
+                {
+                    document.getElementById("my_text").innerHTML = "You have chosen to use your mighty bow and arrows to kill The Mighty Lion!<br>So, do you kill The Mighty Lion?<br><br>1- Find out!<br>Make your choice " + document.cookie.split(";")[0].split("name=")[1] + ":<br>"
+                    var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
+
+                    if (document.forms["choiceForm"]["choice_field"].value.trim() != "")
+                    {
+                        clear_choices_js();
+                        document.cookie = "terrain_list_4=" + new_choice + "; Path=/;";
+                        document.getElementById("choice_field").value = "";
+                        rand = Math.floor(Math.random() * 2) + 1;
+                        document.cookie = "random_cookie=" + rand.toString() + "; Path=/;";
+                        location.reload();
+                    }
+                }
+
+                if (document.cookie.includes("terrain_list_3=2"))
+                {
+                    document.getElementById("my_text").innerHTML = "You have chosen to use your mighty bow and arrows to kill The Mighty Lion!<br>So, do you kill The Mighty Lion?<br><br>1- Find out!<br>Make your choice " + document.cookie.split(";")[0].split("name=")[1] + ":<br>"
+                    var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
+
+                    if (document.forms["choiceForm"]["choice_field"].value.trim() != "")
+                    {
+                        clear_choices_js();
+                        document.cookie = "terrain_list_4=" + new_choice + "; Path=/;";
+                        document.getElementById("choice_field").value = "";
+                        rand = Math.floor(Math.random() * 2) + 1;
+                        document.cookie = "random_cookie=" + rand.toString() + "; Path=/;";
+                        location.reload();
+                    }
+                }
+
+                if (document.cookie.includes("terrain_list_3=3"))
+                {
+                    document.getElementById("my_text").innerHTML = "You have chosen to use your powerful spear to kill The Mighty Lion<br>So, do you kill The Mighty Lion?<br><br>1- Find out!<br>Make your choice " + document.cookie.split(";")[0].split("name=")[1] + ":<br>"
+                    var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
+
+                    if (document.forms["choiceForm"]["choice_field"].value.trim() != "")
+                    {
+                        clear_choices_js();
+                        document.cookie = "terrain_list_4=" + new_choice + "; Path=/;";
+                        document.getElementById("choice_field").value = "";
+                        rand = Math.floor(Math.random() * 2) + 1;
+                        document.cookie = "random_cookie=" + rand.toString() + "; Path=/;";
+                        location.reload();
+                    }
+                }
+
+                if (document.cookie.includes("terrain_list_3=4"))
+                {
+                    document.getElementById("my_text").innerHTML = "You have chosen to use your overpowered gun to kill The Mighty Lion.<br>Unfortunately, your gun explodes in face.<br>You die.<br>" + document.cookie.split(";")[0].split("name=")[1] + ", YOU LOSE!<br>THE END!"
+                    var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
+                }
             }
             
         </script>
