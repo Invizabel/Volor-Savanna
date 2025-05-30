@@ -4,13 +4,14 @@
         <script>
             function reset_js()
             {
-                document.cookie = "name=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-                document.cookie = "character=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
                 clear_choices_js();
+                userName();
             }
 
             function clear_choices_js()
             {
+                document.cookie = "name=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+                document.cookie = "character=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
                 document.cookie = "random_cookie=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
                 document.cookie = "hunter_list_0=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
                 document.cookie = "hunter_list_1=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
