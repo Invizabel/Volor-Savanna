@@ -569,6 +569,18 @@
                     document.getElementById("my_text").innerHTML = "You have chosen to use your overpowered gun to kill The Mighty Lion.<br>Unfortunately, your gun explodes in face.<br>You die.<br>" + document.cookie.split(";")[0].split("name=")[1] + ", YOU LOSE!<br>THE END!"
                     var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
                 }
+
+                if (document.cookie.includes("hunter_list_4=1") && document.cookie.includes("random_cookie=1"))
+                {
+                    document.getElementById("my_text").innerHTML = "You do not kill The Mighty Lion.\nUnfortunately, The Mighty Lion eats you!<br>" + document.cookie.split(";")[0].split("name=")[1] + ", YOU LOSE!<br>THE END!"
+                    var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
+                }
+
+                if (document.cookie.includes("hunter_list_4=1") && document.cookie.includes("random_cookie=2"))
+                {
+                    document.getElementById("my_text").innerHTML = "You kill The Mighty Lion!\nYour tribe celebrates!<br>" + document.cookie.split(";")[0].split("name=")[1] + ", YOU WIN!<br>THE END!"
+                    var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
+                }
             }
             
         </script>
