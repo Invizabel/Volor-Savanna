@@ -23,6 +23,7 @@
                 document.cookie = "hunter_list_8=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
                 document.cookie = "hunter_list_9=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
                 document.cookie = "hunter_list_10=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+                document.cookie = "warrior_list_0=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
                 document.cookie = "the_mighty_lion_list_0=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
                 document.cookie = "the_mighty_lion_list_1=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
                 document.cookie = "the_mighty_lion_list_2=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
@@ -54,6 +55,11 @@
                     hunter();
                 }
 
+                else if (document.cookie.includes("character=warrior"))
+                {
+                    warrior();
+                }
+
                 else if (document.cookie.includes("character=the_mighty_lion"))
                 {
                     the_mighty_lion();
@@ -74,6 +80,13 @@
                     {
                         document.cookie = "character=hunter; Path=/;";
                         document.cookie = "hunter_list_0=" + 0 + "; Path=/;";
+                        location.reload();
+                    }
+
+                    if (character == "2")
+                    {
+                        document.cookie = "character=warrior; Path=/;";
+                        document.cookie = "warrior_list_0=" + 0 + "; Path=/;";
                         location.reload();
                     }
                 }
@@ -574,14 +587,31 @@
 
                 if (document.cookie.includes("terrain_list_4=1") && document.cookie.includes("random_cookie=1"))
                 {
-                    document.getElementById("my_text").innerHTML = "You do not kill The Mighty Lion.\nUnfortunately, The Mighty Lion eats you!<br>" + document.cookie.split(";")[0].split("name=")[1] + ", YOU LOSE!<br>THE END!"
+                    document.getElementById("my_text").innerHTML = "You do not kill The Mighty Lion.<br>Unfortunately, The Mighty Lion eats you!<br>" + document.cookie.split(";")[0].split("name=")[1] + ", YOU LOSE!<br>THE END!"
                     var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
                 }
 
                 if (document.cookie.includes("terrain_list_4=1") && document.cookie.includes("random_cookie=2"))
                 {
-                    document.getElementById("my_text").innerHTML = "You kill The Mighty Lion!\nYour tribe celebrates!<br>" + document.cookie.split(";")[0].split("name=")[1] + ", YOU WIN!<br>THE END!"
+                    document.getElementById("my_text").innerHTML = "You kill The Mighty Lion!<br>Your tribe celebrates!<br>" + document.cookie.split(";")[0].split("name=")[1] + ", YOU WIN!<br>THE END!"
                     var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
+                }
+            }
+
+            function warrior()
+            {
+                if (document.cookie.includes("warrior_list_0=0"))
+                {
+                    document.getElementById("my_text").innerHTML = "You have chosen to be a warrior!<br>Do you want to go hunt The Mighty Lion or stay put?<br><br>1- Hunt The Mighty Lion; 2- Stay put<br>Make your choice " + document.cookie.split(";")[0].split("name=")[1] + ":";
+                    var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
+
+                    if (document.forms["choiceForm"]["choice_field"].value.trim() != "")
+                    {
+                        clear_choices_js();
+                        document.cookie = "warrior_list_1=" + new_choice + "; Path=/;";
+                        document.getElementById("choice_field").value = "";
+                        location.reload();
+                    }
                 }
             }
             
