@@ -637,6 +637,13 @@
                         location.reload();
                     }
                 }
+
+                if (document.cookie.includes("warrior_list_2=1"))
+                {
+                    document.getElementById("my_text").innerHTML = "You have chosen to go get your bow and arrows.<br>Unfortunately, the enemy beats you to it and shoots you on the spot.<br>" + document.cookie.split(";")[0].split("name=")[1] + ", YOU LOSE!<br>THE END!"
+                    var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
+                }
+
             }
             
         </script>
