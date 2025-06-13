@@ -644,6 +644,19 @@
                     var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
                 }
 
+                if (document.cookie.includes("warrior_list_2=2"))
+                {
+                    document.getElementById("my_text").innerHTML = "You have chosen to use your knife.<br>You are very skilled with a knife.<br>Eventually the enemy tribe retreats.<br>The chief has told you to go take a weekend off at the Big Pond.<br>You go to the Big Pond and enjoy it very much.<br>You see a crying baby by the side of the Big Pond.<br>Do you pick up the baby and bring him home or just ignore him?<br><br>1- Pick him up and bring him home; 2- Just ignore him<br>Make your choice " + document.cookie.split(";")[0].split("name=")[1] + ":";
+                    var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
+
+                    if (document.forms["choiceForm"]["choice_field"].value.trim() != "")
+                    {
+                        clear_choices_js();
+                        document.cookie = "warrior_list_3=" + new_choice + "; Path=/;";
+                        document.getElementById("choice_field").value = "";
+                        location.reload();
+                    }
+                }
             }
             
         </script>
