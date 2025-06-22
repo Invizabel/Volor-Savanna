@@ -26,6 +26,8 @@
                 document.cookie = "warrior_list_0=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
                 document.cookie = "warrior_list_1=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
                 document.cookie = "warrior_list_2=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+                document.cookie = "warrior_list_3=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+                document.cookie = "warrior_list_4=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
                 document.cookie = "the_mighty_lion_list_0=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
                 document.cookie = "the_mighty_lion_list_1=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
                 document.cookie = "the_mighty_lion_list_2=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
@@ -653,6 +655,20 @@
                     {
                         clear_choices_js();
                         document.cookie = "warrior_list_3=" + new_choice + "; Path=/;";
+                        document.getElementById("choice_field").value = "";
+                        location.reload();
+                    }
+                }
+
+                if (document.cookie.includes("warrior_list_3=1"))
+                {
+                    document.getElementById("my_text").innerHTML = "You have chosen to pick up the baby and bring him home.<br>The baby turns out to be an orphan.<br>His mother was killed by the enemy tribe and the baby was left by the Big Pond.<br>You raise him as your own.<br>He becomes a great warrior and you name him Bobert.<br>You need to go hunt down the enemy that attacked your tribe years ago.<br>Do you take your son with you?<br><br>1- Yes; 2- No<br>Make your choice " + document.cookie.split(";")[0].split("name=")[1] + ":";
+                    var new_choice = parseInt(document.forms["choiceForm"]["choice_field"].value);
+
+                    if (document.forms["choiceForm"]["choice_field"].value.trim() != "")
+                    {
+                        clear_choices_js();
+                        document.cookie = "warrior_list_4=" + new_choice + "; Path=/;";
                         document.getElementById("choice_field").value = "";
                         location.reload();
                     }
