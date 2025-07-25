@@ -37,7 +37,7 @@ static inline const char * VolorSavannaGame()
         strcpy(result, "You have chosen to be a hunter!\nDo you want to go hunt or stay put?\n\n1- Hunt; 2- Stay put\nMake your choice ");
         strcat(result, name);
         strcat(result, ":\n");
-        level += 1;
+        level = 1;
         return result;
     }
     
@@ -48,7 +48,7 @@ static inline const char * VolorSavannaGame()
         strcpy(result, "You have chosen to go hunt!\nYou have gone hunting.\nYou didn't find any food.\nYou return to your village.\nLuckily, the farmer has enough crops to last your tribe a week.\nDo you want to go hunt right away to make up lost time or do you choose to go eat?\n\n1- Hunt; 2- Eat\nMake your choice ");
         strcat(result, name);
         strcat(result, ":\n");
-        level += 1;
+        level = 2;
         return result;
     }
 
@@ -69,7 +69,7 @@ static inline const char * VolorSavannaGame()
         strcpy(result, "You have chosen to go hunt!\nYou go on a successful hunt that should last your tribe a month.\nHowever, you are very tired and because you didn't eat, you have become very sick with malnutrition.\nUnluckily for you, the tribes medicine women is very busy and has a lot of patients to take care of first.\nDo you wish to wait for her or tough it out?\n\n1- Wait for her; 2- Tough it out\nMake your choice ");
         strcat(result, name);
         strcat(result, ":\n");
-        level += 1;
+        level = 3;
         return result;
     }
 
@@ -80,7 +80,7 @@ static inline const char * VolorSavannaGame()
         strcpy(result, "You have chosen to eat.\nYou are fully fueled with energy.\nDo you want to go hunting or play a game with the rest of your tribe?\n\n1- Hunt; 2- Play a game with the rest of my tribe\nMake your choice ");
         strcat(result, name);
         strcat(result, ":\n");
-        level += 1;
+        level = 4;
         return result;
     }
 
@@ -91,7 +91,7 @@ static inline const char * VolorSavannaGame()
         strcpy(result,  "You have chosen to wait for her.\nBecause You have chosen to wait for her patiently, she attends to you in a matter of a couple days.\nYou are better in a week.\nSome white men have come to your tribe.\nThey're asking to trade you guns for some of your tribe's animal pelts.\nDo you trade them pelts for guns?\n\n1- Trade; 2- Not trade\nMake your choice ");
         strcat(result, name);
         strcat(result, ":\n");
-        level += 1;
+        level = 5;
         return result;
     }
 
@@ -104,7 +104,29 @@ static inline const char * VolorSavannaGame()
         level = 0;
         return result;
     }
-    
+
+    else if (character == "1" && level == 4 && choice == 1)
+    {
+        size_t length = strlen(name) + strlen("You have chosen to hunt.\nYou have found a bunch of zebras to eat.\nSome white men are willing to trade your tribe rifles for some of your zebras.\nRecently, there has been some highly wanted criminals that trade weapons and drugs on the black market.\nThe problem is, you don't know if that's them.\nDo you trade?\nWhat about decline the offer?\nOr do you report them to the authorities?\n\n1- Trade; 2- Decline the trade; 3- Report them to the authorities\nMake your choice ") + strlen(":\n") + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result,  "You have chosen to hunt.\nYou have found a bunch of zebras to eat.\nSome white men are willing to trade your tribe rifles for some of your zebras.\nRecently, there has been some highly wanted criminals that trade weapons and drugs on the black market.\nThe problem is, you don't know if that's them.\nDo you trade?\nWhat about decline the offer?\nOr do you report them to the authorities?\n\n1- Trade; 2- Decline the trade; 3- Report them to the authorities\nMake your choice ");
+        strcat(result, name);
+        strcat(result, ":\n");
+        level = 6;
+        return result;
+    }
+
+    else if (character == "1" && level == 4 && choice == 2)
+    {
+        size_t length = strlen(name) + strlen("You have chosen to play a game with the rest of your tribe.\nEveryone has a good time and you guys have an awesome feast.\nThere is a hunting challenge that your tribe is having.\nThe challenge is to go hunt The Mighty Lion!\nDo you want to go hunt The Mighty Lion with your tribe to win the challenge?\n\n1- Yes; 2- No\nMake your choice ") + strlen(":\n") + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "You have chosen to play a game with the rest of your tribe.\nEveryone has a good time and you guys have an awesome feast.\nThere is a hunting challenge that your tribe is having.\nThe challenge is to go hunt The Mighty Lion!\nDo you want to go hunt The Mighty Lion with your tribe to win the challenge?\n\n1- Yes; 2- No\nMake your choice ");
+        strcat(result, name);
+        strcat(result, ":\n");
+        level = 7;
+        return result;
+    }
+   
     else
     {
         return 0;
