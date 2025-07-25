@@ -126,6 +126,28 @@ static inline const char * VolorSavannaGame()
         level = 7;
         return result;
     }
+
+    else if (character == "1" && level == 5 && choice == 1)
+    {
+        size_t length = strlen(name) + strlen("You have chosen to trade.\nThey trade you guns.\nDo you want to go hunt The Mighty Lion?\n\n1- Yes; 2- No\nMake your choice ") + strlen(":\n") + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "You have chosen to trade.\nThey trade you guns.\nDo you want to go hunt The Mighty Lion?\n\n1- Yes; 2- No\nMake your choice ");
+        strcat(result, name);
+        strcat(result, ":\n");
+        level = 8;
+        return result;
+    }
+
+    else if (character == "1" && level == 5 && choice == 2)
+    {
+        size_t length = strlen(name) + strlen("You have chosen not to trade.\nBecause of this they want to kill you.\nDo you escape?\n\n1- Find out!\nMake your choice ") + strlen(":\n") + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "You have chosen not to trade.\nBecause of this they want to kill you.\nDo you escape?\n\n1- Find out!\nMake your choice ");
+        strcat(result, name);
+        strcat(result, ":\n");
+        level = 9;
+        return result;
+    }
    
     else
     {
