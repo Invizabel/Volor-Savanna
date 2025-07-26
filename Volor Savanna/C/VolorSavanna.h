@@ -20,10 +20,10 @@ static inline const char * death_level(char * name)
 
 static inline const char * victory_level(char * name)
 {
-    size_t length = strlen(name) + strlen(", YOU LOSE!\nTHE WIN!") + 1;
+    size_t length = strlen(name) + strlen(", YOU WIN!\nTHE WIN!") + 1;
     char * result = (char *)malloc(length);
     strcpy(result, name);
-    strcat(result, ", YOU LOSE!\nTHE WIN!");
+    strcat(result, ", YOU WIN!\nTHE WIN!");
     return result;
 }
 
@@ -146,6 +146,37 @@ static inline const char * VolorSavannaGame()
         strcat(result, name);
         strcat(result, ":\n");
         level = 9;
+        return result;
+    }
+
+    else if (character == "1" && level == 6 && choice == 1)
+    {
+        size_t length = strlen(name) + strlen("You have chosen to trade.\nLuckily, these aren't the criminals that are wanted.\nA couple months later the white men settle here.\nPeople keep on flooding into the white men's settlement.\nBecause of this your village becomes rich.\n") + strlen(victory_level(name)) + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "You have chosen to trade.\nLuckily, these aren't the criminals that are wanted.\nA couple months later the white men settle here.\nPeople keep on flooding into the white men's settlement.\nBecause of this your village becomes rich.\n");
+        strcat(result, victory_level(name));
+        level = 0;
+        return result;
+    }
+
+    else if (character == "1" && level == 6 && choice == 2)
+    {
+        size_t length = strlen(name) + strlen("You have chosen to decline the trade.\nUnfortunately, these people have smallpox.\nThey transmit it to your tribe.\nBecause you tribe doesn't have any immunity against smallpox your whole tribe dies!\n") + strlen(death_level(name)) + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "You have chosen to decline the trade.\nUnfortunately, these people have smallpox.\nThey transmit it to your tribe.\nBecause you tribe doesn't have any immunity against smallpox your whole tribe dies!\n");
+        strcat(result, death_level(name));
+        level = 0;
+        return result;
+    }
+
+    else if (character == "1" && level == 6 && choice == 3)
+    {
+        size_t length = strlen(name) + strlen("You have chosen to report them to the authorities.\nThese guys turn out to be the wanted criminals after all.\nYour tribe gains importance in the African community because you turned these criminals into the authorities.\nDo you want to go hunt The Mighty Lion?\n\n1- Yes; 2- No\nMake your choice ") + strlen(":\n") + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "You have chosen to report them to the authorities.\nThese guys turn out to be the wanted criminals after all.\nYour tribe gains importance in the African community because you turned these criminals into the authorities.\nDo you want to go hunt The Mighty Lion?\n\n1- Yes; 2- No\nMake your choice ");
+        strcat(result, name);
+        strcat(result, ":\n");
+        level = 10;
         return result;
     }
    
