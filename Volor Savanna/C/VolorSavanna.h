@@ -1,4 +1,5 @@
-#include <cstring>
+#include <string.h>
+#include <time.h>
 
 #ifndef VOLORSAVANNA_H
 #define VOLORSAVANNA_H
@@ -6,6 +7,7 @@ char name[256];
 string character;
 int choice;
 int level = 0;
+int new_rand;
 string name_prompt = "What is your name?\n";
 string character_prompt = "Welcome to Volor Savanna!\nYou are a member of an African Tribe!\nWho do you want to be?\n\n1- Hunter\n2- Warrior\n3- Crafter\n4- Farmer\n5- Medicine Person\ne- exit\n";
 
@@ -27,9 +29,10 @@ static inline const char * victory_level(char * name)
     return result;
 }
 
-
 static inline const char * VolorSavannaGame()
-{       
+{
+    srand(time(NULL));
+    
     if (character == "1" && level == 0)
     {
         size_t length = strlen(name) + strlen("You have chosen to be a hunter!\nDo you want to go hunt or stay put?\n\n1- Hunt; 2- Stay put\nMake your choice ") + strlen(":\n") + 1;
@@ -146,6 +149,7 @@ static inline const char * VolorSavannaGame()
         strcat(result, name);
         strcat(result, ":\n");
         level = 9;
+        new_rand = rand() % 2 + 1;
         return result;
     }
 
@@ -196,6 +200,58 @@ static inline const char * VolorSavannaGame()
         return result;
     }
 
+    if (character == "1" && level == 8 && choice == 1)
+    {
+        level = 0;
+        character = "the_mighty_lion";
+    }
+
+    if (character == "1" && level == 8 && choice == 2)
+    {
+        size_t length = strlen(name) + strlen("You have chosen not to hunt The Mighty Lion.\nUnfortunately, a random lightning bolt from out of nowhere, probably from Zeus, kills you.\n") + strlen(death_level(name)) + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "You have chosen not to hunt The Mighty Lion.\nUnfortunately, a random lightning bolt from out of nowhere, probably from Zeus, kills you.\n");
+        strcat(result, death_level(name));
+        level = 0;
+        return result;
+    }
+
+    if (character == "1" && level == 9 && choice == 1 && new_rand == 1)
+    {
+        size_t length = strlen(name) + strlen("Unfortunately, you don't escape.\nThey kill you on the spot with a feather.\n") + strlen(death_level(name)) + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "Unfortunately, you don't escape.\nThey kill you on the spot with a feather.\n");
+        strcat(result, death_level(name));
+        level = 0;
+        return result;
+    }
+
+    if (character == "1" && level == 9 && choice == 1 && new_rand == 2)
+    {
+        size_t length = strlen(name) + strlen("You manage to escape.\nYou live a long and prosperous life!\n") + strlen(victory_level(name)) + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "You manage to escape.\nYou live a long and prosperous life!\n");
+        strcat(result, victory_level(name));
+        level = 0;
+        return result;
+    }
+
+    if (character == "1" && level == 10 && choice == 1)
+    {
+        level = 0;
+        character = "the_mighty_lion";
+    }
+
+    if (character == "1" && level == 10 && choice == 2)
+    {
+        size_t length = strlen(name) + strlen("You have chosen not to hunt The Mighty Lion.\nUnfortunately, a Chandra Planeswalker burns you to death!\n") + strlen(death_level(name)) + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "You have chosen not to hunt The Mighty Lion.\nUnfortunately, a Chandra Planeswalker burns you to death!\n");
+        strcat(result, death_level(name));
+        level = 0;
+        return result;
+    }
+
     if (character == "the_mighty_lion" && level == 0)
     {
         size_t length = strlen(name) + strlen("You have chosen to hunt The Mighty Lion.\nYou have been on your journey for about a week now.\nThe trail splits off into three sections.\nDo you choose to go through the canyon?\nHow about the prairie?\nOr what about keep continuing through the forest?\n\n1- Canyon; 2- Prairie; 3- Forest\nMake your choice ") + strlen(":\n") + 1;
@@ -206,7 +262,7 @@ static inline const char * VolorSavannaGame()
         level = 1;
         return result;
     }
-        
+    
     else
     {
         return 0;
