@@ -262,6 +262,38 @@ static inline const char * VolorSavannaGame()
         level = 1;
         return result;
     }
+
+    if (character == "the_mighty_lion" && level == 1 && choice == 1)
+    {
+        size_t length = strlen(name) + strlen("You have chosen to go through the canyon!\nThe canyon is the quickest route to The Mighty Lion.\nUnfortunately, you're almost out of the canyon when a flash flood occurs.\nYou get wiped away instantly and you drown to death.\n") + strlen(death_level(name)) + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "You have chosen to go through the canyon!\nThe canyon is the quickest route to The Mighty Lion.\nUnfortunately, you're almost out of the canyon when a flash flood occurs.\nYou get wiped away instantly and you drown to death.\n");
+        strcat(result, death_level(name));
+        level = 0;
+        return result;
+    }
+
+    if (character == "the_mighty_lion" && level == 1 && choice == 2)
+    {
+        size_t length = strlen(name) + strlen("You have chosen to go through the prairie!\nWhich way do you travel?\n\n1- Left; 2- Right\nMake your choice ") + strlen(":\n") + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "You have chosen to go through the prairie!\nWhich way do you travel?\n\n1- Left; 2- Right\nMake your choice ");
+        strcat(result, name);
+        strcat(result, ":\n");
+        level = 2;
+        return result;
+    }
+
+    if (character == "the_mighty_lion" && level == 1 && choice == 3)
+    {
+        size_t length = strlen(name) + strlen("You have chosen to go through the forest!\nYou see a river.\nDo you drink from it?\n\n1- Yes; 2- No\nMake your choice ") + strlen(":\n") + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "You have chosen to go through the forest!\nYou see a river.\nDo you drink from it?\n\n1- Yes; 2- No\nMake your choice ");
+        strcat(result, name);
+        strcat(result, ":\n");
+        level = 3;
+        return result;
+    }
     
     else
     {
