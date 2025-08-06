@@ -294,6 +294,43 @@ static inline const char * VolorSavannaGame()
         level = 3;
         return result;
     }
+
+    if (character == "the_mighty_lion" && level == 2 && choice == 1)
+    {
+        size_t length = strlen(name) + strlen("You have chosen to go left.\nUnfortunately, there are hyenas in front of you after only about an hour of walking.\nThey see you and kill you.\n") + strlen(death_level(name)) + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "You have chosen to go left.\nUnfortunately, there are hyenas in front of you after only about an hour of walking.\nThey see you and kill you.\n");
+        strcat(result, death_level(name));
+        level = 0;
+        return result;
+    }
+
+    if (character == "the_mighty_lion" && level == 2 && choice == 2)
+    {
+        size_t length = strlen(name) + strlen("You have chosen to go right.\nThere are zebras in front of you after only about an hour of walking.\nDo you kill them for food?\n\n1- Yes; 2- No\nMake your choice ") + strlen(":\n") + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "You have chosen to go right.\nThere are zebras in front of you after only about an hour of walking.\nDo you kill them for food?\n\n1- Yes; 2- No\nMake your choice ");
+        strcat(result, name);
+        strcat(result, ":\n");
+        level = 4;
+        return result;
+    }
+
+    if (character == "the_mighty_lion" && level == 3 && choice == 1)
+    {
+        level = 0;
+        character = "the_mighty_lion_terrain";
+    }
+
+    if (character == "the_mighty_lion" && level == 3 && choice == 2)
+    {
+        size_t length = strlen(name) + strlen("You have chosen not to drink from the river.\nYour fellow warriors have.\nThe river doesn't make them sick because the river comes from a far off glacier.\nUnfortunately, you cross the river and find no more water sources.\nYou die from dehydration.\n") + strlen(death_level(name)) + 1;
+        char * result = (char *)malloc(length);
+        strcpy(result, "You have chosen not to drink from the river.\nYour fellow warriors have.\nThe river doesn't make them sick because the river comes from a far off glacier.\nUnfortunately, you cross the river and find no more water sources.\nYou die from dehydration.\n");
+        strcat(result, death_level(name));
+        level = 0;
+        return result;
+    }
     
     else
     {
